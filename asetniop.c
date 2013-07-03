@@ -72,7 +72,7 @@ char numericalshift[rows][cols]={
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '} //P
 };
 
-void debug(char *text) {
+void debug(char* text) {
     if (debug==1){
         Serial.println(text);
     }
