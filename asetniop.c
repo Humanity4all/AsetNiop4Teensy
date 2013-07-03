@@ -164,7 +164,31 @@ void process() {
        if (i>0 and mods[i][2]<2 and mods[i][0]>0) { mods[i][1]=0; mods[i][2]=0; } 
     }
     
-    //Handle mouse buttons
+    //Handle mouse buttons, including dragging
+    if (mouse[0][0]==1) { //dragging
+        Mouse.set_buttons(1,0,0);
+    }
+    else if (mouse[0][1]==1) {
+        //Mouse.set_buttons(1,0,0); //this should not be necessary
+        Mouse.set_buttons(0,0,0);
+        mouse[0][0]=0;
+    }
+    else if (mouse[1][0]==1) { //right click dragging
+        Mouse.set_buttons(0,1,0);
+    }
+    else if (mouse[1][1]==1) {
+        Mouse.set_buttons(0,0,0);
+        mouse[1][1]==0;
+    }//no middle click yet
+    //scrolling
+    if (mouse[2][1]==1) { //scroll up
+        Mouse.scroll(1);
+        mouse[2][1]=0;
+    }
+    if(mouse[3][1]==1) { //scroll down
+        Mouse.scroll(-1);
+        mouse[3][1]=0;
+    }
 
     //Check mode
 
@@ -242,7 +266,7 @@ void process() {
         Keyboard.set_modifier(MODIFIERKEY_ALT);
         Keyboard.send_now();
     }
-    else{
+    else{ //no mod keys
         Keyboard.set_modifier(0);
         Keyboard.send_now();
     }
