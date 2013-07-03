@@ -72,7 +72,7 @@ char numericalshift[rows][cols]={
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '} //P
 };
 
-void debug(char text) {
+void debug(char *text) {
     if (debug==1){
         Serial.println(text);
     }
@@ -80,6 +80,100 @@ void debug(char text) {
 
 void process() {
     //act on the detected key settings
+    
+    //mod keys - these are lazy: one press is on for the next keypress, two presses caps, 3rd press off
+    for (i=0; i<5; i++){
+        if (mods[i][1]==1) { 
+            if (mods[i][2]<2) { mods[i][2]+=1; }
+            else { mods[i][2]=0; }
+        }
+    }
+    
+    int shift;
+    int ctrl;
+    int mod4;
+    int alt;
+    int fn;
+    //set modifier keys
+    if (mods[0][0]==1 or mods[0][2]>0) { snift=1 }
+    if (mods[1][0]==1 or mods[1][2]>0) { ctrl=1 }
+    if (mods[2][0]==1 or mods[2][2]>0) { mod4=1 }
+    if (mods[3][0]==1 or mods[3][2]>0) { alt=1 }
+    if (mods[4][0]==1 or mods[4][2]>0) { fn=1 }
+    
+    //send modifier keys (we skip the individual shift because it has special meaning)
+    //we ignore fn for now, there's no real support for it in teensy right now
+    if (ctrl==1 and shift==1 and mod4==1 and alt==1) { //4 mod keys
+        Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT | MODIFIERKEY_GUI | MODIFIERKEY_ALT);
+        Keyboard.send_now();
+    }
+    else if (shift==1 and mod4==1 and alt==1) { //3 mod keys, no ctrl
+        Keyboard.set_modifier(MODIFIERKEY_SHIFT | MODIFIERKEY_GUI | MODIFIERKEY_ALT);
+        Keyboard.send_now();
+    }
+    else if (ctrl==1 and mod4==1 and alt==1) { //3 mod keys, no shift
+        Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_GUI | MODIFIERKEY_ALT);
+        Keyboard.send_now();
+    }
+    else if (ctrl==1 and shift==1 and alt==1) { //3 mod keys, no mod4
+        Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT | MODIFIERKEY_ALT);
+        Keyboard.send_now();
+    }
+    else if (ctrl==1 and shift==1 and mod4==1) { //3 mod keys, no alt
+        Keyboard.set_modifier(MODIFIERKEY_CTRL | MOIFIERKEY_SHIFT | MODIFIERKEY_GUI);
+        Keyboard.send_now();
+    }
+    else if (ctrl==1 and shift==1) { //2 mod keys, ctrl - shift
+        Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT);
+        Keyboard.send_now();
+    }
+    else if (ctrl==1 and mod4==1) { //2 mod keys, ctrl - mod4
+        Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_GUI);
+        Keyboard.send_now();
+    }
+    else if (ctrl==1 and alt==1) { //2 mod keys, ctrl - alt
+        Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_ALT);
+        Keyboard.send_now();
+    }
+    else if (mod4==1 and shift==1) { //2 mod keys, mod4 - shift
+        Keyboard.set_modifier(MODIFIERKEY_GUI | MODIFIERKEY_SHIFT);
+        Keyboard.send_now();
+    }
+    else if (mod4==1 and alt==1) { //2 mod keys, mod4 - alt
+        Keyboard.set_modifier(MODIFIERKEY_GUI | MODIFIERKEY_ALT);
+        Keyboard.send_now();
+    }
+    else if (alt==1 and shift==1) { //2 mod keys, alt - shift
+        Keyboard.set_modifier(MODIFIERKEY_ALT | MODIFIERKEY_SHIFT);
+        Keyboard.send_now();
+    }
+    else if (ctrl==1) { //1 mod key
+        Keyboard.set_modifier(MODIFIERKEY_CTRL);
+        Keyboard.send_now();
+    }
+    else if (mod4==1) { //1 mod key
+        Keyboard.set_modifier(MODIFIERKEY_GUI);
+        Keyboard.send_now();
+    }
+    else if (alt==1) { //1 mod key
+        Keyboard.set_modifier(MODIFIERKEY_ALT);
+        Keyboard.send_now();
+    }
+    
+    
+
+
+    //Now send the keys
+    Keyboard.send_now();
+    Keyboard.set_key1(0);
+    Keyboard.set_key2(0);
+    Keyboard.set_key3(0);
+    Keyboard.set_key4(0);
+    Keyboard.set_key5(0);
+    Keyboard.set_key6(0);
+    //Only reset the modifierkeys that aren't sticky
+    Keyboar.set_modifier(0);
+    Keyboard.send_now();
 }
 
 void setup() {
