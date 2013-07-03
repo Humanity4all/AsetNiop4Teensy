@@ -1,24 +1,25 @@
-int lp=5;
-int lpm=6;
-int lr=7;
-int lrm=8;
-int lm=9;
-int lmm=10;
-int li=11;
-int lim=12;
-int lt=13;
-int ltm=14;
+// assign pins to fingers (keys)
+int lp=5;   //left pink
+int lpm=6;  //left pink mod
+int lr=7;   //left ring finger
+int lrm=8;  //left ring finger mod
+int lm=9;   //left middle finger
+int lmm=10; //left middle finger mod
+int li=11;  //left index finger
+int lim=12; //left index finger mod
+int lt=13;  //left thumb
+int ltm=14; //left thumb mod
 
-int rt=15;
-int rtm=16;
-int ri=17;
-int rim=18;
-int rm=19;
-int rmm=20;
-int rr=21;
-int rrm=22;
-int rp=23;
-int rpm=24;
+int rt=15;  //right thumb
+int rtm=16; //right thumb mod
+int ri=17;  //right index finger
+int rim=18; //right index finger mod
+int rm=19;  //right middle finger
+int rmm=20; //right middle finger mod
+int rr=21;  //right ring finger
+int rrm=22; //right ring finger mod
+int rp=23;  //right pink
+int rpm=24; //right pink mod
 
 int power=25;
 int debug=1;
