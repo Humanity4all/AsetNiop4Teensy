@@ -192,10 +192,25 @@ void process() {
     }
 
     //Check mode
+    if(mode==0) {
+        //'normal' mode - alphabetic
+        
+        //Check shift
 
-    //Check shift
+        //Determine what key to send
+    }
+    else if(mode==1) {
+        //numeric mode
 
-    //Determine what key to send
+        //Check shift
+
+        //Determine what key to send
+    }
+    else{ //not implemented yet, but other modes should go here
+        //Check shift
+        
+        //Determine what key to send
+    }
 
     //Now send the keys
     Keyboard.send_now();
