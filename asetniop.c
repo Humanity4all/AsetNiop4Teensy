@@ -1,30 +1,30 @@
 // assign pins to fingers (keys)
-int lp=5;   //left pink
-int lpm=6;  //left pink mod
-int lr=7;   //left ring finger
-int lrm=8;  //left ring finger mod
-int lm=9;   //left middle finger
-int lmm=10; //left middle finger mod
-int li=11;  //left index finger
-int lim=12; //left index finger mod
-int lt=13;  //left thumb
-int ltm=14; //left thumb mod
+const int lp=5;   //left pink
+const int lpm=6;  //left pink mod
+const int lr=7;   //left ring finger
+const int lrm=8;  //left ring finger mod
+const int lm=9;   //left middle finger
+const int lmm=10; //left middle finger mod
+const int li=11;  //left index finger
+const int lim=12; //left index finger mod
+const int lt=13;  //left thumb
+const int ltm=14; //left thumb mod
 
-int rt=15;  //right thumb
-int rtm=16; //right thumb mod
-int ri=17;  //right index finger
-int rim=18; //right index finger mod
-int rm=19;  //right middle finger
-int rmm=20; //right middle finger mod
-int rr=21;  //right ring finger
-int rrm=22; //right ring finger mod
-int rp=23;  //right pink
-int rpm=24; //right pink mod
+const int rt=15;  //right thumb
+const int rtm=16; //right thumb mod
+const int ri=17;  //right index finger
+const int rim=18; //right index finger mod
+const int rm=19;  //right middle finger
+const int rmm=20; //right middle finger mod
+const int rr=21;  //right ring finger
+const int rrm=22; //right ring finger mod
+const int rp=23;  //right pink
+const int rpm=24; //right pink mod
 
-int power=25;
-int debug=1;
+const int power=25;
+const int debug=1;
 
-char keys[rows][cols]={
+const char keys[rows][cols]={
     //A    S    E    T    N    I    O    P
     {'a', 'w', 'x', 'f', 'q', '!', '(', '?'}, //A - lp
     {'w', 's', 'd', 'c', 'j', 'z', '.', ')'}, //S - lr
@@ -36,7 +36,7 @@ char keys[rows][cols]={
     {'?', ')', "'", '\b', 'm', 'k', ';', 'p'} //P - rp
 };
 
-char shiftkeys[rows][cols]={
+const char shiftkeys[rows][cols]={
     //A    S    E    T    N    I    O    P
     {'A', 'W', 'X', 'F', 'Q', '\\', '[', '/'}, //A - lp
     {'W', 'S', 'D', 'C', 'J', 'Z', '>', ']'}, //S - lr
@@ -48,7 +48,7 @@ char shiftkeys[rows][cols]={
     {'/', ']', '"', '\b', 'M', 'K', ':', 'P'} //P - rp
 };
 
-char numerical[rows][cols]={
+const char numerical[rows][cols]={
     //A    S    E    T    N    I    O    P
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, //A
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, //S
@@ -60,7 +60,7 @@ char numerical[rows][cols]={
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', '>'} //P
 };
 
-char numericalshift[rows][cols]={
+const char numericalshift[rows][cols]={
     //A    S    E    T    N    I    O    P
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, //A
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, //S
