@@ -161,7 +161,8 @@ void process() {
     }
     
    for (i=0; i<5; i++) {
-       if (i>0 and mods[i][2]<2 and mods[i][0]>0) { mods[i][1]=0; mods[i][2]=0; } 
+       if (i>0 and (mods[i][2]<2 or mods[i][0]>0)) { mods[i][1]=0; mods[i][2]=0; } 
+       else if(i>0 and mods[i][2]==3 and mods[i][1]==1) { mods[i][1]=0; mods[i][2]=0;}
     }
     
     //Handle mouse buttons, including dragging
