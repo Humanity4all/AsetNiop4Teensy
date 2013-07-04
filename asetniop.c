@@ -100,7 +100,7 @@ void process() {
     if (mods[2][0]==1 or mods[2][2]>0) { mod4=1 }
     if (mods[3][0]==1 or mods[3][2]>0) { alt=1 }
     if (mods[4][0]==1 or mods[4][2]>0) { fn=1 }
-    
+    if (mods[5][1]>0) { if (mode==1) { mode=0 } else { mode=1 } }
     //send modifier keys (we skip the individual shift because it has special meaning)
     //we ignore fn for now, there's no real support for it in teensy right now
     if (ctrl==1 and shift==1 and mod4==1 and alt==1) { //4 mod keys
@@ -162,7 +162,7 @@ void process() {
     
    for (i=0; i<5; i++) {
        if (i>0 and (mods[i][2]<2 or mods[i][0]>0)) { mods[i][1]=0; mods[i][2]=0; } 
-       else if(i>0 and mods[i][2]==3 and mods[i][1]==1) { mods[i][1]=0; mods[i][2]=0;}
+
     }
     
     //Handle mouse buttons, including dragging
