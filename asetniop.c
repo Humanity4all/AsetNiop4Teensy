@@ -431,7 +431,12 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
         case '\x7B' : //F12
             Keyboard.set_key1(KEY_F12);
             break;
-
+        case '\x2C' : //Print screen
+            Keyboard.set_key1(KEY_PRINTSCREEN);
+            break;
+        case '\x91' : //Scroll lock
+            Keyboard.set_key1(KEY_SCOLL_LOCK);
+            break;
     }
     Keyboard.send_now();
 }
