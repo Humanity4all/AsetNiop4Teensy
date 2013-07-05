@@ -91,15 +91,15 @@ int thumbs[key][state]={
 };
 
 int keys[key][state]={
-    // pressed released
-    {  0,      0 }, //A - lp
-    {  0,      0 }, //S - lr
-    {  0,      0 }, //E - lm
-    {  0,      0 }, //T - li
-    {  0,      0 }, //N - ri
-    {  0,      0 }, //I - rm
-    {  0,      0 }, //O - rr
-    {  0,      0 } //P - rp
+    // pressed released old
+    {  0,      0,       0}, //A - lp
+    {  0,      0,       0}, //S - lr
+    {  0,      0,       0}, //E - lm
+    {  0,      0,       0}, //T - li
+    {  0,      0,       0}, //N - ri
+    {  0,      0,       0}, //I - rm
+    {  0,      0,       0}, //O - rr
+    {  0,      0,       0} //P - rp
 };
 
 int mouse[key][state]={
@@ -556,9 +556,13 @@ void process() {
     char keystroke;
     for(i=0, i<10, i++) { //loop through all letter keys
         if (keys[i][1]==1) { //key released, do something with it!
-            if (a<0) { a=i; }
-            else { b=i; } // in case 2 keys were released at the same time (nice typing!)
+            if (keys[i][2]==0) { //this key was not processed already 
+                //example: press n - press a - release a -> keypress - release n -> no keypress
+                if (a<0) { a=i; }
+                else { b=i; } // in case 2 keys were released at the same time (nice typing!)
+            }
             keys[i][1]=0;
+            keys[i][2]=0;
         }
         if (keys[i][0]==1) { //key pressed, this changes key a (only detects key 1 pressed key aside form the released key)
             b=1;
