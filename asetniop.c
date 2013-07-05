@@ -117,7 +117,7 @@ void debug(char* text) {
     }
 }
 
-void sendkeys(char keystroke) { //translate a keystroke character into an actual keysend
+void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //translate a keystroke character into an actual keysend
     
 
 }
@@ -247,40 +247,30 @@ void process() {
         mouse[3][1]=0;
     }
 
-    //Check mode
-    if(mode==0) {
-        //'normal' mode - alphabetic
-        int a=-1;
-        int b=-1;
-        char keystroke;
-        for(i=0, i<10, i++) { //loop through all letter keys
-            if (keys[i][1]==1) { //key released, do something with it!
-                a=i;
-                keys[i][1]=0;
-            }
-            if (keys[i][0]==1) { //key pressed, this changes key a (only detects key 1 pressed key aside form the released key)
-                b=1;
-            }
+    int a=-1;
+    int b=-1;
+    char keystroke;
+    for(i=0, i<10, i++) { //loop through all letter keys
+        if (keys[i][1]==1) { //key released, do something with it!
+            a=i;
+            keys[i][1]=0;
         }
-        if (a >= 0) { //a key was released
-            if (b<=){ b=a; } //no second key pressed
+        if (keys[i][0]==1) { //key pressed, this changes key a (only detects key 1 pressed key aside form the released key)
+            b=1;
+        }
+    }
+    if (a >= 0) { //a key was released
+        if (b<=){ b=a; } //no second key pressed
+        
+        if (mode==0) { //alphabetical mode
             if (shift==1) { keystroke=shiftalphas[a][b]; }
             else { keystroke=alphas[a][b];}
-            sendkey(keystroke);
         }
-    
-    }
-    else if(mode==1) {
-        //numeric mode
-
-        //Check shift
-
-        //Determine what key to send
-    }
-    else{ //not implemented yet, but other modes should go here
-        //Check shift
-        
-        //Determine what key to send
+        else if (mode==1) { //numerical mode
+            if (shift==1) { keystroke=numericalshift[a][b]; }
+            else { keystroke=numerical[a][b]; }
+        }
+        sendkey(keystroke, shift, ctrl, mod4, alt);
     }
 
     //Now send the keys
