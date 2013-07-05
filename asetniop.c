@@ -125,7 +125,7 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
             Keyboard.set_key1(KEY_A);
             break;
         case 'b' :
-        case 'B' ;
+        case 'B' :
             Keyboard.set_key1(KEY_B);
             break;
         case 'c' :
