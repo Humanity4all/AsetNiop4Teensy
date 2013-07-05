@@ -120,81 +120,107 @@ void debug(char* text) {
 void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //translate a keystroke character into an actual keysend
     switch (keystroke) {
         case 'a' :
+        case 'A' :
             Keyboard.set_key1(KEY_A);
             break;
         case 'b' :
+        case 'B' ;
             Keyboard.set_key1(KEY_B);
             break;
         case 'c' :
+        case 'C' :
             Keyboard.set_key1(KEY_C);
             break;
         case 'd' :
+        case 'D' :
             Keyboard.set_key1(KEY_D);
             break;
         case 'e' :
+        case 'E' :
             Keyboard.set_key1(KEY_E);
             break;
         case 'f' :
+        case 'F' :
             Keyboard.set_key1(KEY_F);
             break;
         case 'g' :
+        case 'G' :
             Keyboard.set_key1(KEY_G);
             break;
         case 'h' :
+        case 'H' :
             Keyboard.set_key1(KEY_H);
             break;
         case 'i' :
+        case 'I' :
             Keyboard.set_key1(KEY_I);
             break;
         case 'j' :
+        case 'J' :
             Keyboard.set_key1(KEY_J);
             break;
         case 'k' :
+        case 'K' :
             Keyboard.set_key1(KEY_K);
             break;
         case 'l' :
+        case 'L' :
             Keyboard.set_key1(KEY_L);
             break;
         case 'm' :
+        case 'M' :
             Keyboard.set_key1(KEY_M);
             break;
-        case 'n' ;
+        case 'n' :
+        case 'N' :
             Keyboard.set_key1(KEY_N);
             break;
         case 'o' :
+        case 'O' :
             Keyboard.set_key1(KEY_O);
             break;
         case 'p' :
+        case 'P' :
             Keyboard.set_key1(KEY_P);
             break;
         case 'q' :
+        case 'Q' :
             Keyboard.set_key1(KEY_Q);
             break;
         case 'r' :
+        case 'R' :
             Keyboard.set_key1(KEY_R);
             break;
         case 's' :
+        case 'S' :
             Keyboard.set_key1(KEY_S);
             break;
         case 't' :
+        case 'T' :
             Keyboard.set_key1(KEY_T);
             break;
         case 'u' :
+        case 'U' :
             Keyboard.set_key1(KEY_U);
             break;
         case 'v' :
+        case 'V' :
             Keyboard.set_key1(KEY_V);
             break;
         case 'w' :
+        case 'W' :
             Keyboard.set_key1(KEY_W);
             break;
         case 'x' :
+        case 'X' :
             Keyboard.set_key1(KEY_X);
             break;
         case 'y' :
+        case 'Y' :
             Keyboard.set_key1(KEY_Y);
             break;
         case 'z' :
+        case 'Z' :
             Keyboard.set_key1(KEY_Z);
             break;
     }
