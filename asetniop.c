@@ -294,6 +294,83 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_0);
             break;
+        case '-' :
+        case '_' :
+            if (keystroke=='-') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_MINUS);
+            break;
+        case '=' :
+        case '+' :
+            if (keystroke=='=') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_EQUAL);
+            break;
+        case ';':
+        case ':' :
+            if (keystroke==';') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key(KEY_SEMICOLON);
+            break;
+        case '`' :
+        case '~' :
+            if (keystroke=='~') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_TILDE);
+            break;
+        case "'" :
+        case '"' :
+            if (keystroke=="'") { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_QUOTE);
+            break;
+        case '\\':
+        case '|' :
+            if (keystroke=='\\') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_BACKSLASH);
+            break;
+        case '/' :
+        case '?' :
+            if (keystroke=='/') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_SLASH);
+            break;
+        case ',' :
+        case '<' :
+            if (keystroke==',') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_COMMA);
+            break;
+        case '.' :
+        case '>' :
+            if (keystroke=='.') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_PERIOD);
+            break;
+        case '[' :
+        case '{' :
+            if (keystroke=='[') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_LEFT_BRACE);
+            break;
+        case ']';
+        case '}' :
+            if (keystroke==']') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
+            Keyboard.set_key1(KEY_RIGHT_BRACE);
+            break;
 
     }
     Keyboard.send_now();
