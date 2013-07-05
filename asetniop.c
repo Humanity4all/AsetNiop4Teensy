@@ -395,8 +395,42 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
         case '\x28' : //down arrow
             Keyboard.set_key1(KEY_DOWN);
             break;
-
-
+        case '\x70' : //F1
+            Keyboard.set_key1(KEY_F1);
+            break;
+        case '\x71' : //F2
+            Keyboard.set_key1(KEY_F2);
+            break;
+        case '\x72' : //F3
+            Keyboard.set_key1(KEY_F3);
+            break;
+        case '\x73' : //F4
+            Keyboard.set_key1(KEY_F4);
+            break;
+        case '\x74' : //F5
+            Keyboard.set_key1(KEY_F5);
+            break;
+        case '\x75' : //F6
+            Keyboard.set_key1(KEY_F6);
+            break;
+        case '\x76' : //F7
+            Keyboard.set_key1(KEY_F7);
+            break;
+        case '\x77' : //F8
+            Keyboard.set_key1(KEY_F8);
+            break;
+        case '\x78' : //F9
+            Keyboard.set_key1(KEY_F9);
+            break;
+        case '\x79' : //F10
+            Keyboard.set_key1(KEY_F10);
+            break;
+        case '\x7A' : //F11
+            Keyboard.set_key1(KEY_F11);
+            break;
+        case '\x7B' : //F12
+            Keyboard.set_key1(KEY_F12);
+            break;
 
     }
     Keyboard.send_now();
