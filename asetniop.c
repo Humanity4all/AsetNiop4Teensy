@@ -223,6 +223,47 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
         case 'Z' :
             Keyboard.set_key1(KEY_Z);
             break;
+        case '1' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_1);
+            break;
+        case '2' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_2);
+            break;
+        case '3' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_3);
+            break;
+        case '4' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_4);
+            break;
+        case '5' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_5);
+            break;
+        case '6' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_6);
+            break;
+        case '7' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_7);
+            break;
+        case '8' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_8);
+            break;
+        case '9' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_9);
+            break;
+        case '0' :
+            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+            Keyboard.set_key1(KEY_0);
+            break;
+
     }
     Keyboard.send_now();
 }
