@@ -26,50 +26,50 @@ const int debugon=1;
 
 const char alphas[rows][cols]={
     //A    S    E    T    N    I    O    P
-    {'a', 'w', 'x', 'f', 'q', '!', '(', '?'}, //A - lp
-    {'w', 's', 'd', 'c', 'j', 'z', '.', ')'}, //S - lr
-    {'x', 'd', 'e', 'r', 'y', ',', '-', "'"}, //E - lm
-    {'f', 'c', 'r', 't', 'b', 'v', 'g', '\b'}, //T - li
-    {'q', 'j', 'y', 'b', 'n', 'h', 'u', 'm'}, //N - ri
-    {'!', 'z', ',', 'v', 'h', 'i', 'l', 'k'}, //I - rm
-    {'(', '.', '-', 'g', 'u', 'l', 'o', ';'}, //O - rr
-    {'?', ')', "'", '\b', 'm', 'k', ';', 'p'} //P - rp
+    {"a", "w", "x", "f", "q", "!", "(", "?"}, //A - lp
+    {"w", "s", "d", "c", "j", "z", ".", ")"}, //S - lr
+    {"x", "d", "e", "r", "y", ",", "-", "'"}, //E - lm
+    {"f", "c", "r", "t", "b", "v", "g", "\b"}, //T - li
+    {"q", "j", "y", "b", "n", "h", "u", "m"}, //N - ri
+    {"!", "z", ",", "v", "h", "i", "l", "k"}, //I - rm
+    {"(", ".", "-", "g", "u", "l", "o", ";"}, //O - rr
+    {"?", ")", "'", "\b", "m", "k", ";", "p"} //P - rp
 };
 
 const char shiftalphas[rows][cols]={
     //A    S    E    T    N    I    O    P
-    {'A', 'W', 'X', 'F', 'Q', '\\', '[', '/'}, //A - lp
-    {'W', 'S', 'D', 'C', 'J', 'Z', '>', ']'}, //S - lr
-    {'X', 'D', 'E', 'R', 'Y', '<', '_', '"'}, //E - lm
-    {'F', 'C', 'R', 'T', 'B', 'V', 'G', '\t'}, //T - li
-    {'Q', 'J', 'Y', 'B', 'N', 'H', 'U', 'M'}, //N - ri
-    {'\\', 'Z', '<', 'V', 'H', 'I', 'L', 'K'}, //I - rm
-    {'[', '>', '_', 'G', 'U', 'L', 'O', ':'}, //O - rr
-    {'/', ']', '"', '\t', 'M', 'K', ':', 'P'} //P - rp
+    {"A", "W", "X", "F", "Q", "\\", "[", "/"}, //A - lp
+    {"W", "S", "D", "C", "J", "Z", ">", "]"}, //S - lr
+    {"X", "D", "E", "R", "Y", "<", "_", "\""}, //E - lm
+    {"F", "C", "R", "T", "B", "V", "G", "\t"}, //T - li
+    {"Q", "J", "Y", "B", "N", "H", "U", "M"}, //N - ri
+    {"\\", "Z", "<", "V", "H", "I", "L", "K"}, //I - rm
+    {"[", ">", "_", "G", "U", "L", "O", ":"}, //O - rr
+    {"/", "]", "\"", "\t", "M", "K", ":", "P"} //P - rp
 };
 
 const char numerical[rows][cols]={
     //A       S    E    T     N       I       O       P
-    {'1',    '@', '^', '0',  '|',    '{',    '}',    '\x2C'}, //A
-    {'@',    '2', '$', '9',  '=',    '~',    '`',    ' '},    //S
-    {'^',    '$', '3', '8',  '[',    ']',    '+',    ' '},    //E
-    {'0',    '9', '8', '4',  '5',    '6',    '7',    '\b'},   //T
-    {'|',    '=', '[', '5',  '\x25', '#',    '%',    '\x1B'}, //N
-    {'{',    '~', ']', '6',  '#',    '\x26', ' ',    ' '},    //I
-    {'}',    '`', '+', '7',  '%',    ' ',    '\x28', ' '},    //O
-    {'\x2C', ' ', ' ', '\b', '\x1B', ' ',    ' ',    '\x27'}  //P
+    {"1",    "@", "^", "0",  "|",    "{",    "}",    "\x2C"}, //A
+    {"@",    "2", "$", "9",  "=",    "~",    "`",    " "},    //S
+    {"^",    "$", "3", "8",  "[",    "]",    "+",    " "},    //E
+    {"0",    "9", "8", "4",  "5",    "6",    "7",    "\b"},   //T
+    {"|",    "=", "[", "5",  "\x25", "#",    "%",    "\x1B"}, //N
+    {"{",    "~", "]", "6",  "#",    "\x26", " ",    " "},    //I
+    {"}",    "`", "+", "7",  "%",    " ",    "\x28", " "},    //O
+    {"\x2C", " ", " ", "\b", "\x1B", " ",    " ",    "\x27"}  //P
 };
 
 const char numericalshift[rows][cols]={
     //A       S       E       T       N       I       O    P
-    {'\x70', '\x78', '\x79', '\x7A', '\x7B', ' ',    ' ',    ' '},   //A
-    {'\x78', '\x71', ' ',    ' ',    ' ',    ' ',    ' ',    ' '},   //S
-    {'\x79', ' ',    '\x72', ' ',    ' ',    ' ',    ' ',    ' '},   //E
-    {'\x7A', ' ',    ' ',    '\x73', ' ',    ' ',    ' ',    ' '},   //T
-    {'\x7B', ' ',    ' ',    ' ',    '\x74', ' ',    ' ',    ' '},   //N
-    {' ',    ' ',    ' ',    ' ',    ' ',    '\x75', ' ',    ' '},   //I
-    {' ',    ' ',    ' ',    ' ',    ' ',    ' ',    '\x76', ' '},   //O
-    {' ',    ' ',    ' ',    ' ',    ' ',    ' ',    ' ',    '\x77'} //P
+    {"\x70", "\x78", "\x79", "\x7A", "\x7B", " ",    " ",    " "},   //A
+    {"\x78", "\x71", " ",    " ",    " ",    " ",    " ",    " "},   //S
+    {"\x79", " ",    "\x72", " ",    " ",    " ",    " ",    " "},   //E
+    {"\x7A", " ",    " ",    "\x73", " ",    " ",    " ",    " "},   //T
+    {"\x7B", " ",    " ",    " ",    "\x74", " ",    " ",    " "},   //N
+    {" ",    " ",    " ",    " ",    " ",    "\x75", " ",    " "},   //I
+    {" ",    " ",    " ",    " ",    " ",    " ",    "\x76", " "},   //O
+    {" ",    " ",    " ",    " ",    " ",    " ",    " ",    "\x77"} //P
 };
 
 int mode=0;
@@ -120,321 +120,321 @@ void debug(char* text) {
 void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //translate a keystroke character into an actual keysend
     int tshift; //temporary shift value
     switch (keystroke) {
-        case 'a' :
-        case 'A' :
+        case "a" :
+        case "A" :
             Keyboard.set_key1(KEY_A);
             break;
-        case 'b' :
-        case 'B' ;
+        case "b" :
+        case "B" ;
             Keyboard.set_key1(KEY_B);
             break;
-        case 'c' :
-        case 'C' :
+        case "c" :
+        case "C" :
             Keyboard.set_key1(KEY_C);
             break;
-        case 'd' :
-        case 'D' :
+        case "d" :
+        case "D" :
             Keyboard.set_key1(KEY_D);
             break;
-        case 'e' :
-        case 'E' :
+        case "e" :
+        case "E" :
             Keyboard.set_key1(KEY_E);
             break;
-        case 'f' :
-        case 'F' :
+        case "f" :
+        case "F" :
             Keyboard.set_key1(KEY_F);
             break;
-        case 'g' :
-        case 'G' :
+        case "g" :
+        case "G" :
             Keyboard.set_key1(KEY_G);
             break;
-        case 'h' :
-        case 'H' :
+        case "h" :
+        case "H" :
             Keyboard.set_key1(KEY_H);
             break;
-        case 'i' :
-        case 'I' :
+        case "i" :
+        case "I" :
             Keyboard.set_key1(KEY_I);
             break;
-        case 'j' :
-        case 'J' :
+        case "j" :
+        case "J" :
             Keyboard.set_key1(KEY_J);
             break;
-        case 'k' :
-        case 'K' :
+        case "k" :
+        case "K" :
             Keyboard.set_key1(KEY_K);
             break;
-        case 'l' :
-        case 'L' :
+        case "l" :
+        case "L" :
             Keyboard.set_key1(KEY_L);
             break;
-        case 'm' :
-        case 'M' :
+        case "m" :
+        case "M" :
             Keyboard.set_key1(KEY_M);
             break;
-        case 'n' :
-        case 'N' :
+        case "n" :
+        case "N" :
             Keyboard.set_key1(KEY_N);
             break;
-        case 'o' :
-        case 'O' :
+        case "o" :
+        case "O" :
             Keyboard.set_key1(KEY_O);
             break;
-        case 'p' :
-        case 'P' :
+        case "p" :
+        case "P" :
             Keyboard.set_key1(KEY_P);
             break;
-        case 'q' :
-        case 'Q' :
+        case "q" :
+        case "Q" :
             Keyboard.set_key1(KEY_Q);
             break;
-        case 'r' :
-        case 'R' :
+        case "r" :
+        case "R" :
             Keyboard.set_key1(KEY_R);
             break;
-        case 's' :
-        case 'S' :
+        case "s" :
+        case "S" :
             Keyboard.set_key1(KEY_S);
             break;
-        case 't' :
-        case 'T' :
+        case "t" :
+        case "T" :
             Keyboard.set_key1(KEY_T);
             break;
-        case 'u' :
-        case 'U' :
+        case "u" :
+        case "U" :
             Keyboard.set_key1(KEY_U);
             break;
-        case 'v' :
-        case 'V' :
+        case "v" :
+        case "V" :
             Keyboard.set_key1(KEY_V);
             break;
-        case 'w' :
-        case 'W' :
+        case "w" :
+        case "W" :
             Keyboard.set_key1(KEY_W);
             break;
-        case 'x' :
-        case 'X' :
+        case "x" :
+        case "X" :
             Keyboard.set_key1(KEY_X);
             break;
-        case 'y' :
-        case 'Y' :
+        case "y" :
+        case "Y" :
             Keyboard.set_key1(KEY_Y);
             break;
-        case 'z' :
-        case 'Z' :
+        case "z" :
+        case "Z" :
             Keyboard.set_key1(KEY_Z);
             break;
-        case '1' :
-        case '!' :
-            if (keystroke=='1') { tshift=0; }
+        case "1" :
+        case "!" :
+            if (keystroke=="1") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_1);
             break;
-        case '2' :
-        case '@' :
-            if (keystroke=='2') { tshift=0; }
+        case "2" :
+        case "@" :
+            if (keystroke=="2") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_2);
             break;
-        case '3' :
-        case '#' :
-            if (keystroke=='3') { tshift=0; }
+        case "3" :
+        case "#" :
+            if (keystroke=="3") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_3);
             break;
-        case '4' :
-        case '$' :
-            if (keystroke=='4') { tshift=0; }
+        case "4" :
+        case "$" :
+            if (keystroke=="4") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_4);
             break;
-        case '5' :
-        case '%' :
-            if (keystroke=='5') { tshift=0; }
+        case "5" :
+        case "%" :
+            if (keystroke=="5") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_5);
             break;
-        case '6' :
-        case '^' :
-            if (keystroke=='6') { tshift=0; }
+        case "6" :
+        case "^" :
+            if (keystroke=="6") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_6);
             break;
-        case '7' :
-        case '&' :
-            if (keystroke=='7') { tshift=0; }
+        case "7" :
+        case "&" :
+            if (keystroke=="7") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_7);
             break;
-        case '8' :
-        case '*' :
-            if (keystroke=='8') { tshift=0; }
+        case "8" :
+        case "*" :
+            if (keystroke=="8") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_8);
             break;
-        case '9' :
-        case '(' :
-            if (keystroke=='9') { tshift=0; }
+        case "9" :
+        case "(" :
+            if (keystroke=="9") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_9);
             break;
-        case '0' :
-        case ')' :
-            if (keystroke=='0') { tshift=0; }
+        case "0" :
+        case ")" :
+            if (keystroke=="0") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_0);
             break;
-        case '-' :
-        case '_' :
-            if (keystroke=='-') { tshift=0; }
+        case "-" :
+        case "_" :
+            if (keystroke=="-") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_MINUS);
             break;
-        case '=' :
-        case '+' :
-            if (keystroke=='=') { tshift=0; }
+        case "=" :
+        case "+" :
+            if (keystroke=="=") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_EQUAL);
             break;
-        case ';':
-        case ':' :
-            if (keystroke==';') { tshift=0; }
+        case ";":
+        case ":" :
+            if (keystroke==";") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key(KEY_SEMICOLON);
             break;
-        case '`' :
-        case '~' :
-            if (keystroke=='~') { tshift=0; }
+        case "`" :
+        case "~" :
+            if (keystroke=="~") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_TILDE);
             break;
         case "'" :
-        case '"' :
+        case "\"" :
             if (keystroke=="'") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_QUOTE);
             break;
-        case '\\':
-        case '|' :
-            if (keystroke=='\\') { tshift=0; }
+        case "\\":
+        case "|" :
+            if (keystroke=="\\") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_BACKSLASH);
             break;
-        case '/' :
-        case '?' :
-            if (keystroke=='/') { tshift=0; }
+        case "/" :
+        case "?" :
+            if (keystroke=="/") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_SLASH);
             break;
-        case ',' :
-        case '<' :
-            if (keystroke==',') { tshift=0; }
+        case "," :
+        case "<" :
+            if (keystroke==",") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_COMMA);
             break;
-        case '.' :
-        case '>' :
-            if (keystroke=='.') { tshift=0; }
+        case "." :
+        case ">" :
+            if (keystroke==".") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_PERIOD);
             break;
-        case '[' :
-        case '{' :
-            if (keystroke=='[') { tshift=0; }
+        case "[" :
+        case "{" :
+            if (keystroke=="[") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_LEFT_BRACE);
             break;
-        case ']';
-        case '}' :
-            if (keystroke==']') { tshift=0; }
+        case "]";
+        case "}" :
+            if (keystroke=="]") { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_RIGHT_BRACE);
             break;
-        case '\t' :
+        case "\t" :
             Keyboard.set_key1(KEY_TAB);
             break;
-        case '\b' :
+        case "\b" :
             Keyboard.set_key1(KEY_BACKSLASH);
             break;
-        case '\n' :
+        case "\n" :
             Keyboard.set_key1(KEY_ENTER);
             break;
-        case '\x1B' : //escape
+        case "\x1B" : //escape
             Keyboard.set_key1(KEY_ESC);
             break;
-        case '\x25' : //left arrow
+        case "\x25" : //left arrow
             Keyboard.set_key1(KEY_LEFT);
             break;
-        case '\x26' : //up arrow
+        case "\x26" : //up arrow
             Keyboard.set_key1(KEY_UP);
             break;
-        case '\x27' : //right arrow
+        case "\x27" : //right arrow
             Keyboard.set_key1(KEY_RIGHT);
             break;
-        case '\x28' : //down arrow
+        case "\x28" : //down arrow
             Keyboard.set_key1(KEY_DOWN);
             break;
-        case '\x70' : //F1
+        case "\x70" : //F1
             Keyboard.set_key1(KEY_F1);
             break;
-        case '\x71' : //F2
+        case "\x71" : //F2
             Keyboard.set_key1(KEY_F2);
             break;
-        case '\x72' : //F3
+        case "\x72" : //F3
             Keyboard.set_key1(KEY_F3);
             break;
-        case '\x73' : //F4
+        case "\x73" : //F4
             Keyboard.set_key1(KEY_F4);
             break;
-        case '\x74' : //F5
+        case "\x74" : //F5
             Keyboard.set_key1(KEY_F5);
             break;
-        case '\x75' : //F6
+        case "\x75" : //F6
             Keyboard.set_key1(KEY_F6);
             break;
-        case '\x76' : //F7
+        case "\x76" : //F7
             Keyboard.set_key1(KEY_F7);
             break;
-        case '\x77' : //F8
+        case "\x77" : //F8
             Keyboard.set_key1(KEY_F8);
             break;
-        case '\x78' : //F9
+        case "\x78" : //F9
             Keyboard.set_key1(KEY_F9);
             break;
-        case '\x79' : //F10
+        case "\x79" : //F10
             Keyboard.set_key1(KEY_F10);
             break;
-        case '\x7A' : //F11
+        case "\x7A" : //F11
             Keyboard.set_key1(KEY_F11);
             break;
-        case '\x7B' : //F12
+        case "\x7B" : //F12
             Keyboard.set_key1(KEY_F12);
             break;
-        case '\x2C' : //Print screen
+        case "\x2C" : //Print screen
             Keyboard.set_key1(KEY_PRINTSCREEN);
             break;
-        case '\x91' : //Scroll lock
+        case "\x91" : //Scroll lock
             Keyboard.set_key1(KEY_SCOLL_LOCK);
             break;
     }
@@ -517,7 +517,7 @@ void process() {
     if (mods[4][0]==1 or mods[4][2]>0) { fn=1 }
     if (mods[5][1]>0) { if (mode==1) { mode=0 } else { mode=1 } }
     //send modifier keys
-    //we ignore fn for now, there's no real support for it in teensy right now 
+    //we ignore fn for now, there"s no real support for it in teensy right now 
    setmodifiers(shift, ctrl, mod4, alt);
  
    for (i=0; i<=5; i++) {
@@ -590,7 +590,7 @@ void process() {
     Keyboard.set_key5(0);
     Keyboard.set_key6(0);
     Keyboard.set_modifier(0);
-    //Only reset the modifierkeys that aren't sticky // this should not be necessary.
+    //Only reset the modifierkeys that aren"t sticky // this should not be necessary.
     //if (mods[0][2]<2) { shift=0; }
     //if (mods[1][2]<2) { ctrl=0; }
     //if (mods[2][2]<2) { mod4=0; }
