@@ -313,7 +313,7 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
             if (keystroke==';') { tshift=0; }
             else { tshift=1; }
             setmodifiers(tshift, ctrl, mod4, alt);
-            Keyboard.set_key(KEY_SEMICOLON);
+            Keyboard.set_key1(KEY_SEMICOLON);
             break;
         case '`' :
         case '~' :
@@ -364,7 +364,7 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_LEFT_BRACE);
             break;
-        case ']';
+        case ']' :
         case '}' :
             if (keystroke==']') { tshift=0; }
             else { tshift=1; }
