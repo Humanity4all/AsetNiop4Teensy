@@ -24,7 +24,7 @@ const int rpm=24; //right pink mod
 const int power=25;
 const int debugon=1;
 
-const char alphas[rows][cols]={
+const char alphas[8][8]={
     //A    S    E    T    N    I    O    P
     {"a", "w", "x", "f", "q", "!", "(", "?"}, //A - lp
     {"w", "s", "d", "c", "j", "z", ".", ")"}, //S - lr
@@ -36,7 +36,7 @@ const char alphas[rows][cols]={
     {"?", ")", "'", "\b", "m", "k", ";", "p"} //P - rp
 };
 
-const char shiftalphas[rows][cols]={
+const char shiftalphas[8][8]={
     //A    S    E    T    N    I    O    P
     {"A", "W", "X", "F", "Q", "\\", "[", "/"}, //A - lp
     {"W", "S", "D", "C", "J", "Z", ">", "]"}, //S - lr
@@ -48,7 +48,7 @@ const char shiftalphas[rows][cols]={
     {"/", "]", "\"", "\t", "M", "K", ":", "P"} //P - rp
 };
 
-const char numerical[rows][cols]={
+const char numerical[8][8]={
     //A       S    E    T     N       I       O       P
     {"1",    "@", "^", "0",  "|",    "{",    "}",    "\x2C"}, //A
     {"@",    "2", "$", "9",  "=",    "~",    "`",    " "},    //S
@@ -60,7 +60,7 @@ const char numerical[rows][cols]={
     {"\x2C", " ", " ", "\b", "\x1B", " ",    " ",    "\x27"}  //P
 };
 
-const char numericalshift[rows][cols]={
+const char numericalshift[8][8]={
     //A       S       E       T       N       I       O    P
     {"\x70", "\x78", "\x79", "\x7A", "\x7B", " ",    " ",    " "},   //A
     {"\x78", "\x71", " ",    " ",    " ",    " ",    " ",    " "},   //S
@@ -74,7 +74,7 @@ const char numericalshift[rows][cols]={
 
 int mode=0;
 int status=0;
-int mods[key][state]={
+int mods[6][3]={
     // pressed released state
     {  0,      0,       0   }, //shift - rt
     {  0,      0,       0   }, //ctrl - lim
@@ -84,13 +84,13 @@ int mods[key][state]={
     {  0,      0,       0   } //mode - rtm
 };
 
-int thumbs[key][state]={
+int thumbs[2][2]={
     // pressed released
     {  0,      0  }, //space - lt
     {  0,      0  } //enter - ltm
 };
 
-int keys[key][state]={
+int keys[8][3]={
     // pressed released old
     {  0,      0,       0}, //A - lp
     {  0,      0,       0}, //S - lr
@@ -102,7 +102,7 @@ int keys[key][state]={
     {  0,      0,       0} //P - rp
 };
 
-int mouse[key][state]={
+int mouse[4][2]={
     // pressed released
     {  0,      0 }, //leftbutton - rim
     {  0,      0 }, //rightbutton - rmm
