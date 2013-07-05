@@ -118,6 +118,7 @@ void debug(char* text) {
 }
 
 void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //translate a keystroke character into an actual keysend
+    int tshift; //temporary shift value
     switch (keystroke) {
         case 'a' :
         case 'A' :
@@ -224,43 +225,73 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
             Keyboard.set_key1(KEY_Z);
             break;
         case '1' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case '!' :
+            if (keystroke=='1') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_1);
             break;
         case '2' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case '@' :
+            if (keystroke=='2') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_2);
             break;
         case '3' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case '#' :
+            if (keystroke=='3') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_3);
             break;
         case '4' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case '$' :
+            if (keystroke=='4') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_4);
             break;
         case '5' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case '%' :
+            if (keystroke=='5') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_5);
             break;
         case '6' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case '^' :
+            if (keystroke=='6') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_6);
             break;
         case '7' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case '&' :
+            if (keystroke=='7') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_7);
             break;
         case '8' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case '*' :
+            if (keystroke=='8') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_8);
             break;
         case '9' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case '(' :
+            if (keystroke=='9') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_9);
             break;
         case '0' :
-            if (shift==1) { setmodifiers(0, ctrl, mod4, alt); }
+        case ')' :
+            if (keystroke=='0') { tshift=0; }
+            else { tshift=1; }
+            setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_0);
             break;
 
