@@ -371,6 +371,32 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
             setmodifiers(tshift, ctrl, mod4, alt);
             Keyboard.set_key1(KEY_RIGHT_BRACE);
             break;
+        case '\t' :
+            Keyboard.set_key1(KEY_TAB);
+            break;
+        case '\b' :
+            Keyboard.set_key1(KEY_BACKSLASH);
+            break;
+        case '\n' :
+            Keyboard.set_key1(KEY_ENTER);
+            break;
+        case '\x1B' : //escape
+            Keyboard.set_key1(KEY_ESC);
+            break;
+        case '\x25' : //left arrow
+            Keyboard.set_key1(KEY_LEFT);
+            break;
+        case '\x26' : //up arrow
+            Keyboard.set_key1(KEY_UP);
+            break;
+        case '\x27' : //right arrow
+            Keyboard.set_key1(KEY_RIGHT);
+            break;
+        case '\x28' : //down arrow
+            Keyboard.set_key1(KEY_DOWN);
+            break;
+
+
 
     }
     Keyboard.send_now();
