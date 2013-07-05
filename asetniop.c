@@ -24,7 +24,7 @@ const int rpm=24; //right pink mod
 const int power=25;
 const int debugon=1;
 
-const char alphas[8][8]={
+const char* alphas[8][8]={
     //A    S    E    T    N    I    O    P
     {"a", "w", "x", "f", "q", "!", "(", "?"}, //A - lp
     {"w", "s", "d", "c", "j", "z", ".", ")"}, //S - lr
@@ -36,7 +36,7 @@ const char alphas[8][8]={
     {"?", ")", "'", "\b", "m", "k", ";", "p"} //P - rp
 };
 
-const char shiftalphas[8][8]={
+const char* shiftalphas[8][8]={
     //A    S    E    T    N    I    O    P
     {"A", "W", "X", "F", "Q", "\\", "[", "/"}, //A - lp
     {"W", "S", "D", "C", "J", "Z", ">", "]"}, //S - lr
@@ -48,7 +48,7 @@ const char shiftalphas[8][8]={
     {"/", "]", "\"", "\t", "M", "K", ":", "P"} //P - rp
 };
 
-const char numerical[8][8]={
+const char* numerical[8][8]={
     //A       S    E    T     N       I       O       P
     {"1",    "@", "^", "0",  "|",    "{",    "}",    "\x2C"}, //A
     {"@",    "2", "$", "9",  "=",    "~",    "`",    " "},    //S
@@ -60,7 +60,7 @@ const char numerical[8][8]={
     {"\x2C", " ", " ", "\b", "\x1B", " ",    " ",    "\x27"}  //P
 };
 
-const char numericalshift[8][8]={
+const char* numericalshift[8][8]={
     //A       S       E       T       N       I       O    P
     {"\x70", "\x78", "\x79", "\x7A", "\x7B", " ",    " ",    " "},   //A
     {"\x78", "\x71", " ",    " ",    " ",    " ",    " ",    " "},   //S
