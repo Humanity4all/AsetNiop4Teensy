@@ -24,7 +24,7 @@ const int rpm=24; //right pink mod
 const int power=25;
 const int debug=1;
 
-const char keys[rows][cols]={
+const char alphas[rows][cols]={
     //A    S    E    T    N    I    O    P
     {'a', 'w', 'x', 'f', 'q', '!', '(', '?'}, //A - lp
     {'w', 's', 'd', 'c', 'j', 'z', '.', ')'}, //S - lr
@@ -36,7 +36,7 @@ const char keys[rows][cols]={
     {'?', ')', "'", '\b', 'm', 'k', ';', 'p'} //P - rp
 };
 
-const char shiftkeys[rows][cols]={
+const char shiftalphas[rows][cols]={
     //A    S    E    T    N    I    O    P
     {'A', 'W', 'X', 'F', 'Q', '\\', '[', '/'}, //A - lp
     {'W', 'S', 'D', 'C', 'J', 'Z', '>', ']'}, //S - lr
@@ -72,10 +72,54 @@ const char numericalshift[rows][cols]={
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '} //P
 };
 
+int mode=0;
+int status=0;
+int mods[key][state]={
+    // pressed released state
+    {  0,      0,       0   }, //shift - rt
+    {  0,      0,       0   }, //ctrl - lim
+    {  0,      0,       0   }, //mod4 - lmm
+    {  0,      0,       0   }, //alt - lrm
+    {  0,      0,       0   }, //fn - lpm
+    {  0,      0,       0   } //mode - rtm
+};
+
+int thumbs[key][state]={
+    // pressed released
+    {  0,      0  }, //space - lt
+    {  0,      0  } //enter - ltm
+};
+
+int keys[key][state]={
+    // pressed released
+    {  0,      0 }, //A - lp
+    {  0,      0 }, //S - lr
+    {  0,      0 }, //E - lm
+    {  0,      0 }, //T - li
+    {  0,      0 }, //N - ri
+    {  0,      0 }, //I - rm
+    {  0,      0 }, //O - rr
+    {  0,      0 } //P - rp
+};
+
+int mouse[key][state]={
+    // pressed released
+    {  0,      0 }, //leftbutton - rim
+    {  0,      0 }, //rightbutton - rmm
+    {  0,      0 }, //scrollup   - rrm
+    {  0,      0 } //scrolldown - rpm
+};
+
+
 void debug(char* text) {
     if (debug==1){
         Serial.println(text);
     }
+}
+
+void sendkeys(char keystroke) { //translate a keystroke character into an actual keysend
+    
+
 }
 
 void setmodifiers(int shift, int ctrl, int mod4, int alt) {
@@ -206,10 +250,25 @@ void process() {
     //Check mode
     if(mode==0) {
         //'normal' mode - alphabetic
-        
-        //Check shift
-
-        //Determine what key to send
+        int a=-1;
+        int b=-1;
+        char keystroke;
+        for(i=0, i<10, i++) { //loop through all letter keys
+            if (keys[i][1]==1) { //key released, do something with it!
+                a=i;
+                keys[i][1]=0;
+            }
+            if (keys[i][0]==1) { //key pressed, this changes key a (only detects key 1 pressed key aside form the released key)
+                b=1;
+            }
+        }
+        if (a >= 0) { //a key was released
+            if (b<=){ b=a; } //no second key pressed
+            if (shift==1) { keystroke=shiftalphas[a][b]; }
+            else { keystroke=alphas[a][b];}
+            sendkey(keystroke);
+        }
+    
     }
     else if(mode==1) {
         //numeric mode
@@ -269,44 +328,6 @@ void setup() {
     pinMode(rpm, INPUT);
     pinMode(power, INPUT);
 }
-
-int mode=0;
-int status=0;
-int mods[key][state]={
-    // pressed released state
-    {  0,      0,       0   }, //shift - rt
-    {  0,      0,       0   }, //ctrl - lim
-    {  0,      0,       0   }, //mod4 - lmm
-    {  0,      0,       0   }, //alt - lrm
-    {  0,      0,       0   }, //fn - lpm
-    {  0,      0,       0   } //mode - rtm
-};
-
-int thumbs[key][state]={
-    // pressed released
-    {  0,      0  }, //space - lt
-    {  0,      0  } //enter - ltm
-};
-
-int keys[key][state]={
-    // pressed released
-    {  0,      0 }, //A - lp
-    {  0,      0 }, //S - lr
-    {  0,      0 }, //E - lm
-    {  0,      0 }, //T - li
-    {  0,      0 }, //N - ri
-    {  0,      0 }, //I - rm
-    {  0,      0 }, //O - rr
-    {  0,      0 } //P - rp
-};
-
-int mouse[key][state]={
-    // pressed released
-    {  0,      0 }, //leftbutton - rim
-    {  0,      0 }, //rightbutton - rmm
-    {  0,      0 }, //scrollup   - rrm
-    {  0,      0 } //scrolldown - rpm
-};
 
 void loop() {
     debug("Loop...")
