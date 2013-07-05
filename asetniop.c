@@ -414,7 +414,8 @@ void process() {
     char keystroke;
     for(i=0, i<10, i++) { //loop through all letter keys
         if (keys[i][1]==1) { //key released, do something with it!
-            a=i;
+            if (a<0) { a=i; }
+            else { b=i; } // in case 2 keys were released at the same time (nice typing!)
             keys[i][1]=0;
         }
         if (keys[i][0]==1) { //key pressed, this changes key a (only detects key 1 pressed key aside form the released key)
