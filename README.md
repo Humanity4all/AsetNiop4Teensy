@@ -32,3 +32,11 @@ The software
 I decided to go with teensyduino because writing a keyboard driver would be so much easier that way. I had no previous experience with C and I did not want to complicate things more than necessary.
 
 I've wired the keyboard to be able to handle n simultaneous keys. Teensy only sends 6 regular keys and modifiers at one time, but that doesn't really matter as most of the chording is handled by teensy itself.
+
+To Do
+===============
+
+* Make naming of variables consistent
+* Add support for tripple keypresses
+* Add mouse mode
+
