@@ -118,8 +118,87 @@ void debug(char* text) {
 }
 
 void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //translate a keystroke character into an actual keysend
-    
-
+    switch (keystroke) {
+        case 'a' :
+            Keyboard.set_key1(KEY_A);
+            break;
+        case 'b' :
+            Keyboard.set_key1(KEY_B);
+            break;
+        case 'c' :
+            Keyboard.set_key1(KEY_C);
+            break;
+        case 'd' :
+            Keyboard.set_key1(KEY_D);
+            break;
+        case 'e' :
+            Keyboard.set_key1(KEY_E);
+            break;
+        case 'f' :
+            Keyboard.set_key1(KEY_F);
+            break;
+        case 'g' :
+            Keyboard.set_key1(KEY_G);
+            break;
+        case 'h' :
+            Keyboard.set_key1(KEY_H);
+            break;
+        case 'i' :
+            Keyboard.set_key1(KEY_I);
+            break;
+        case 'j' :
+            Keyboard.set_key1(KEY_J);
+            break;
+        case 'k' :
+            Keyboard.set_key1(KEY_K);
+            break;
+        case 'l' :
+            Keyboard.set_key1(KEY_L);
+            break;
+        case 'm' :
+            Keyboard.set_key1(KEY_M);
+            break;
+        case 'n' ;
+            Keyboard.set_key1(KEY_N);
+            break;
+        case 'o' :
+            Keyboard.set_key1(KEY_O);
+            break;
+        case 'p' :
+            Keyboard.set_key1(KEY_P);
+            break;
+        case 'q' :
+            Keyboard.set_key1(KEY_Q);
+            break;
+        case 'r' :
+            Keyboard.set_key1(KEY_R);
+            break;
+        case 's' :
+            Keyboard.set_key1(KEY_S);
+            break;
+        case 't' :
+            Keyboard.set_key1(KEY_T);
+            break;
+        case 'u' :
+            Keyboard.set_key1(KEY_U);
+            break;
+        case 'v' :
+            Keyboard.set_key1(KEY_V);
+            break;
+        case 'w' :
+            Keyboard.set_key1(KEY_W);
+            break;
+        case 'x' :
+            Keyboard.set_key1(KEY_X);
+            break;
+        case 'y' :
+            Keyboard.set_key1(KEY_Y);
+            break;
+        case 'z' :
+            Keyboard.set_key1(KEY_Z);
+            break;
+    }
+    Keyboard.send_now();
 }
 
 void setmodifiers(int shift, int ctrl, int mod4, int alt) {
