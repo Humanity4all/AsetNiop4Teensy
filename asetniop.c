@@ -22,7 +22,7 @@ const int rp=23;  //right pink
 const int rpm=24; //right pink mod
 
 const int power=25;
-const int debug=1;
+const int debugon=1;
 
 const char alphas[rows][cols]={
     //A    S    E    T    N    I    O    P
@@ -112,7 +112,7 @@ int mouse[key][state]={
 
 
 void debug(char* text) {
-    if (debug==1){
+    if (debugon==1){
         Serial.println(text);
     }
 }
