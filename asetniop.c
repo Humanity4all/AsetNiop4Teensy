@@ -451,7 +451,7 @@ void setmodifiers(int shift, int ctrl, int mod4, int alt) {
     else { //no modifiers
         Keyboard.set_modifier(0);
     }
-    Keyboard.send_now();
+    //Keyboard.send_now(); //We only want to send when absolutely needed to insure maximum reactivity and a small footprint at the host.
 }
 
 void process() {
@@ -538,9 +538,6 @@ void process() {
         }
         sendkey(keystroke, shift, ctrl, mod4, alt);
     }
-
-    //Now send the keys
-    Keyboard.send_now();
     
     //Now reset the keys
     Keyboard.set_key1(0);
@@ -549,14 +546,15 @@ void process() {
     Keyboard.set_key4(0);
     Keyboard.set_key5(0);
     Keyboard.set_key6(0);
-    //Only reset the modifierkeys that aren't sticky
-    if (mods[0][2]<2) { shift=0; }
-    if (mods[1][2]<2) { ctrl=0; }
-    if (mods[2][2]<2) { mod4=0; }
-    if (mods[3][2]<2) { alt=0; }
-    if (mods[4][2]<2) { fn=0; }
+    Keyboard.set_modifier(0);
+    //Only reset the modifierkeys that aren't sticky // this should not be necessary.
+    //if (mods[0][2]<2) { shift=0; }
+    //if (mods[1][2]<2) { ctrl=0; }
+    //if (mods[2][2]<2) { mod4=0; }
+    //if (mods[3][2]<2) { alt=0; }
+    //if (mods[4][2]<2) { fn=0; }
     //send modifier keys
-    setmodifiers(shift, ctrl, mod4, alt);
+    //setmodifiers(shift, ctrl, mod4, alt);
 }
 
 void setup() {
