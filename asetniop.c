@@ -555,7 +555,7 @@ void process() {
     int a=-1;
     int b=-1;
     char keystroke;
-    for(i=0, i<10, i++) { //loop through all letter keys
+    for(i=0; i<10; i++) { //loop through all letter keys
         if (keys[i][1]==1) { //key released, do something with it!
             if (keys[i][2]==0) { //this key was not processed already 
                 //example: press n - press a - release a -> keypress - release n -> no keypress
@@ -628,7 +628,7 @@ void setup() {
 }
 
 void loop() {
-    debug("Loop...")
+    debug("Loop...");
     if (digitalRead(power) == LOW) {
         status=0; //keyboard is off
         debug("Keyboard is off")
