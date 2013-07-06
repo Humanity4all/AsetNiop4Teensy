@@ -435,7 +435,7 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
             Keyboard.set_key1(KEY_PRINTSCREEN);
             break;
         case '\x91' : //Scroll lock
-            Keyboard.set_key1(KEY_SCOLL_LOCK);
+            Keyboard.set_key1(KEY_SCROLL_LOCK);
             break;
     }
     Keyboard.send_now();
@@ -455,7 +455,7 @@ void setmodifiers(int shift, int ctrl, int mod4, int alt) {
         Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT | MODIFIERKEY_ALT);
     }
     else if (ctrl==1 and shift==1 and mod4==1) { //3 mod keys, no alt
-        Keyboard.set_modifier(MODIFIERKEY_CTRL | MOIFIERKEY_SHIFT | MODIFIERKEY_GUI);
+        Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT | MODIFIERKEY_GUI);
     }
     else if (ctrl==1 and shift==1) { //2 mod keys, ctrl - shift
         Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_SHIFT);
@@ -497,6 +497,7 @@ void process() {
     //act on the detected key settings
     
     //mod keys - these are lazy: one press is on for the next keypress, two presses caps, 3rd press off
+    int i;
     for (i=0; i<=5; i++){
         if (mods[i][1]==1) { 
             if (mods[i][2]<2) { mods[i][2]+=1; }
@@ -510,12 +511,12 @@ void process() {
     int alt;
     int fn;
     //set modifier keys
-    if (mods[0][0]==1 or mods[0][2]>0) { snift=1 }
-    if (mods[1][0]==1 or mods[1][2]>0) { ctrl=1 }
-    if (mods[2][0]==1 or mods[2][2]>0) { mod4=1 }
-    if (mods[3][0]==1 or mods[3][2]>0) { alt=1 }
-    if (mods[4][0]==1 or mods[4][2]>0) { fn=1 }
-    if (mods[5][1]>0) { if (mode==1) { mode=0 } else { mode=1 } }
+    if (mods[0][0]==1 or mods[0][2]>0) { shift=1; }
+    if (mods[1][0]==1 or mods[1][2]>0) { ctrl=1; }
+    if (mods[2][0]==1 or mods[2][2]>0) { mod4=1; }
+    if (mods[3][0]==1 or mods[3][2]>0) { alt=1; }
+    if (mods[4][0]==1 or mods[4][2]>0) { fn=1; }
+    if (mods[5][1]>0) { if (mode==1) { mode=0; } else { mode=1; } }
     //send modifier keys
     //we ignore fn for now, there"s no real support for it in teensy right now 
    setmodifiers(shift, ctrl, mod4, alt);
@@ -686,7 +687,7 @@ void loop() {
         if (digitalRead(rpm) == HIGH) { mouse[3][0]=1; }
         else { if (mouse[3][0]==1) { mouse[3][0]=0; mouse[3][1]=1; }}
         
-        process()
+        process();
         
         //delay(10); //short delay for fast typing
     }
