@@ -570,7 +570,7 @@ void process() {
         }
     }
     if (a >= 0) { //a key was released
-        if (b<=){ b=a; } //no second key pressed
+        if (b<=0){ b=a; } //no second key pressed
         
         if (mode==0) { //alphabetical mode
             if (shift==1) { keystroke=shiftalphas[a][b]; }
@@ -580,7 +580,7 @@ void process() {
             if (shift==1) { keystroke=numericalshift[a][b]; }
             else { keystroke=numerical[a][b]; }
         }
-        sendkey(keystroke, shift, ctrl, mod4, alt);
+        sendkeys(keystroke, shift, ctrl, mod4, alt);
     }
     
     //Now reset the keys
@@ -631,11 +631,11 @@ void loop() {
     debug("Loop...");
     if (digitalRead(power) == LOW) {
         status=0; //keyboard is off
-        debug("Keyboard is off")
+        debug("Keyboard is off");
         delay(5000); //only check every 5 seconds to save power
     } else {
         status=1;
-        debug("Keyboard is on")
+        debug("Keyboard is on");
         //now check for pressed keys
         //left hand character keys
         if (digitalRead(lp) == HIGH) { keys[0][0]=1; }
