@@ -434,7 +434,7 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
         case '\x2C' : //Print screen
             Keyboard.set_key1(KEY_PRINTSCREEN);
             break;
-        case '\x91' : //Scroll lock
+        case '\x291' : //Scroll lock
             Keyboard.set_key1(KEY_SCROLL_LOCK);
             break;
     }
