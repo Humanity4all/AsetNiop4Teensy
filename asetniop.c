@@ -50,26 +50,26 @@ const char shiftalphas[8][8]={
 
 const char numerical[8][8]={
     //A       S    E    T     N       I       O       P
-    {'1',    '@', '^', '0',  '|',    '{',    '}',    '\x22C'}, //A
+    {'1',    '@', '^', '0',  '|',    '{',    '}',    '\x52C'}, //A
     {'@',    '2', '$', '9',  '=',    '~',    '`',    ' '},    //S
     {'^',    '$', '3', '8',  '[',    ']',    '+',    ' '},    //E
     {'0',    '9', '8', '4',  '5',    '6',    '7',    '\b'},   //T
-    {'|',    '=', '[', '5',  '\x225', '#',    '%',    '\x21B'}, //N
-    {'{',    '~', ']', '6',  '#',    '\x226', ' ',    ' '},    //I
-    {'}',    '`', '+', '7',  '%',    ' ',    '\x228', ' '},    //O
-    {'\x22C', ' ', ' ', '\b', '\x21B', ' ',    ' ',    '\x227'}  //P
+    {'|',    '=', '[', '5',  '\x525', '#',    '%',    '\x51B'}, //N
+    {'{',    '~', ']', '6',  '#',    '\x526', ' ',    ' '},    //I
+    {'}',    '`', '+', '7',  '%',    ' ',    '\x528', ' '},    //O
+    {'\x52C', ' ', ' ', '\b', '\x51B', ' ',    ' ',    '\x527'}  //P
 };
 
 const char numericalshift[8][8]={
     //A       S       E       T       N       I       O    P
-    {'\x270', '\x278', '\x279', '\x27A', '\x27B', ' ',    ' ',    ' '},   //A
-    {'\x278', '\x271', ' ',    ' ',    ' ',    ' ',    ' ',    ' '},   //S
-    {'\x279', ' ',    '\x272', ' ',    ' ',    ' ',    ' ',    ' '},   //E
-    {'\x27A', ' ',    ' ',    '\x273', ' ',    ' ',    ' ',    ' '},   //T
-    {'\x27B', ' ',    ' ',    ' ',    '\x274', ' ',    ' ',    ' '},   //N
-    {' ',    ' ',    ' ',    ' ',    ' ',    '\x275', ' ',    ' '},   //I
-    {' ',    ' ',    ' ',    ' ',    ' ',    ' ',    '\x276', ' '},   //O
-    {' ',    ' ',    ' ',    ' ',    ' ',    ' ',    ' ',    '\x277'} //P
+    {'\x570', '\x578', '\x579', '\x57A', '\x57B', ' ',    ' ',    ' '},   //A
+    {'\x578', '\x571', ' ',    ' ',    ' ',    ' ',    ' ',    ' '},   //S
+    {'\x579', ' ',    '\x572', ' ',    ' ',    ' ',    ' ',    ' '},   //E
+    {'\x57A', ' ',    ' ',    '\x573', ' ',    ' ',    ' ',    ' '},   //T
+    {'\x57B', ' ',    ' ',    ' ',    '\x574', ' ',    ' ',    ' '},   //N
+    {' ',    ' ',    ' ',    ' ',    ' ',    '\x575', ' ',    ' '},   //I
+    {' ',    ' ',    ' ',    ' ',    ' ',    ' ',    '\x576', ' '},   //O
+    {' ',    ' ',    ' ',    ' ',    ' ',    ' ',    ' ',    '\x577'} //P
 };
 
 int mode=0;
@@ -380,61 +380,61 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
         case '\n' :
             Keyboard.set_key1(KEY_ENTER);
             break;
-        case '\x21B' : //escape
+        case '\x51B' : //escape
             Keyboard.set_key1(KEY_ESC);
             break;
-        case '\x225' : //left arrow
+        case '\x525' : //left arrow
             Keyboard.set_key1(KEY_LEFT);
             break;
-        case '\x226' : //up arrow
+        case '\x526' : //up arrow
             Keyboard.set_key1(KEY_UP);
             break;
-        case '\x227' : //right arrow
+        case '\x527' : //right arrow
             Keyboard.set_key1(KEY_RIGHT);
             break;
-        case '\x228' : //down arrow
+        case '\x528' : //down arrow
             Keyboard.set_key1(KEY_DOWN);
             break;
-        case '\x270' : //F1
+        case '\x570' : //F1
             Keyboard.set_key1(KEY_F1);
             break;
-        case '\x271' : //F2
+        case '\x571' : //F2
             Keyboard.set_key1(KEY_F2);
             break;
-        case '\x272' : //F3
+        case '\x572' : //F3
             Keyboard.set_key1(KEY_F3);
             break;
-        case '\x273' : //F4
+        case '\x573' : //F4
             Keyboard.set_key1(KEY_F4);
             break;
-        case '\x274' : //F5
+        case '\x574' : //F5
             Keyboard.set_key1(KEY_F5);
             break;
-        case '\x275' : //F6
+        case '\x575' : //F6
             Keyboard.set_key1(KEY_F6);
             break;
-        case '\x276' : //F7
+        case '\x576' : //F7
             Keyboard.set_key1(KEY_F7);
             break;
-        case '\x277' : //F8
+        case '\x577' : //F8
             Keyboard.set_key1(KEY_F8);
             break;
-        case '\x278' : //F9
+        case '\x578' : //F9
             Keyboard.set_key1(KEY_F9);
             break;
-        case '\x279' : //F10
+        case '\x579' : //F10
             Keyboard.set_key1(KEY_F10);
             break;
-        case '\x27A' : //F11
+        case '\x57A' : //F11
             Keyboard.set_key1(KEY_F11);
             break;
-        case '\x27B' : //F12
+        case '\x57B' : //F12
             Keyboard.set_key1(KEY_F12);
             break;
-        case '\x22C' : //Print screen
+        case '\x52C' : //Print screen
             Keyboard.set_key1(KEY_PRINTSCREEN);
             break;
-        case '\x291' : //Scroll lock
+        case '\x591' : //Scroll lock
             Keyboard.set_key1(KEY_SCROLL_LOCK);
             break;
     }
