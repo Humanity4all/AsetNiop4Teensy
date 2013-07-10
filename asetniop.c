@@ -557,10 +557,10 @@ void process() {
     //enter and space keys
     
     if (thumbs[0][1]==1) {
-        sendkeys(' ');
+        sendkeys(' ', shift, ctrl, mod4, alt);
     }
     if (thumbs[1][1]==1) {
-        sendkeys('\n');
+        sendkeys('\n', shift, ctrl, mod4, alt);
     }
     
     int a=-1;
