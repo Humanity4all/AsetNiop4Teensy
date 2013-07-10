@@ -380,6 +380,9 @@ void sendkeys(char keystroke, int shift, int ctrl, int mod4, int alt) { //transl
         case '\n' :
             Keyboard.set_key1(KEY_ENTER);
             break;
+        case ' ' :
+            Keyboard.set_key1(KEY_SPACE);
+            break;
         case '\x1B' : //escape
             Keyboard.set_key1(KEY_ESC);
             break;
@@ -551,7 +554,15 @@ void process() {
         Mouse.scroll(-1);
         mouse[3][1]=0;
     }
-
+    //enter and space keys
+    
+    if (thumbs[0][1]==1) {
+        sendkeys(' ');
+    }
+    if (thumbs[1][1]==1) {
+        sendkeys('\n');
+    }
+    
     int a=-1;
     int b=-1;
     char keystroke;
