@@ -3,7 +3,7 @@ AsetNiop4Teensy
 
 Teensyduino usb microcontroller driver for low actuation AsetNiop keyboard.
 
-AsetNiop is a keyboard layout that only uses around 15 keys, 20 in this configuration (counting mouse buttons). This is possible by chord typin (forming characters by pressing multiple keys at once).
+AsetNiop is a keyboard layout that only uses around 15 keys, 10 in this configuration (counting mouse buttons). This is possible by chord typin (forming characters by pressing multiple keys at once).
 
 I have a connective tissue disorder that severely limits my ability to type. As a programmer, you can see why that's a problem. I've tried several 'traditional' solutions. Speech recognition, on-screen keyboards with head movement tracking, low actuation force keyboards, even a laser keyboard. But none of those enabled me to input text precise and fast enough to make programming possible.
 
@@ -18,7 +18,7 @@ The cherry keyswitches that are most common in high-end keyboards require too mu
 
 Because of the low number of keys and the type of terminals used (t1 uses 2 faston 6.3 x 0.8 mm male pins) the keyboard will be solderless (with use of a breadboard). This makes assembly a lot easier and less error prone.
 
-As for the physical layout, I am going for a datahand-like device, with the exception that I'll use 2 keys per finger and they won't be mounted under the fingers but in front and behind (bending and flexing is easier for me). I also want to add a trackball under my right thumb so I won't have to move my hands with switching.
+As for the physical layout, I am going for a datahand-like device, with the exception that I'll use 1 key per finger and they won't be mounted under the fingers but behind them (bending and flexing is easier for me). I also want to add a trackball under my right thumb so I won't have to move my hands with switching.
 
 The trackball is pretty easy. Mount a regular mouse upside down with a track ball (roller deodorant ball or something a bit more classy) above it. I dislike the idea of having two usb cables for something that's actually one device. I'm looking into connecting the mouse directly to teensy or implemening an optical mouse sensor into the circuit.
 
@@ -35,8 +35,9 @@ I've wired the keyboard to be able to handle n simultaneous keys. Teensy only se
 
 To Do
 ===============
-
+* Refactor code to use interrupts - this way there's no risk of missing keypresses, or mouse input
 * Make naming of variables consistent
-* Add support for tripple keypresses
-* Add mouse mode
+* Add support for multiple layers, and custom functions inside those layers
+* Add support for tripple keypresses and steno functionality
+* Add mouse functionality
 
