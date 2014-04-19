@@ -63,7 +63,7 @@ keyboard k;
 bool init()
 {
 	//TODO set pins to use from left to right (counting thumbs)
-	int pinsToUse[n]={1, 2, 3, 4, 5};
+	int pinsToUse[n]={1, 2, 3, 4};
 	for (int i=0; i<n; i++) {
 		int pin = pinsToUse[i];
 		pinMode(pin,INPUT_PULLUP);
