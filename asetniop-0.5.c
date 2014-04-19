@@ -39,11 +39,15 @@ typedef enum key_state{
 
 //some global vars needed by keyboard struct, and other functions
 //TODO set the right number of keys here
-int n=4; //number of non-modifier keys in keyboard
-int m=1; //number of modifier keys in keyboard
+int n=4; //total number of keys in keyboard
 typedef struct keyboard {
-	Bounce keys[n+m]; // button objects
-	key_state keyState[n+m]; //keystates	
+	Bounce keys[n]; // button objects
+	key_state keyState[n]; //keystates
+	key_state shift;
+	key_state control;
+	key_state command;
+	key_state option;
+	key_state function;	
 	
 };
 
@@ -59,8 +63,8 @@ keyboard k;
 bool init()
 {
 	//TODO set pins to use (modifier keys last)
-	int pinsToUse[n+m]={1, 2, 3, 4, 5};
-	for (int i=0; i<n+m; i++) {
+	int pinsToUse[n]={1, 2, 3, 4, 5};
+	for (int i=0; i<n; i++) {
 		int pin = pinsToUse[i];
 		pinMode(pin,INPUT_PULLUP);
 		k.keys[i]=Boune(pin, 10);
@@ -72,37 +76,20 @@ bool init()
 
 bool keystate()
 {
-	for(int i=0; i<n+m; i++) {
+	for(int i=0; i<n; i++) {
 		if(k.keys[i].update()){
 			if(k.keys[i].fallingEdge()) {
-				if(i>=n){ //modifier keys
-					if(k.keyState[i]==IDLE){
-						k.keyState[i]=LAZY;
-					}
-					else if(k.keyState[i]==LAZY){
-						k.keyState[i]=LOCKED;
-					}
-					else if(k.keyState[i]==LOCKED){
-						k.keyState[i]=IDLE;
-					}
+				if(k.keyState[i]==IDLE){
+					k.keyState[i]=PRESSED;
 				}
-				else{ //normal keys
-				
-					if(k.keyState[i]==IDLE){
-						k.keyState[i]=PRESSED;
-					}
-					else if(k.keyState[i]==RELEASED){
-						k.keyState[i]=PRESSED;
-					}
-					}
+				else if(k.keyState[i]==RELEASED){
+					k.keyState[i]=PRESSED;					
 				}
 			}	
 			else if(k.keys[i].risingEdge()) {
-				if(i<n){//we're only interested in normal keys here
 					if(k.keyState[i]==PRESSED){
 						k.keyState[i]=RELEASED;
 					}
-				}
 			}
 		}
 	}
@@ -111,9 +98,15 @@ bool keystate()
 
 bool asetniop()
 {//translate the keyboard state to a character & modkeys
-	//TODO initialize empty mod array (0=inactive, 1=active)
-	int mods[m]={0}
-
+	//modifiers	shift	ctrl	cmd	opt	fn
+	int mods[m]={	0,	0,	0,	0,	0}; //0=inactive, 1=active
+	//test table for one handed, 4 key keyboard prototype
+	key_char keytable[n][n]={
+		{CHAR_A, CHAR_W, CHAR_X, CHAR_F},
+		{CHAR_W, CHAR_S, CHAR_D, CHAR_C},
+		{CHAR_X, CHAR_D, CHAR_E, CHAR_R},
+		{CHAR_F, CHAR_C, CHAR_R, CHAR_T}
+		}		
 	sendkeys(size, keytosend, mods);
 	return true;
 }
@@ -126,10 +119,10 @@ bool sendkeys(int size, key_char keys, int mods[m])
 	{
 		switch(keys[i]){
 
-			case KEY_A:
+			case CHAR_A:
 
 				break;
-			case KEY_B:
+			case CHAR_B:
 
 				break;
 			//etc
