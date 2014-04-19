@@ -99,39 +99,51 @@ bool keystate()
 bool asetniop()
 {//translate the keyboard state to a character & modkeys
 	//modifiers	shift	ctrl	cmd	opt	fn
-	int mods[m]={	0,	0,	0,	0,	0}; //0=inactive, 1=active
+	//int mods[5]={	0,	0,	0,	0,	0}; //0=inactive, 1=active
 	//test table for one handed, 4 key keyboard prototype
 	key_char keytable[n][n]={
 		{CHAR_A, CHAR_W, CHAR_X, CHAR_F},
 		{CHAR_W, CHAR_S, CHAR_D, CHAR_C},
 		{CHAR_X, CHAR_D, CHAR_E, CHAR_R},
 		{CHAR_F, CHAR_C, CHAR_R, CHAR_T}
-		}		
-	sendkeys(size, keytosend, mods);
+		}
+
+	//check how many keys are held down, and if one is released
+	
+	//select the right character from keytable according to current layer
+	
+	//special modifier handling
+	
+	
+	sendkeys(keytosend, release);
 	return true;
 }
 
-bool sendkeys(int size, key_char keys, int mods[m])
+//var to check if this character was already sent for an unreleased key
+key_char lastSent=CHAR_NIL;
+bool sendkeys(key_char key, bool release)
 {
-	//reset keys
+	//set modifiers
 	
-	for(int i=0; i<size; i++)
-	{
-		switch(keys[i]){
+	//set keys
+	switch(key){
 
-			case CHAR_A:
+		case CHAR_A:
 
-				break;
-			case CHAR_B:
+			break;
+		case CHAR_B:
 
-				break;
-			//etc
+			break;
+		//etc
 		}
 
 
-	}
+
 	//send keys
 	
+
+	//reset keys and reset lastSent
+
 	return true;
 }
 
