@@ -31,6 +31,8 @@ typedef enum key_char { //these are all the possible keys on a keyboard, not all
 
 	//mouse buttons
 	
+	//special keys
+	CHAR_NIL
 };
 
 typedef enum key_state{
@@ -250,10 +252,13 @@ bool sendkeys(key_char key, bool release)
 
 
 	//send keys
-	Keyboard.send_now();
+	if(lastSent!=key){
+		Keyboard.send_now();
+	}
 
 	//reset keys and reset lastSent
 	if(reset){
+		lastSent=CHAR_NIL;
 		Keyboard.set_key1(0);
 		Keyboard.set_key2(0);
 		Keyboard.set_key3(0);
@@ -261,6 +266,10 @@ bool sendkeys(key_char key, bool release)
 		Keyboard.set_key5(0);
 		Keyboard.set_key6(0);
 		Keyboard.send_now();
+	}
+	else{
+		lastSent=key; 
+		//indicate this key combination has been sent already, no need to resend until key release.
 	}
 	return true;
 }
