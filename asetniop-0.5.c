@@ -16,11 +16,12 @@ keyboard k;
 bool init()
 {
 	//TODO set pins to use from left to right (counting thumbs)
-	int pinsToUse[n]={1, 2, 3, 4};
-	for (int i=0; i<n; i++) {
+	int pinsToUse[NumKeys]={1, 2, 3, 4};
+	for (int i=0; i<NumKeys; i++) {
 		int pin = pinsToUse[i];
 		pinMode(pin,INPUT_PULLUP);
-		k.keys[i]=Boune(pin, 10);
+		Bounce tmp=Bounce(pin, 10);
+		k.keys[i]=&tmp;
 		k.keyState[i]=IDLE;
 	}
 
@@ -29,9 +30,9 @@ bool init()
 
 bool keystate()
 {
-	for(int i=0; i<n; i++) {
-		if(k.keys[i].update()){
-			if(k.keys[i].fallingEdge()) {
+	for(int i=0; i<NumKeys; i++) {
+		if(k.keys[i]->update()){
+			if(k.keys[i]->fallingEdge()) {
 				if(k.keyState[i]==IDLE){
 					k.keyState[i]=PRESSED;
 				}
@@ -39,13 +40,16 @@ bool keystate()
 					k.keyState[i]=PRESSED;					
 				}
 			}	
-			else if(k.keys[i].risingEdge()) {
+			else if(k.keys[i]->risingEdge()) {
 					if(k.keyState[i]==PRESSED){
 						k.keyState[i]=RELEASED;
 					}
 					else if(k.keyState[i]==USED){
 						k.keyState[i]=USEDREL;
 					}
+			}
+			else{
+				debug("--no change detected");
 			}
 		}
 	}
@@ -57,7 +61,7 @@ bool asetniop()
 	//modifiers	shift	ctrl	cmd	opt	fn
 	//int mods[5]={	0,	0,	0,	0,	0}; //0=inactive, 1=active
 	//test table for one handed, 4 key keyboard prototype
-	key_char keyTable[n][n]={
+	key_char keyTable[NumKeys][NumKeys]={
 		{CHAR_A, CHAR_W, CHAR_X, CHAR_F},
 		{CHAR_W, CHAR_S, CHAR_D, CHAR_C},
 		{CHAR_X, CHAR_D, CHAR_E, CHAR_R},
@@ -71,7 +75,7 @@ bool asetniop()
 	int key1; //index of first key
 	int key2; //index of second key
 
-	for(int i=0; i<n; i++) {
+	for(int i=0; i<NumKeys; i++) {
 		key_state st = k.keyState[i];
 			if(st==RELEASED or st==USEDREL){
 				r++;
@@ -208,12 +212,12 @@ bool sendkeys(key_char key, bool release)
 	}
 
 	//reset keys and reset lastSent
-	if(reset){
+	if(released){
 		lastSent=CHAR_NIL;
 		Keyboard.set_key1(0);
 		Keyboard.set_key2(0);
 		Keyboard.set_key3(0);
-		Keyboard.set_Key4(0);
+		Keyboard.set_key4(0);
 		Keyboard.set_key5(0);
 		Keyboard.set_key6(0);
 		Keyboard.send_now();
