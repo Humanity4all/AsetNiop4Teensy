@@ -15,6 +15,7 @@ keyboard k;
 
 bool init()
 {
+	debug("Initializing...");
 	//TODO set pins to use from left to right (counting thumbs)
 	int pinsToUse[NumKeys]={1, 2, 3, 4};
 	for (int i=0; i<NumKeys; i++) {
@@ -25,14 +26,17 @@ bool init()
 		k.keyState[i]=IDLE;
 	}
 
+	debug("Finished initializing");
 	return true;
 }
 
 bool keystate()
 {
+	debug("Updating keystates...");
 	for(int i=0; i<NumKeys; i++) {
 		if(k.keys[i]->update()){
 			if(k.keys[i]->fallingEdge()) {
+				debug("--detected falling edge");
 				if(k.keyState[i]==IDLE){
 					k.keyState[i]=PRESSED;
 				}
@@ -41,18 +45,20 @@ bool keystate()
 				}
 			}	
 			else if(k.keys[i]->risingEdge()) {
-					if(k.keyState[i]==PRESSED){
-						k.keyState[i]=RELEASED;
-					}
-					else if(k.keyState[i]==USED){
-						k.keyState[i]=USEDREL;
-					}
+				debug("--detected rising edge");
+				if(k.keyState[i]==PRESSED){
+					k.keyState[i]=RELEASED;
+				}
+				else if(k.keyState[i]==USED){
+					k.keyState[i]=USEDREL;					
+				}
 			}
 			else{
 				debug("--no change detected");
 			}
 		}
 	}
+	debug("Finished updating keystates");
 	return true;
 }
 
@@ -61,6 +67,7 @@ bool asetniop()
 	//modifiers	shift	ctrl	cmd	opt	fn
 	//int mods[5]={	0,	0,	0,	0,	0}; //0=inactive, 1=active
 	//test table for one handed, 4 key keyboard prototype
+	debug("Translating keystates to characters...");
 	key_char keyTable[NumKeys][NumKeys]={
 		{CHAR_A, CHAR_W, CHAR_X, CHAR_F},
 		{CHAR_W, CHAR_S, CHAR_D, CHAR_C},
@@ -107,7 +114,8 @@ bool asetniop()
 		//update keystates
 		if(k.keyState[key1]==PRESSED) {k.keyState[key1]=USED;}
 		if(k.keyState[key2]==PRESSED) {k.keyState[key2]=USED;}
-	}		
+	}
+	debug("Finished translation");
 	return true;
 }
 
@@ -115,6 +123,7 @@ bool asetniop()
 key_char lastSent=CHAR_NIL;
 bool sendkeys(key_char key, bool release)
 {
+	debug("Sending characters...");
 	//set modifiers
 	
 	//set keys
@@ -226,10 +235,21 @@ bool sendkeys(key_char key, bool release)
 		lastSent=key; 
 		//indicate this key combination has been sent already, no need to resend until key release.
 	}
+	debug("Finished sending characters");
 	return true;
 }
 
+void debug(char* text)
+{
+	if(DEBUG==1){
+		Serial.println(text);
+		delay(100);
+
+	}
+}
+
 void setup() {
+	if(DEBUG==1){Serial.begin(38400);}
 	init();
 }
 
