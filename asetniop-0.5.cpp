@@ -21,9 +21,12 @@ bool init()
 	for (int i=0; i<NumKeys; i++) {
 		int pin = pinsToUse[i];
 		pinMode(pin,INPUT_PULLUP);
-		Bounce tmp=Bounce(pin, 10);
-		k.keys[i]=&tmp;
+		debug("--set pinmode to pullup");
+		k.keys[i]=(Bounce *)malloc(sizeof(Bounce));
+		*k.keys[i]=Bounce(pin,10);
+		debug("--initialized bounce object");
 		k.keyState[i]=IDLE;
+		debug("--set keystate to idle");
 	}
 
 	debug("Finished initializing");
