@@ -1,7 +1,7 @@
-#include <Bounce.h>
+#include <Bounce2.h>
 
 //type declarations
-typedef enum { //these are all the possible keys on a keyboard, not all are implemented at this time
+typedef enum key_char { //these are all the possible keys on a keyboard, not all are implemented at this time
 	//alphabetical characters
 	CHAR_A, CHAR_B, CHAR_C, CHAR_D, CHAR_E, CHAR_F, CHAR_G, CHAR_H, CHAR_I, CHAR_J, CHAR_K, CHAR_L, CHAR_M, CHAR_N,
 	CHAR_O, CHAR_P, CHAR_Q, CHAR_R, CHAR_S, CHAR_T, CHAR_U, CHAR_V, CHAR_W, CHAR_X, CHAR_Y, CHAR_Z,
@@ -17,16 +17,20 @@ typedef enum { //these are all the possible keys on a keyboard, not all are impl
 	CHAR_PAREN_L, CHAR_PAREN_R, CHAR_BRACKET_L, CHAR_BRACKET_R,
 	CHAR_ACCOLADE_L, CHAR_ACCOLADE_R, CHAR_SMALLER_THAN, CHAR_GREATER_THAN,
 	//control keys
-	KEY_ENTER, KEY_RETURN, KEY_BACKSPACE, KEY_DELETE, KEY_INSERT, KEY_ESCAPE, KEY_TAB,
-	KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_PGUP, KEY_PGDOWN, KEY_HOME, KEY_END,
+	
+	// naming conflict! we used KEY_ naming, but that conflicts with the main teensy library
+	K_ENTER, K_RETURN, K_BACKSPACE, K_DELETE, K_INSERT, K_ESCAPE, K_TAB,
+	K_UP, K_DOWN, K_LEFT, K_RIGHT, K_PGUP, K_PGDOWN, K_HOME, K_END,
+	
 	//modifier keys
-	KEY_SHIFT_L, KEY_SHIFT_R, KEY_CAPSLOCK, KEY_CTRL_L, KEY_CTRL_R, KEY_ALT_L, KEY_ALT_R, KEY_MOD4_L, KEY_MOD4_R,
-	KEY_FN, KEY_LAYER, KEY_NUMLOCK, KEY_SCRLOCK,
-	//f# keys
-	KEY_F1, KEY_F2, KEY_F3, KEY_F4, KEY_F5, KEY_F6, KEY_F7, KEY_F8, KEY_F9, KEY_F10, KEY_F11, KEY_F12, KEY_F13,
-	KEY_F14, KEY_F15,
+	K_SHIFT_L, K_SHIFT_R, K_CAPSLOCK, K_CTRL_L, K_CTRL_R, K_ALT_L, K_ALT_R, K_MOD4_L, K_MOD4_R,
+	K_FN, K_LAYER, K_NUMLOCK, K_SCRLOCK,
+	
+	//f# keys //naming conflict!
+	K_F1, K_F2, K_F3, K_F4, K_F5, K_F6, K_F7, K_F8, K_F9, K_F10, K_F11, K_F12, K_F13,
+	K_F14, K_F15,
 	//media keys
-	KEY_PRINTSCRN, KEY_WAKE, KEY_SLEEP, KEY_POWER, 
+	K_PRINTSCRN, K_WAKE, K_SLEEP, K_POWER, 
 	//numpad keys
 
 	//mouse buttons
@@ -35,7 +39,7 @@ typedef enum { //these are all the possible keys on a keyboard, not all are impl
 	CHAR_NIL
 } key_char;
 
-typedef enum {
+typedef enum key_state {
 	IDLE, PRESSED, RELEASED, USED, USEDREL, LAZY, LOCKED,
 } key_state;
 
@@ -43,7 +47,7 @@ typedef enum {
 //TODO set the right number of keys here
 //int n=4; //total number of keys in keyboard
 #define NumKeys 4
-typedef struct {
+typedef struct keyboard {
 	Bounce * keys[NumKeys]; // button objects
 	key_state keyState[NumKeys]; //keystates
 	key_state shift;
