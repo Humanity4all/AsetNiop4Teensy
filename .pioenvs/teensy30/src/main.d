@@ -34,4 +34,6 @@
  .pioenvs/teensy30/Bounce2/Bounce2.h src/./typedefs.h \
  src/switchboardstatemachine/machine.h \
  src/switchboardstatemachine/./machinestates.h \
- src/switchboardstatemachine/././machine.h
+ src/switchboardstatemachine/././machine.h \
+ src/switchboardstatemachine/./../switchvector/switchvector.h \
+ src/switchboardstatemachine/../switchvector/switchvector.h

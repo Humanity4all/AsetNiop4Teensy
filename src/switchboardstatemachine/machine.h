@@ -6,6 +6,7 @@ Copyright 2015 Stichting Humanity4all
 #define SRC_SWITCHBOARDSTATEMACHINE_MACHINE_H_
 
 #include "./machinestates.h"
+#include "../switchvector/switchvector.h"
 
 namespace switch_board_state_machine {
 
@@ -20,7 +21,7 @@ class Machine {
     int get_current_switch_vector();
     ~Machine();
  private:
-    int switchVectot;
+    switch_vector::SwitchVector switchVector;
     AbstractState* mState;
 };
 

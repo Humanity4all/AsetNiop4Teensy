@@ -6,6 +6,7 @@ Copyright 2015 Stichting Humanity4all
 #define SRC_SWITCHBOARDSTATEMACHINE_MACHINESTATES_H_
 
 #include "./machine.h"
+#include "../switchvector/switchvector.h"
 
 namespace switch_board_state_machine {
 
@@ -18,7 +19,9 @@ class AbstractState {
     virtual ~AbstractState();
  protected:
     void set_state(Machine& machine, AbstractState* st);
-    void update_switch_vector(Machine& machine, int switch_vector);
+    void update_switch_vector(
+        Machine& machine,
+        switch_vector::SwitchVector switch_vector);
 };
 
 class Idle : public AbstractState {
