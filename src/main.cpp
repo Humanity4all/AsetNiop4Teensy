@@ -23,7 +23,7 @@ Copyright 2015 Stichting Humanity4all
 
 Bounce debugkey;
 
-keyboard k;
+keyboard_t k;
 
 void setup() {
     pinMode(LED_PIN, OUTPUT);     // set pin as output
