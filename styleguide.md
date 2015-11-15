@@ -6,12 +6,12 @@ This is just a proposal so far
 * enums, structs and typedefs: _t suffix
 * enum members, #define members: ALLCAPS_WITH_UNDERSCORES
 * classes: CamelCase
-
-We don't use dromedaryCase here at all. Only, I can't think of a good place
-to use them without breaking existing conventions in the libraries we use.
+* properties: dromedaryCase
 
 ## Whitespace
-* indent with 4 spaces - except in namespaces, which are not indented
+* indent with 4 spaces
+* namespaces are not indented
+* public: and protected: inside a class are indented 1 space
 * single space around operators
 * single newline between function definitions
 * no spaces directly inside parenteses, single space outside of them
