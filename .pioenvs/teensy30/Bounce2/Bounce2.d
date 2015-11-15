@@ -1,4 +1,5 @@
-.pioenvs/teensy30/src/main.o: src/main.cpp \
+.pioenvs/teensy30/Bounce2/Bounce2.o: \
+ .pioenvs/teensy30/Bounce2/Bounce2.cpp \
  .pioenvs/teensy30/FrameworkArduino/Arduino.h \
  .pioenvs/teensy30/FrameworkArduino/WProgram.h \
  .pioenvs/teensy30/FrameworkArduino/avr/pgmspace.h \
@@ -31,4 +32,4 @@
  .pioenvs/teensy30/FrameworkArduino/elapsedMillis.h \
  .pioenvs/teensy30/FrameworkArduino/Arduino.h \
  .pioenvs/teensy30/FrameworkArduino/IntervalTimer.h \
- .pioenvs/teensy30/Bounce2/Bounce2.h src/./typedefs.h
+ .pioenvs/teensy30/Bounce2/Bounce2.h
