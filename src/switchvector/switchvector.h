@@ -26,10 +26,16 @@ Right now there's no real reason to encapsulate this
 in a class, but I have a feeling we're going to need
 it in the future. We might just decide to start using
 bitwise storage instead of an entire int for each switch,
-so maybe accessors are a good idea here.
+and I don't want other parts of the code to have to
+deal with implementation here.
 */
 class SwitchVector {
  public:
+    SwitchVector();
+    void set(int n_switch, switch_state_t state);
+    int get(int n_switch);
+    ~SwitchVector();
+ private:
     key_state_t switchVector[N_KEYS];
 };
 
