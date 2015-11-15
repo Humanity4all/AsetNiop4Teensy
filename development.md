@@ -9,7 +9,7 @@
 * create the translation service
 * phase out typedefs.h and create a main.h
 * figure out what design pattern to use for software-hardware interface (read: where do we poll the physical switches & store the Bounce objects?)
-* implement modifier keys
+* implement modifiers
 * write unit tests -> figure out how unit testing works with embedded cpp (this really shouldn't be this low on the list...)
 * implement layout layers in translation service (e.g. alphabetic, numerical)
 * expand on the design.md document - include other parts of the process (translation service, hardware-software interface, etc.) (maybe this should be first on the list...)
