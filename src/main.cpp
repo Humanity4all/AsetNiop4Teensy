@@ -40,9 +40,12 @@ void setup() {
         int pin = pinsToUse[i];
         pinMode(pin, INPUT_PULLUP);
         // debug("--set pinmode to pullup");
-        // cpplint: using C-style cast because cpp style cast
-        // results in compiler errors
-        k.keys[i] = (Bounce *)malloc(sizeof(Bounce));
+
+        /*
+        cpplint: using C-style cast because cpp style cast
+        results in compiler errors
+        */
+        k.keys[i] = (Bounce *)malloc(sizeof(Bounce)); // NOLINT
         *k.keys[i] = Bounce();
         k.keys[i]->attach(pin);
         k.keys[i]->interval(10);
