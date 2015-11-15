@@ -31,4 +31,7 @@
  .pioenvs/teensy30/FrameworkArduino/elapsedMillis.h \
  .pioenvs/teensy30/FrameworkArduino/Arduino.h \
  .pioenvs/teensy30/FrameworkArduino/IntervalTimer.h \
- .pioenvs/teensy30/Bounce2/Bounce2.h src/./typedefs.h
+ .pioenvs/teensy30/Bounce2/Bounce2.h src/./typedefs.h \
+ src/switchboardstatemachine/machine.h \
+ src/switchboardstatemachine/./machinestates.h \
+ src/switchboardstatemachine/././machine.h

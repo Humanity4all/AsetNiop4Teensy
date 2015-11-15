@@ -17,6 +17,7 @@ Copyright 2015 Stichting Humanity4all
 #include <Bounce2.h>
 
 #include "./typedefs.h"
+#include "switchboardstatemachine/machine.h"
 
 #define N_KEYS 4
 #define DEBUG
@@ -24,6 +25,7 @@ Copyright 2015 Stichting Humanity4all
 Bounce debugkey;
 
 keyboard_t k;
+switch_board_state_machine::Machine switch_machine;
 
 void setup() {
     pinMode(LED_PIN, OUTPUT);     // set pin as output
