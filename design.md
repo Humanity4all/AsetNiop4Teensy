@@ -34,10 +34,10 @@ switchboard.
 
 ## Top-Level design
 
-Hardware software interface polls input pinns. By comparing with the current
-SwitchVector inside the SwitchBoard state machine, it determines if there have
-been events (switch press or release). It communicates these events to the
-SwitchBoard.
+Hardware software interface (PinInterface) polls input pinns. By comparing with
+the current SwitchVector inside the SwitchBoard state machine, it determines if
+there have been events (switch press or release). It communicates these events
+to the SwitchBoard.
 
 The SwitchBoard state machine determines if a keyevent needs to be sent out. It
 doesn't care or know which key, all it knows is the SwitchVector. If something
@@ -47,6 +47,20 @@ up/down/empty event.
 The translation service interprets the SwitchVector and handles translation to
 keys (and the communication of said keys to operating system). It does this
 dependent on which layer is currently active, and what the modifier states are.
+
+## PinInterface
+
+### PinInterface::PinInterface
+Allocate memory, and create a Bounce object for every pin.
+Also creates a SwitchBoard state machine.
+
+### PinInterface::update
+Poll pins (or more accurately, the bounce objects), record changes and call the
+switchboard state machine accordingly. This is the method called by the loop()
+function in main.cpp
+
+### PinInterface::~PinInterface
+Release memory.
 
 ## SwitchBoard State Machine
 
