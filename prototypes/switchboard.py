@@ -22,8 +22,8 @@ from collections import namedtuple
 
 # chord: Bool - indicates relevance of event to chord and nochord mode
 ProtoKeyEvent = namedtuple('ProtoKeyEvent', [
-    'switch_vector',
     'event',
+    'switch_vector',
     'is_chord'])
 
 # For a down event, the switch_vector is the vector it resulted in.
@@ -65,9 +65,9 @@ class OneSwitch(SwitchBoardState):
     """One switch is pressed."""
 
     def press(self, state_machine, switch_vector):
-        """Switch state to TwoSwitch + issue KeyDown(nochord) event."""
+        """Switch state to TwoSwitch + issue KeyDown(chord) event."""
         state_machine.switch_state(TwoSwitch())
-        return [ProtoKeyEvent('down', switch_vector, False)]
+        return [ProtoKeyEvent('down', switch_vector, True)]
 
     def release(self, state_machine, switch_vector):
         """Switch state to Idle + issue KeyDown(chord) & KeyUp(chord) event."""
@@ -84,7 +84,7 @@ class OneSwitchUsed(SwitchBoardState):
     def press(self, state_machine, switch_vector):
         """Switch state to TwoSwitch + KeyDown(nochord)."""
         state_machine.switch_state(TwoSwitch())
-        return [ProtoKeyEvent('down', switch_vector, False)]
+        return [ProtoKeyEvent('down', switch_vector, True)]
 
     def release(self, state_machine, switch_vector):
         """Switch state to Idle + KeyUp(nochord)."""
