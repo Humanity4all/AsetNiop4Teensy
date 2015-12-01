@@ -33,10 +33,6 @@ SwitchEvent = namedtuple('SwitchEvent', [
     'switch_vector'])
 
 
-class NotImplementedError(TypeError):
-    pass
-
-
 class SwitchBoardState(object):
 
     """SwitchBoard State prototype."""
