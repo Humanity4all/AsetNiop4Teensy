@@ -67,29 +67,29 @@ Release memory.
 ### IDLE / WAITING
 geen toetsen ingedrukt - niks doen
 
-* IDLE -> Press -> ONESWITCH
+* IDLE -> Press -> ONESWITCH --> KeyDown(nochord)
 * IDLE !> Release
 
 ### ONESWITCH
 
-* ONESWITCH -> Press -> TWOSWITCH --> KeyDown
-* ONESWITCH -> Release -> IDLE --> KeyDown, KeyUp
+* ONESWITCH -> Press -> TWOSWITCH --> KeyDown(chord)
+* ONESWITCH -> Release -> IDLE --> KeyDown(chord), KeyUp(chord)
 
 ### TWOSWITCH
 
-* TWOSWITCH -> Press -> INVALID
-* TWOSWITCH -> Release -> ONESWITCHUSED --> KeyUp
+* TWOSWITCH -> Press -> INVALID --> EmptyKey
+* TWOSWITCH -> Release -> ONESWITCHUSED --> KeyUp(chord)
 
 
 ### ONESWITCHUSED
 
-* ONESWITCHUSED -> Press -> TWOSWITCH
-* ONESWITCHUSED -> Release -> IDLE
+* ONESWITCHUSED -> Press -> TWOSWITCH --> KeyDown(nochord)
+* ONESWITCHUSED -> Release -> IDLE --> KeyUp(nochord)
 
 
 ### INVALID
 
-* INVALID -> Press -> INVALID --> EmptyKey
+* INVALID -> Press -> INVALID
 * INVALID -> Release(some switches still Pressed) -> INVALID
-* INVALID -> Release(no switches still Pressed) t-> IDLE
+* INVALID -> Release(no switches still Pressed) -> IDLE
 
