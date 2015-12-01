@@ -27,17 +27,21 @@ ProtoKeyEvent = namedtuple('ProtoKeyEvent', [
     'chord'])
 
 
+class NotImplementedError(TypeError):
+    pass
+
+
 class SwitchBoardState(object):
 
     """SwitchBoard State prototype."""
 
     def press(self, state_machine, switch_vector):
         """Process switch press."""
-        pass
+        raise NotImplementedError
 
     def release(self, state_machine, switch_vector):
         """Process switch release."""
-        pass
+        raise NotImplementedError
 
 
 class Idle(SwitchBoardState):
