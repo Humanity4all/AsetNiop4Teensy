@@ -98,7 +98,7 @@ class TwoSwitch(SwitchBoardState):
 
     def press(self, state_machine, switch_vector):
         """Switch state to ManySwitch + issue EmptyKey event."""
-        state_machine.switch_state(Invalid())
+        state_machine.switch_state(ManySwitch())
         return [
             ProtoKeyEvent('down', switch_vector, False),
             ProtoKeyEvent('reset', switch_vector, True)]
