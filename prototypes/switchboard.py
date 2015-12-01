@@ -91,12 +91,16 @@ class SwitchBoard(object):
 
     def __init__(self):
         """Set state to Idle."""
-        self.state = Idle()
+        self._state = Idle()
 
     def press(self):
         """Pass on switch press to state."""
-        self.state.press()
+        self._state.press()
 
     def release(self):
         """Pass on switch release to state."""
-        self.state.release()
+        self._state.release()
+
+    def switch_state(self, new_state):
+        """Change state."""
+        self._state = new_state
