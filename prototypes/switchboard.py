@@ -24,7 +24,13 @@ from collections import namedtuple
 ProtoKeyEvent = namedtuple('ProtoKeyEvent', [
     'switch_vector',
     'event',
-    'chord'])
+    'is_chord'])
+
+# For a down event, the switch_vector is the vector it resulted in.
+# For an up event, the switch_vector is the vector it came from.
+SwitchEvent = namedtuple('SwitchEvent', [
+    'event',
+    'switch_vector'])
 
 
 class NotImplementedError(TypeError):
@@ -95,9 +101,11 @@ class TwoSwitch(SwitchBoardState):
     """Two switches are pressed."""
 
     def press(self, state_machine, switch_vector):
-        """Switch state to Invalid + issue EmptyKey event."""
+        """Switch state to ManySwitch + issue EmptyKey event."""
         state_machine.switch_state(Invalid())
-        return [ProtoKeyEvent('reset', switch_vector, True)]
+        return [
+            ProtoKeyEvent('down', switch_vector, False),
+            ProtoKeyEvent('reset', switch_vector, True)]
 
     def release(self, state_machine, switch_vector):
         """Switch state to OneSwitchUsed + issue KeyUp(chord) event."""
@@ -105,7 +113,7 @@ class TwoSwitch(SwitchBoardState):
         return [ProtoKeyEvent('up', switch_vector, True)]
 
 
-class Invalid(SwitchBoardState):
+class ManySwitch(SwitchBoardState):
 
     """
     Three or more switches are or were pressed.
@@ -117,13 +125,13 @@ class Invalid(SwitchBoardState):
 
     def press(self, state_machine, switch_vector):
         """Stay in invalid."""
-        return None
+        return [ProtoKeyEvent('down', switch_vector, False)]
 
     def release(self, state_machine, switch_vector):
-        """Either return to Idle or stay in Invalid."""
+        """Either return to Idle or stay in ManySwitch."""
         if switch_vector.count(1) <= 1:
             state_machine.switch_state(Idle())
-        return None
+        return [ProtoKeyEvent('up', switch_vector, False)]
 
 
 class SwitchBoard(object):
