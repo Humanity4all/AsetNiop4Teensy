@@ -72,7 +72,7 @@ geen toetsen ingedrukt - niks doen
 
 ### ONESWITCH
 
-* ONESWITCH -> Press -> TWOSWITCH --> KeyDown(chord)
+* ONESWITCH -> Press -> TWOSWITCH --> KeyDown(nochord)
 * ONESWITCH -> Release -> IDLE --> KeyDown(chord), KeyUp(chord)
 
 ### TWOSWITCH
