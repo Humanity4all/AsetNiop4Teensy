@@ -3,7 +3,10 @@
 
 # TODO merge key_up, key_down and possibly empty_key, they have
 # too much code in common.
+# TODO move some stuff to TranslationServiceState - there are going
+# to be a lot of layers with similar behavior and similar code!
 # TODO figure out which methods should be private/ protected
+# TODO make returns consistent in format.
 class TranslationServiceState(object):
 
     """Prototype for TranslationService states."""
@@ -89,6 +92,9 @@ class ExampleNonChordedLayer(TranslationServiceState):
     use modifiers.
     """
 
+    # TODO figure out how to distinguish which switch to process
+    # with multiple switches pressed!
+
     def __init__(self):
         """Set basic keymap."""
         TranslationServiceState.__init__(self)
@@ -122,20 +128,20 @@ class TranslationService(object):
         self._state = ExampleLayer()
         # TODO initialize modifiers
 
-    def process_protkey_event(self, protokey_event):
+    def process_protokey_event(self, protokey_event):
         """Pass on key event."""
         if protokey_event.event == "up":
-            self._state.key_up(
+            return self._state.key_up(
                 self,
                 protokey_event.switch_vector,
                 protokey_event.is_chord)
         elif protokey_event.event == "down":
-            self._state.key_down(
+            return self._state.key_down(
                 self,
                 protokey_event.switch_vector,
                 protokey_event.is_chord)
         elif protokey_event.event == "reset":
-            self._state.empty_key(
+            return self._state.empty_key(
                 self,
                 protokey_event.switch_vector,
                 protokey_event.is_chord)
