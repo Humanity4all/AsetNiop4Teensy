@@ -1,6 +1,9 @@
 """TranslationService State Machine."""
 
 
+# TODO merge key_up, key_down and possibly empty_key, they have
+# too much code in common.
+# TODO figure out which methods should be private/ protected
 class TranslationServiceState(object):
 
     """Prototype for TranslationService states."""
@@ -45,15 +48,30 @@ class ExampleLayer(TranslationServiceState):
     def key_up(self, state_machine, switch_vector, chord):
         """Send key to os, only if chorded."""
         if chord:
-            # TODO read from switch vector which switches are pressed
-            # and use that to read key from keymap.
-            return state_machine.send_key(switch_vector, 'up')
+            switch1 = switch_vector.index(1)
+            # set switch1 to 0, so we can find the second active switch
+            switch_vector[switch1] = 0
+            # we're not sure if a second switch is pressed at this point
+            try:
+                switch2 = switch_vector.index(1)
+            except ValueError:
+                switch2 = switch1
+            key = self._keymap[switch1][switch2]
+            return state_machine.send_key(key, 'up')
 
     def key_down(self, state_machine, switch_vector, chord):
         """Set key to os, only if chorded."""
         if chord:
-            # TODO: read switch vector, use it to get key from keymap
-            return state_machine.send_key(switch_vector, 'down')
+            switch1 = switch_vector.index(1)
+            # set switch1 to 0, so we can find the second active switch
+            switch_vector[switch1] = 0
+            # we're not sure if a second switch is pressed at this point
+            try:
+                switch2 = switch_vector.index(1)
+            except ValueError:
+                switch2 = switch1
+            key = self._keymap[switch1][switch2]
+            return state_machine.send_key(key, 'down')
 
     def empty_key(self, state_machine, switch_vector, chord):
         """Send empty key state."""
@@ -78,13 +96,13 @@ class ExampleNonChordedLayer(TranslationServiceState):
 
     def key_up(self, state_machine, switch_vector, chord):
         """Send key to os."""
-        # TODO read switch vector, use it to get key from keymap
-        return state_machine.send_key(switch_vector, 'up')
+        key = self._keymap[switch_vector.index(1)]
+        return state_machine.send_key(key, 'up')
 
     def key_down(self, state_machine, switch_vector, chord):
         """Send key to os."""
-        # TODO read switch vector, use it to get key from keymap
-        return state_machine.send_key(switch_vector, 'down')
+        key = self._keymap[switch_vector.index(1)]
+        return state_machine.send_key(key, 'down')
 
     def empty_key(self, state_machine, switch_vector, chord):
         """Send EmptyKey."""
@@ -130,6 +148,8 @@ class TranslationService(object):
 
     def send_key(self, key, event):
         """Send key to operating system."""
+        # Here, the key will be translated to a key code the os
+        # understands, using self.use_modifiers
         return key, event  # for now just return so we can test
 
     def set_modifier(self, key_event):
