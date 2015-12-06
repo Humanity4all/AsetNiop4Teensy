@@ -30,10 +30,6 @@ class Event(EventData):
 
         # Rising or falling edge
         self.edge = None
-        # Up, down or reset
-        self.event = None
-        # True or False
-        self.is_chord = None
 
     def _update_effectite_switch_vector(self):
         """Translate raw switch states to effective switch vector."""
@@ -49,11 +45,6 @@ class Event(EventData):
     def new_event(self, new_switch_state):
         """Update (eftective) switch vector. (used by PinInterface)."""
         return Event(self.new_switch_state, new_switch_state)
-
-    def set_event_info(self, event, is_chord):
-        """Set event information (used by SwitchBoard)."""
-        self.event = event
-        self.is_chord = is_chord
 
     def count_active(self):
         """Return number of active switches."""
