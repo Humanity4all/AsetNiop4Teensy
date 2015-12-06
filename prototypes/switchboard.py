@@ -23,7 +23,7 @@ from collections import namedtuple
 # chord: Bool - indicates relevance of event to chord and nochord mode
 ProtoKeyEvent = namedtuple('ProtoKeyEvent', [
     'event',
-    'switch_vector',
+    'switch_event',
     'is_chord'])
 
 # For a down event, the switch_vector is the vector it resulted in.
@@ -37,11 +37,11 @@ class SwitchBoardState(object):
 
     """SwitchBoard State prototype."""
 
-    def press(self, state_machine, switch_vector):
+    def press(self, state_machine, switch_event):
         """Process switch press."""
         raise NotImplementedError
 
-    def release(self, state_machine, switch_vector):
+    def release(self, state_machine, switch_event):
         """Process switch release."""
         raise NotImplementedError
 
@@ -50,12 +50,12 @@ class Idle(SwitchBoardState):
 
     """No switches are pressed."""
 
-    def press(self, state_machine, switch_vector):
+    def press(self, state_machine, switch_event):
         """Switch state to OneSwitch + issue KeyDown(nochord)."""
-        state_machine.switch_state(OneSwitch())
-        return [ProtoKeyEvent('down', switch_vector, False)]
+        state_machine.change_state(OneSwitch())
+        return [ProtoKeyEvent('down', switch_event, False)]
 
-    def release(self, state_machine, switch_vector):
+    def release(self, state_machine, switch_event):
         """Impossible - no switches are pressed."""
         return None
 
@@ -64,49 +64,49 @@ class OneSwitch(SwitchBoardState):
 
     """One switch is pressed."""
 
-    def press(self, state_machine, switch_vector):
+    def press(self, state_machine, switch_event):
         """Switch state to TwoSwitch + issue KeyDown(chord) event."""
-        state_machine.switch_state(TwoSwitch())
-        return [ProtoKeyEvent('down', switch_vector, True)]
+        state_machine.change_state(TwoSwitch())
+        return [ProtoKeyEvent('down', switch_event, True)]
 
-    def release(self, state_machine, switch_vector):
+    def release(self, state_machine, switch_event):
         """Switch state to Idle + issue KeyDown(chord) & KeyUp(chord) event."""
-        state_machine.switch_state(Idle())
+        state_machine.change_state(Idle())
         return [
-            ProtoKeyEvent('down', switch_vector, True),
-            ProtoKeyEvent('up', switch_vector, True)]
+            ProtoKeyEvent('down', switch_event, True),
+            ProtoKeyEvent('up', switch_event, True)]
 
 
 class OneSwitchUsed(SwitchBoardState):
 
     """One switch is pressed, but a key event has been issued already."""
 
-    def press(self, state_machine, switch_vector):
+    def press(self, state_machine, switch_event):
         """Switch state to TwoSwitch + KeyDown(nochord)."""
-        state_machine.switch_state(TwoSwitch())
-        return [ProtoKeyEvent('down', switch_vector, True)]
+        state_machine.change_state(TwoSwitch())
+        return [ProtoKeyEvent('down', switch_event, True)]
 
-    def release(self, state_machine, switch_vector):
+    def release(self, state_machine, switch_event):
         """Switch state to Idle + KeyUp(nochord)."""
-        state_machine.switch_state(Idle())
-        return [ProtoKeyEvent('up', switch_vector, False)]
+        state_machine.change_state(Idle())
+        return [ProtoKeyEvent('up', switch_event, False)]
 
 
 class TwoSwitch(SwitchBoardState):
 
     """Two switches are pressed."""
 
-    def press(self, state_machine, switch_vector):
+    def press(self, state_machine, switch_event):
         """Switch state to ManySwitch + issue EmptyKey event."""
-        state_machine.switch_state(ManySwitch())
+        state_machine.change_state(ManySwitch())
         return [
-            ProtoKeyEvent('down', switch_vector, False),
-            ProtoKeyEvent('reset', switch_vector, True)]
+            ProtoKeyEvent('down', switch_event, False),
+            ProtoKeyEvent('reset', switch_event, True)]
 
-    def release(self, state_machine, switch_vector):
+    def release(self, state_machine, switch_event):
         """Switch state to OneSwitchUsed + issue KeyUp(chord) event."""
-        state_machine.switch_state(OneSwitchUsed())
-        return [ProtoKeyEvent('up', switch_vector, True)]
+        state_machine.change_state(OneSwitchUsed())
+        return [ProtoKeyEvent('up', switch_event, True)]
 
 
 class ManySwitch(SwitchBoardState):
@@ -119,15 +119,15 @@ class ManySwitch(SwitchBoardState):
     are pressed.
     """
 
-    def press(self, state_machine, switch_vector):
+    def press(self, state_machine, switch_event):
         """Stay in invalid."""
-        return [ProtoKeyEvent('down', switch_vector, False)]
+        return [ProtoKeyEvent('down', switch_event, False)]
 
-    def release(self, state_machine, switch_vector):
+    def release(self, state_machine, switch_event):
         """Either return to Idle or stay in ManySwitch."""
-        if switch_vector.count(1) <= 1:
-            state_machine.switch_state(Idle())
-        return [ProtoKeyEvent('up', switch_vector, False)]
+        if switch_event.count_active() <= 1:
+            state_machine.change_state(Idle())
+        return [ProtoKeyEvent('up', switch_event, False)]
 
 
 class SwitchBoard(object):
@@ -138,15 +138,15 @@ class SwitchBoard(object):
         """Set state to Idle."""
         self._state = Idle()
 
-    def switch_state(self, new_state):
+    def change_state(self, new_state):
         """Change state."""
         self._state = new_state
 
     def process_switch_event(self, switch_event):
         """Process a switch event."""
-        if switch_event.event == "up":
-            return self._state.release(self, switch_event.switch_vector)
-        elif switch_event.event == "down":
-            return self._state.press(self, switch_event.switch_vector)
+        if switch_event.edge == "falling":
+            return self._state.release(self, switch_event)
+        elif switch_event.edge == "rising":
+            return self._state.press(self, switch_event)
         else:
-            raise
+            raise NotImplementedError

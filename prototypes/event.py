@@ -26,10 +26,11 @@ class Event(EventData):
         # is a 1. On a falling edge (switch press), the active switch
         # is also a 1.
         self._effective_switch_vector = None
-        self._update_effectite_switch_vector()
 
         # Rising or falling edge
         self.edge = None
+
+        self._update_effectite_switch_vector()
 
     def _update_effectite_switch_vector(self):
         """Translate raw switch states to effective switch vector."""
