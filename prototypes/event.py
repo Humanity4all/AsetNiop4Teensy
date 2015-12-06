@@ -1,7 +1,13 @@
 """Event class, to carry around information on switch states."""
 
+from collections import namedtuple
 
-class Event(object):
+EventData = namedtuple('EventData', [
+    'old_switch_state',
+    'new_switch_state'])
+
+
+class Event(EventData):
 
     """
     Event to carry around switch state info.
@@ -13,16 +19,14 @@ class Event(object):
     anyway. So why not make a single event with the necessary info?
     """
 
-    def __init__(self, raw_switch_state):
+    def __init__(self, old_switch_state, new_switch_state):
         """Set (effective) switch vector."""
-        self._raw_switch_state = raw_switch_state
-        self._old_switch_state = raw_switch_state
-
+        EventData.__init__(old_switch_state, new_switch_state)
         # On a rising edge (switch release), the active switch
         # is a 1. On a falling edge (switch press), the active switch
         # is also a 1.
         self._effective_switch_vector = None
-        self._get_effective_switch_vector()
+        self._update_effectite_switch_vector()
 
         # Rising or falling edge
         self.edge = None
@@ -31,10 +35,10 @@ class Event(object):
         # True or False
         self.is_chord = None
 
-    def _get_effective_switch_vector(self):
+    def _update_effectite_switch_vector(self):
         """Translate raw switch states to effective switch vector."""
         diff = self.state_diff()
-        self._effective_switch_vector = self._raw_switch_state[:]
+        self._effective_switch_vector = self.new_switch_state[:]
         if diff is not None:
             if self._effective_switch_vector[diff] == 0:
                 self.edge = 'falling'
@@ -42,11 +46,9 @@ class Event(object):
                 self.edge = 'rising'
             self._effective_switch_vector[diff] = 1
 
-    def new_switch_state(self, raw_switch_state):
+    def new_event(self, new_switch_state):
         """Update (eftective) switch vector. (used by PinInterface)."""
-        self._old_switch_state = self._raw_switch_state
-        self._raw_switch_state = raw_switch_state
-        self._get_effective_switch_vector()
+        return Event(self.new_switch_state, new_switch_state)
 
     def set_event_info(self, event, is_chord):
         """Set event information (used by SwitchBoard)."""
@@ -76,7 +78,7 @@ class Event(object):
 
         Theoretically there should only ever be one permutation.
         """
-        for i in range(len(self._raw_switch_state)):
-            if self._raw_switch_state[i] != self._old_switch_state[i]:
+        for i in range(len(self.new_switch_state)):
+            if self.new_switch_state[i] != self.old_switch_state[i]:
                 return i
         return None
