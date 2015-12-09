@@ -45,7 +45,7 @@ class ManySwitch : public AbstractState {
  public:
     virtual void press(Machine& machine, switch_event::SwitchEvent switch_event);
     virtual void release(Machine& machine, switch_event::SwitchEvent switch_event);
-    virtual ~Invalid();
+    virtual ~ManySwitch();
 };
 
 
