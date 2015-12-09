@@ -5,6 +5,7 @@ Copyright 2015 Stichting Humanity4all
 #ifndef SRC_TRANSLATIONSERVICE_MACHINESTATE_H_
 #define SRC_TRANSLATIONSERVICE_MACHINESTATE_H_
 
+#include "../globals.h"
 #include "./machine.h"
 #include "./typedefs.h"
 #include "../switchevent/switchevent.h"

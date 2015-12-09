@@ -5,7 +5,7 @@ Copyright 2015 Stichting Humanity4all
 #ifndef SRC_SWITCHEVENT_SWITCHEVENT_H_
 #define SRC_SWITCHEVENT_SWITCHEVENT_H_
 
-#define N_SWITCHES 4
+#include "../globals.h"
 
 namespace switch_event {
 

@@ -7,6 +7,8 @@ Copyright 2015 Stichting Humanity4all
 
 #include <Bounce2.h>
 
+#include "../globals.h"
+
 namespace translation_service {
 
 typedef enum key_t {

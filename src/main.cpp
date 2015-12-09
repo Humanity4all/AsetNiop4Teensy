@@ -16,9 +16,9 @@ Copyright 2015 Stichting Humanity4all
 #define BOUNCE_LOCK_OUT
 #include <Bounce2.h>
 
-#include "switchboard/machine.h"
+#include "./globals.h"
+#include "./switchboard/machine.h"
 
-#define N_KEYS 4
 #define DEBUG
 
 Bounce debugkey;
@@ -36,8 +36,8 @@ void setup() {
     // now the real setup
     // debug("Initializing...");
     // TODO set pins to use from left to right (counting thumbs)
-    int pinsToUse[N_KEYS]={1, 2, 3, 4};
-    for (int i=0; i < N_KEYS; i++) {
+    int pinsToUse[N_SWITCHES]={1, 2, 3, 4};
+    for (int i=0; i < N_SWITCHES; i++) {
         int pin = pinsToUse[i];
         pinMode(pin, INPUT_PULLUP);
         // debug("--set pinmode to pullup");

@@ -2,11 +2,12 @@
 Copyright 2015 Stichting Humanity4all
 */
 
-// Header guard - prevent header from being included more than once
 #ifndef SRC_SWITCHBOARD_TYPEDEFS_H_
 #define SRC_SWITCHBOARD_TYPEDEFS_H_
 
 #include <Bounce2.h>
+
+#include "../globals.h"
 
 namespace switch_board {
 
