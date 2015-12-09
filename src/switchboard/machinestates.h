@@ -2,13 +2,13 @@
 Copyright 2015 Stichting Humanity4all
 */
 
-#ifndef SRC_SWITCHBOARDSTATEMACHINE_MACHINESTATES_H_
-#define SRC_SWITCHBOARDSTATEMACHINE_MACHINESTATES_H_
+#ifndef SRC_SWITCHBOARD_MACHINESTATES_H_
+#define SRC_SWITCHBOARD_MACHINESTATES_H_
 
 #include "./machine.h"
 #include "../switchevent/switchevent.h"
 
-namespace switch_board_state_machine {
+namespace switch_board {
 
 class Machine;
 
@@ -48,10 +48,10 @@ class ManySwitch : public AbstractState {
 };
 
 
-} // namespace switch_board_state_machine
+} // namespace switch_board
 
 
 
 
 
-#endif // SRC_SWITCHBOARDSTATEMACHINE_MACHINESTATES_H_
+#endif // SRC_SWITCHBOARD_MACHINESTATES_H_
