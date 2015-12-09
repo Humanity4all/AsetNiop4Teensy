@@ -6,6 +6,7 @@ Copyright 2015 Stichting Humanity4all
 #define SRC_SWITCHEVENT_SWITCHEVENT_H_
 
 #include "../globals.h"
+#include "./typedefs.h"
 
 namespace switch_event {
 
@@ -26,6 +27,7 @@ class SwitchEvent {
     const switch_state_t oldSwitchState[N_SWITCHES];
     const switch_state_t newSwitchState[N_SWITCHES];
     const switch_state_t effectiveSwitchState[N_SWITCHES];
+    edge_t edge;
 };
 
 } // namespace switch_event
