@@ -11,7 +11,7 @@ Copyright 2015 Stichting Humanity4all
 #include "../switchboard/machine.h"
 #include "../switchevent/switchevent.h"
 
-namespace pin_interface {
+namespace pin_interface_n {
 
 class PinInterface {
  public:
@@ -23,7 +23,7 @@ class PinInterface {
     switch_event::SwitchEvent lastEvent;
 };
 
-} // namespace pin_interface
+} // namespace pin_interface_n
 
 
 #endif // SRC_PININTERFACE_PININTERFACE_H_

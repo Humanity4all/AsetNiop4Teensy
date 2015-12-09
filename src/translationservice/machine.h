@@ -10,7 +10,7 @@ Copyright 2015 Stichting Humanity4all
 #include "./machinestates.h"
 #include "../../switchboard/typedefs.h"
 
-namespace translation_service {
+namespace translation_service_n {
 
 class AbstractState;
 
@@ -27,6 +27,6 @@ class Machine {
       AbstractState currentState;
 };
 
-} // namespace translation_service
+} // namespace translation_service_n
 
 #endif // SRC_TRANSLATION_SERVICE_MACHINE_H_

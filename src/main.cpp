@@ -24,7 +24,7 @@ Copyright 2015 Stichting Humanity4all
 Bounce debugkey;
 
 //keyboard_t k;
-switch_board::Machine switch_machine;
+switch_board_n::Machine switch_machine;
 
 void setup() {
     pinMode(LED_PIN, OUTPUT);     // set pin as output

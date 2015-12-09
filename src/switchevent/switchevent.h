@@ -8,7 +8,7 @@ Copyright 2015 Stichting Humanity4all
 #include "../globals.h"
 #include "./typedefs.h"
 
-namespace switch_event {
+namespace switch_event_n {
 
 typedef enum switch_state_t {
     PRESSED, RELEASED,
@@ -30,7 +30,7 @@ class SwitchEvent {
     const switch_state_t effectiveSwitchState[N_SWITCHES];
 };
 
-} // namespace switch_event
+} // namespace switch_event_n
 
 
 #endif // SRC_SWITCHEVENT_SWITCHEVENT_H_

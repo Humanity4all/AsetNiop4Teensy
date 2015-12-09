@@ -8,8 +8,9 @@ Copyright 2015 Stichting Humanity4all
 #include <Bounce2.h>
 
 #include "../globals.h"
+#include "../switchevent/switchevent.h"
 
-namespace switch_board {
+namespace switch_board_n {
 
 typedef enum event_t {
     UP, DOWN,
@@ -17,10 +18,10 @@ typedef enum event_t {
 
 typedef struct protokey_event_t {
     event_t event;
-    switch_event::SwitchEvent switch_event;
+    switch_event_n::SwitchEvent switch_event;
     bool is_chord;
 } protokey_event_t;
 
-} // namespace switch_board
+} // namespace switch_board_n
 
 #endif  // SRC_SWITCHBOARD_TYPEDEFS_H_

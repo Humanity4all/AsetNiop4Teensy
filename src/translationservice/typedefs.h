@@ -9,7 +9,7 @@ Copyright 2015 Stichting Humanity4all
 
 #include "../globals.h"
 
-namespace translation_service {
+namespace translation_service_n {
 
 typedef enum key_t {
         /*
@@ -67,6 +67,6 @@ typedef enum key_t {
 } key_t;
 
 
-} // namespace translation_service
+} // namespace translation_service_n
 
 #endif  // SRC_TRANSLATIONSERVICE_TYPEDEFS_H_

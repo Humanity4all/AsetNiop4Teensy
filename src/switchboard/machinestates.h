@@ -10,67 +10,67 @@ Copyright 2015 Stichting Humanity4all
 #include "./typedefs.h"
 #include "../switchevent/switchevent.h"
 
-namespace switch_board {
+namespace switch_board_n {
 
 class Machine;
 
 class AbstractState {
  public:
-    virtual protkey_event_t press(
+    virtual protokey_event_t press(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
-    virtual protkey_event_t release(
+        switch_event_n::SwitchEvent switch_event);
+    virtual protokey_event_t release(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent switch_event);
     virtual ~AbstractState();
 };
 
 class Idle : public AbstractState {
  public:
-    virtual protkey_event_t press(
+    virtual protokey_event_t press(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
-    virtual protkey_event_t release(
+        switch_event_n::SwitchEvent switch_event);
+    virtual protokey_event_t release(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent switch_event);
     virtual ~Idle();
 };
 
 class OneSwitch : public AbstractState {
  public:
-    virtual protkey_event_t press(
+    virtual protokey_event_t press(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
-    virtual protkey_event_t release(
+        switch_event_n::SwitchEvent switch_event);
+    virtual protokey_event_t release(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent switch_event);
     virtual ~OneSwitch();
 };
 
 class TwoSwitch : public AbstractState {
  public:
-    virtual protkey_event_t press(
+    virtual protokey_event_t press(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
-    virtual protkey_event_t release(
+        switch_event_n::SwitchEvent switch_event);
+    virtual protokey_event_t release(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent switch_event);
     virtual ~TwoSwitch();
 };
 
 class ManySwitch : public AbstractState {
  public:
-    virtual protkey_event_t press(
+    virtual protokey_event_t press(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
-    virtual protkey_event_t release(
+        switch_event_n::SwitchEvent switch_event);
+    virtual protokey_event_t release(
         Machine& machine,
-        switch_event::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent switch_event);
     virtual ~ManySwitch();
 };
 
 
-} // namespace switch_board
+} // namespace switch_board_n
 
 
 

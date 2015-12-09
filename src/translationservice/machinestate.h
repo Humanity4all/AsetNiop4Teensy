@@ -10,7 +10,7 @@ Copyright 2015 Stichting Humanity4all
 #include "./typedefs.h"
 #include "../switchevent/switchevent.h"
 
-namespace translation_service {
+namespace translation_service_n {
 
 class Machine;
 
@@ -25,6 +25,6 @@ class AbstractState {
     key_t keyMap[N_SWITCHES][N_SWITCHES];
 };
 
-} // namespace translation_service
+} // namespace translation_service_n
 
 #endif // SRC_TRANSLATIONSERVICE_MACHINESTATE_H_
