@@ -23,8 +23,8 @@ Copyright 2015 Stichting Humanity4all
 
 Bounce debugkey;
 
-keyboard_t k;
-switch_board_state_machine::Machine switch_machine;
+//keyboard_t k;
+switch_board::Machine switch_machine;
 
 void setup() {
     pinMode(LED_PIN, OUTPUT);     // set pin as output
@@ -46,12 +46,12 @@ void setup() {
         cpplint: using C-style cast because cpp style cast
         results in compiler errors
         */
-        k.keys[i] = (Bounce *)malloc(sizeof(Bounce)); // NOLINT
-        *k.keys[i] = Bounce();
-        k.keys[i]->attach(pin);
-        k.keys[i]->interval(10);
+        //k.keys[i] = (Bounce *)malloc(sizeof(Bounce)); // NOLINT
+        //*k.keys[i] = Bounce();
+        //k.keys[i]->attach(pin);
+        //k.keys[i]->interval(10);
         // debug("--initialized bounce object");
-        k.keyState[i] = IDLE;
+        //k.keyState[i] = IDLE;
         // debug("--set keystate to idle");
     }
 
