@@ -6,7 +6,7 @@ Copyright 2015 Stichting Humanity4all
 #define SRC_SWITCHBOARDSTATEMACHINE_MACHINESTATES_H_
 
 #include "./machine.h"
-#include "../switchvector/switchvector.h"
+#include "../switchevent/switchevent.h"
 
 namespace switch_board_state_machine {
 
@@ -14,41 +14,36 @@ class Machine;
 
 class AbstractState {
  public:
-    virtual void press(Machine& machine, int n_switch);
-    virtual void release(Machine& machine, int n_switch);
+    virtual void press(Machine& machine, switch_event::SwitchEvent switch_event);
+    virtual void release(Machine& machine, switch_event::SwitchEvent switch_event);
     virtual ~AbstractState();
- protected:
-    void set_state(Machine& machine, AbstractState* st);
-    void update_switch_vector(
-        Machine& machine,
-        switch_vector::SwitchVector switch_vector);
 };
 
 class Idle : public AbstractState {
  public:
-    virtual void press(Machine& machine, int n_switch);
-    virtual void release(Machine& machine, int n_switch);
+    virtual void press(Machine& machine, switch_event::SwitchEvent switch_event);
+    virtual void release(Machine& machine, switch_event::SwitchEvent switch_event);
     virtual ~Idle();
 };
 
 class OneSwitch : public AbstractState {
  public:
-    virtual void press(Machine& machine, int n_switch);
-    virtual void release(Machine& machine, int n_switch);
+    virtual void press(Machine& machine, switch_event::SwitchEvent switch_event);
+    virtual void release(Machine& machine, switch_event::SwitchEvent switch_event);
     virtual ~OneSwitch();
 };
 
 class TwoSwitch : public AbstractState {
  public:
-    virtual void press(Machine& machine, int n_switch);
-    virtual void release(Machine& machine, int n_switch);
+    virtual void press(Machine& machine, switch_event::SwitchEvent switch_event);
+    virtual void release(Machine& machine, switch_event::SwitchEvent switch_event);
     virtual ~TwoSwitch();
 };
 
 class Invalid : public AbstractState {
  public:
-    virtual void press(Machine& machine, int n_switch);
-    virtual void release(Machine& machine, int n_switch);
+    virtual void press(Machine& machine, switch_event::SwitchEvent switch_event);
+    virtual void release(Machine& machine, switch_event::SwitchEvent switch_event);
     virtual ~Invalid();
 };
 

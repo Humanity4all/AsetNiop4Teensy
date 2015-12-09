@@ -6,23 +6,20 @@ Copyright 2015 Stichting Humanity4all
 #define SRC_SWITCHBOARDSTATEMACHINE_MACHINE_H_
 
 #include "./machinestates.h"
-#include "../switchvector/switchvector.h"
+#include "../switchevent/switchevent.h"
 
 namespace switch_board_state_machine {
 
 class AbstractState;
 
 class Machine {
-    friend class AbstractState;
  public:
     Machine();
-    void press(int n_key);
-    void release(int n_key);
-    int get_current_switch_vector();
+    void change_state(AbstractState new_state);
+    void process_switch_event(switch_event::SwitchEvent switch_event);
     ~Machine();
  private:
-    switch_vector::SwitchVector switchVector;
-    AbstractState* mState;
+    AbstractState currentState;
 };
 
 
