@@ -16,8 +16,7 @@ Copyright 2015 Stichting Humanity4all
 #define BOUNCE_LOCK_OUT
 #include <Bounce2.h>
 
-#include "./typedefs.h"
-#include "switchboardstatemachine/machine.h"
+#include "switchboard/machine.h"
 
 #define N_KEYS 4
 #define DEBUG
