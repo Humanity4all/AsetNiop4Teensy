@@ -22,12 +22,12 @@ class SwitchEvent {
     int get_active_switch(int n=1);
     int state_diff();
     ~SwitchEvent();
+    edge_t edge;
  private:
     void update_effective_switch_state();
     const switch_state_t oldSwitchState[N_SWITCHES];
     const switch_state_t newSwitchState[N_SWITCHES];
     const switch_state_t effectiveSwitchState[N_SWITCHES];
-    edge_t edge;
 };
 
 } // namespace switch_event
