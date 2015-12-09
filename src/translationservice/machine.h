@@ -7,6 +7,7 @@ Copyright 2015 Stichting Humanity4all
 
 #include "./typedefs.h"
 #include "./machinestates.h"
+#include "../../switchboard/typedefs.h"
 
 namespace translation_service {
 
@@ -15,9 +16,10 @@ class AbstractState;
 class Machine {
     public:
       Machine();
-      void process_protokey_event(protokey_event_t protokey_event);
+      void process_protokey_event(
+            switch_board::protokey_event_t protokey_event);
       void change_state(AbstractState new_state);
-      void send_key(key_t key, event_t event);
+      void send_key(key_t key, switch_board::event_t event);
       void set_modifier(key_t key);
       int[] use_modifiers();
     private:

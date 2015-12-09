@@ -64,9 +64,6 @@ typedef enum key_t {
         K_LAYER_6, K_LAYER_7,
 } key_t;
 
-typedef enum event_t {
-    UP, DOWN,
-} event_t;
 
 } // namespace translation_service
 

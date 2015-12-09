@@ -18,8 +18,8 @@ class AbstractState {
     virtual void process_key_event(
         Machine machine,
         switch_event::SwitchEvent switch_event,
-        is_chord,
-        reset);
+        bool is_chord,
+        bool reset);
  private:
     key_t keyMap[N_SWITCHES][N_SWITCHES];
 };
