@@ -16,13 +16,13 @@ typedef enum switch_state_t {
 class SwitchEvent {
  public:
     SwitchEvent();
-    private void update_effective_switch_state();
     void new_event(switch_state_t new_switch_state);
     int count_active();
     int get_active_switch(int n=1);
     int state_diff();
     ~SwitchEvent();
  private:
+    void update_effective_switch_state();
     const switch_state_t oldSwitchState[N_SWITCHES];
     const switch_state_t newSwitchState[N_SWITCHES];
     const switch_state_t effectiveSwitchState[N_SWITCHES];
