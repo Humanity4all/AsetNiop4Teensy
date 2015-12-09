@@ -9,6 +9,7 @@ Copyright 2015 Stichting Humanity4all
 
 #include "../globals.h"
 #include "../switchboard/machine.h"
+#include "../switchevent/switchevent.h"
 
 namespace pin_interface {
 
@@ -19,7 +20,7 @@ class PinInterface {
     ~PinInterface();
  private:
     Bounce * debouncedSwitches[N_SWITCHES];
-    switch_board::Machine switchBoard;
+    switch_event::SwitchEvent lastEvent;
 };
 
 } // namespace pin_interface
