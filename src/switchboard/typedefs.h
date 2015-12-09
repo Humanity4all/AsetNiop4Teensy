@@ -13,7 +13,7 @@ Copyright 2015 Stichting Humanity4all
 namespace switch_board_n {
 
 typedef enum event_t {
-    UP, DOWN,
+    UP, DOWN, RESET,
 } event_t;
 
 typedef struct protokey_event_t {

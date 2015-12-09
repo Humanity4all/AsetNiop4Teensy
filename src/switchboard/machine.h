@@ -7,6 +7,7 @@ Copyright 2015 Stichting Humanity4all
 
 #include "../globals.h"
 #include "./machinestates.h"
+#include "./typedefs.h"
 #include "../switchevent/switchevent.h"
 
 namespace switch_board_n {
