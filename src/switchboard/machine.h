@@ -19,7 +19,7 @@ class Machine {
     Machine();
     void change_state(AbstractState* new_state);
     void process_switch_event(
-        switch_event_n::SwitchEvent switch_event,
+        switch_event_n::SwitchEvent* switch_event,
         protokey_event_t* return_event);
     ~Machine();
  private:

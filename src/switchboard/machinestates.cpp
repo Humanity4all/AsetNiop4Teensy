@@ -27,9 +27,9 @@ void Idle::press(
         switch_event_n::SwitchEvent* switch_event,
         protokey_event_t* return_event) {
     machine.change_state(new OneSwitch());
-    &event.event = event_t::DOWN;
-    &event.switch_event = switch_event;
-    &event.is_chord = false;
+    return_event->event = event_t::DOWN;
+    return_event->switch_event = switch_event;
+    return_event->is_chord = false;
 }
 
 void Idle::release(

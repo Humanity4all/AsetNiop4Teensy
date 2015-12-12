@@ -20,11 +20,11 @@ void Machine::change_state(AbstractState* new_state) {
 }
 
 void Machine::process_switch_event(
-        switch_event_n::SwitchEvent switch_event,
+        switch_event_n::SwitchEvent* switch_event,
         protokey_event_t* return_event) {
-    if (switch_event.edge == switch_event_n::event_t::E_FALLING) {
+    if (switch_event->edge == switch_event_n::event_t::E_FALLING) {
         currentState->release(*this, switch_event, return_event);
-    } else if (switch_event.edge == switch_event_n::event_t::E_RISING) {
+    } else if (switch_event->edge == switch_event_n::event_t::E_RISING) {
         currentState->press(*this, switch_event, return_event);
     } else {
         /* kick watchdog! */
