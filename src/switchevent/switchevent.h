@@ -17,7 +17,7 @@ typedef enum switch_state_t {
 class SwitchEvent {
  public:
     SwitchEvent();
-    void new_event(switch_state_t new_switch_state);
+    void new_event(switch_state_t new_switch_state, SwitchEvent* return_event);
     int count_active();
     int get_active_switch(int n=1);
     int state_diff();
