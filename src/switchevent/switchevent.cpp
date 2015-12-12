@@ -16,7 +16,7 @@ SwitchEvent::SwitchEvent(
 void SwitchEvent::new_event(
         switch_state_t new_switch_state[N_SWITCHES],
         SwitchEvent* return_event) {
-    &return_event = new SwitchEvent(newSwitchState, new_switch_state);
+    return_event = new SwitchEvent(newSwitchState, new_switch_state);
 }
 
 int SwitchEvent::count_active() {
