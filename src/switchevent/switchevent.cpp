@@ -8,8 +8,17 @@ namespace switch_event_n {
 SwitchEvent::SwitchEvent(
         switch_state_t old_switch_state[N_SWITCHES],
         switch_state_t new_switch_state[N_SWITCHES]) {
-    oldSwitchState = old_switch_state;
-    newSwitchState = new_switch_state;
+    /*
+     * a really ugly solution for copying over the data
+     * but my experience with pointers and stuff is too
+     * limited to do this in a more elegant way
+     */
+    // oldSwitchState = old_switch_state;
+    // newSwitchState = new_switch_state;
+    for (int i=0; i < N_SWITCHES; i++) {
+        oldSwitchState[i] = old_switch_state[i];
+        newSwitchState[i] = new_switch_state[i];
+    }
     this->update_effective_switch_state();
 }
 
