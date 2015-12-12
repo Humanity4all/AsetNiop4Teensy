@@ -5,7 +5,6 @@ Copyright 2015 Stichting Humanity4all
 #ifndef SRC_SWITCHBOARD_MACHINESTATES_H_
 #define SRC_SWITCHBOARD_MACHINESTATES_H_
 
-#include <stdexcept>
 #include "../globals.h"
 #include "./machine.h"
 #include "./typedefs.h"

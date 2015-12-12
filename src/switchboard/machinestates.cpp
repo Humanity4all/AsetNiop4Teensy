@@ -16,7 +16,7 @@ void AbstractState::release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         protokey_event_t* return_event) {
-    throw std::runtime_error("Invalid state: this method should only be inherited.");
+    //throw std::runtime_error("Invalid state: this method should only be inherited.");
 }
 
 AbstractState::~AbstractState() {
@@ -39,7 +39,7 @@ void Idle::release(
     /*
      * TODO Kick the dog here, there is clearly memory corruption!
      */
-    throw std::runtime_error("Invalid state: can't release switches in idle");
+    //throw std::runtime_error("Invalid state: can't release switches in idle");
 }
 
 Idle::~Idle() {
