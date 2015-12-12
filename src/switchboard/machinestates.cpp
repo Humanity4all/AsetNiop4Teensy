@@ -98,6 +98,29 @@ TwoSwitch::~TwoSwitch() {
 }
 
 
+void ManySwitch::press(
+        Machine& machine,
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
+    return_event->event = event_t::DOWN;
+    return_event->switch_event = switch_event;
+    return_event->is_chord = false;
+    // don't change state here
+}
 
+void ManySwitch::release(
+        Machine& machine,
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
+    return_event->event = event_t::UP;
+    return_event->switch_event = switch_event;
+    return_event->is_chord = false;
+    if (switch_event->count_active() <= 1) {
+        machine.change_state(new Idle());
+    }
+}
+
+ManySwitch::~ManySwitch() {
+}
 
 } // namespace switch_board_n
