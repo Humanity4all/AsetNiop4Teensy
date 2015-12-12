@@ -71,6 +71,29 @@ void OneSwitch::release(
 OneSwitch::~OneSwitch() {
 }
 
+void OneSwitchUsed::press(
+        Machine& machine,
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
+    return_event->event = event_t::DOWN;
+    return_event->switch_event = switch_event;
+    return_event->is_chord = true;
+    machine.change_state(new TwoSwitch());
+}
+
+void OneSwitchUsed::release(
+        Machine& machine,
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
+    return_event->event = event_t::UP;
+    return_event->switch_event = switch_event;
+    return_event->is_chord = false;
+    machine.change_state(new Idle());
+}
+
+OneSwitchUsed::~OneSwitchUsed() {
+}
+
 void TwoSwitch::press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
