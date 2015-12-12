@@ -53,6 +53,19 @@ class OneSwitch : public AbstractState {
     virtual ~OneSwitch();
 };
 
+class OneSwitchUsed: public AbstractState {
+ public:
+    virtual void press(
+        Machine& machine,
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
+    virtual void release(
+        Machine& machine,
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
+    virtual ~OneSwitchUsed();
+};
+
 class TwoSwitch : public AbstractState {
  public:
     virtual void press(
