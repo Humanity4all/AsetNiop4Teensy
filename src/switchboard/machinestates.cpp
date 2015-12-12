@@ -26,10 +26,10 @@ void Idle::press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         protokey_event_t* return_event) {
-    machine.change_state(new OneSwitch());
     return_event->event = event_t::DOWN;
     return_event->switch_event = switch_event;
     return_event->is_chord = false;
+    machine.change_state(new OneSwitch());
 }
 
 void Idle::release(
@@ -45,7 +45,31 @@ void Idle::release(
 Idle::~Idle() {
 }
 
+void OneSwitch::press(
+        Machine& machine,
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
+    return_event->event = event_t::DOWN;
+    return_event->switch_event = switch_event;
+    return_event->is_chord = true;
+    machine.change_state(new TwoSwitch());
+}
 
+void OneSwitch::release(
+        Machine& machine,
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
+    /*
+     * TODO: this method should return 2 events, one down and one up.
+     */
+    return_event->event = event_t::UP;
+    return_event->switch_event = switch_event;
+    return_event->is_chord = true;
+    machine.change_state(new Idle());
+}
+
+OneSwitch::~OneSwitch() {
+}
 
 
 
