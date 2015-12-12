@@ -18,7 +18,7 @@ typedef enum event_t {
 
 typedef struct protokey_event_t {
     event_t event;
-    switch_event_n::SwitchEvent switch_event;
+    switch_event_n::SwitchEvent* switch_event;
     bool is_chord;
 } protokey_event_t;
 

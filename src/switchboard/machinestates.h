@@ -17,56 +17,66 @@ class Machine;
 
 class AbstractState {
  public:
-    virtual protokey_event_t press(
+    virtual void press(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
-    virtual protokey_event_t release(
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
+    virtual void release(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
     virtual ~AbstractState();
 };
 
 class Idle : public AbstractState {
  public:
-    virtual protokey_event_t press(
+    virtual void press(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
-    virtual protokey_event_t release(
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
+    virtual void release(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
     virtual ~Idle();
 };
 
 class OneSwitch : public AbstractState {
  public:
-    virtual protokey_event_t press(
+    virtual void press(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
-    virtual protokey_event_t release(
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
+    virtual void release(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
     virtual ~OneSwitch();
 };
 
 class TwoSwitch : public AbstractState {
  public:
-    virtual protokey_event_t press(
+    virtual void press(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
-    virtual protokey_event_t release(
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
+    virtual void release(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
     virtual ~TwoSwitch();
 };
 
 class ManySwitch : public AbstractState {
  public:
-    virtual protokey_event_t press(
+    virtual void press(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
-    virtual protokey_event_t release(
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
+    virtual void release(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event);
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event);
     virtual ~ManySwitch();
 };
 

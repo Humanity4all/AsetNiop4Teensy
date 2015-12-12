@@ -18,7 +18,9 @@ class Machine {
  public:
     Machine();
     void change_state(AbstractState* new_state);
-    protokey_event_t process_switch_event(switch_event_n::SwitchEvent switch_event);
+    void process_switch_event(
+        switch_event_n::SwitchEvent switch_event,
+        protokey_event_t* return_event);
     ~Machine();
  private:
     AbstractState* currentState;

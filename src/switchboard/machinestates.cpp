@@ -6,34 +6,36 @@ Copyright 2015 Stichting Humanity4all
 
 namespace switch_board_n {
 
-protokey_event_t AbstractState::press(
+void AbstractState::press(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event) {
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
 }
 
-protokey_event_t AbstractState::release(
+void AbstractState::release(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event) {
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
     throw std::runtime_error("Invalid state: this method should only be inherited.");
 }
 
 AbstractState::~AbstractState() {
 }
 
-protokey_event_t Idle::press(
+void Idle::press(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event) {
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
     machine.change_state(new OneSwitch());
-    protokey_event_t event;
-    event.event = event_t::DOWN;
-    event.switch_event = switch_event;
-    event.is_chord = false;
-    return event;
+    &event.event = event_t::DOWN;
+    &event.switch_event = switch_event;
+    &event.is_chord = false;
 }
 
-protokey_event_t Idle::release(
+void Idle::release(
         Machine& machine,
-        switch_event_n::SwitchEvent switch_event) {
+        switch_event_n::SwitchEvent* switch_event,
+        protokey_event_t* return_event) {
     /*
      * TODO Kick the dog here, there is clearly memory corruption!
      */
