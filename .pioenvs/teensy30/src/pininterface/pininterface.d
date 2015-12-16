@@ -1,4 +1,5 @@
-.pioenvs/teensy30/src/main.o: src/main.cpp \
+.pioenvs/teensy30/src/pininterface/pininterface.o: \
+ src/pininterface/pininterface.cpp src/pininterface/./pininterface.h \
  .pioenvs/teensy30/FrameworkArduino/Arduino.h \
  .pioenvs/teensy30/FrameworkArduino/WProgram.h \
  .pioenvs/teensy30/FrameworkArduino/avr/pgmspace.h \
@@ -31,19 +32,19 @@
  .pioenvs/teensy30/FrameworkArduino/elapsedMillis.h \
  .pioenvs/teensy30/FrameworkArduino/Arduino.h \
  .pioenvs/teensy30/FrameworkArduino/IntervalTimer.h \
- .pioenvs/teensy30/Bounce2/Bounce2.h src/./globals.h \
- src/./switchboard/machine.h src/./switchboard/../globals.h \
- src/./switchboard/./machinestates.h src/./switchboard/./../globals.h \
- src/./switchboard/././machine.h src/./switchboard/././typedefs.h \
- src/./switchboard/././../globals.h \
- src/./switchboard/././../switchevent/switchevent.h \
- src/./switchboard/././../switchevent/../globals.h \
- src/./switchboard/././../switchevent/./typedefs.h \
- src/./switchboard/././../switchevent/./../globals.h \
- src/./switchboard/./../switchevent/switchevent.h \
- src/./switchboard/./typedefs.h \
- src/./switchboard/../switchevent/switchevent.h \
- src/./switchboard/typedefs.h src/./switchevent/switchevent.h \
- src/./pininterface/pininterface.h src/./pininterface/../globals.h \
- src/./pininterface/../switchboard/machine.h \
- src/./pininterface/../switchevent/switchevent.h
+ .pioenvs/teensy30/Bounce2/Bounce2.h src/pininterface/./../globals.h \
+ src/pininterface/./../switchboard/machine.h \
+ src/pininterface/./../switchboard/../globals.h \
+ src/pininterface/./../switchboard/./machinestates.h \
+ src/pininterface/./../switchboard/./../globals.h \
+ src/pininterface/./../switchboard/././machine.h \
+ src/pininterface/./../switchboard/././typedefs.h \
+ src/pininterface/./../switchboard/././../globals.h \
+ src/pininterface/./../switchboard/././../switchevent/switchevent.h \
+ src/pininterface/./../switchboard/././../switchevent/../globals.h \
+ src/pininterface/./../switchboard/././../switchevent/./typedefs.h \
+ src/pininterface/./../switchboard/././../switchevent/./../globals.h \
+ src/pininterface/./../switchboard/./../switchevent/switchevent.h \
+ src/pininterface/./../switchboard/./typedefs.h \
+ src/pininterface/./../switchboard/../switchevent/switchevent.h \
+ src/pininterface/./../switchevent/switchevent.h
