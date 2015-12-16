@@ -66,6 +66,7 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent>* switch_event_
                     std::begin(new_switch_state),
                     std::end(new_switch_state),
                     std::begin(lastSwitchState));
+                pin_change_queue.pop();
             }
         }
     }
