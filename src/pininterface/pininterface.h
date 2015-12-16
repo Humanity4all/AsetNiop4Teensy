@@ -22,7 +22,7 @@ class PinInterface {
  public:
     PinInterface();
     void init_pins();
-    void update(std::queue<switch_event_n::SwitchEvent>* switch_event_queue);
+    void update(std::queue<switch_event_n::SwitchEvent> & switch_event_queue);
     ~PinInterface();
  private:
     Bounce * debouncedSwitches[N_SWITCHES];

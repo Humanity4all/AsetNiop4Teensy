@@ -27,7 +27,7 @@ void PinInterface::init_pins() {
     }
 }
 
-void PinInterface::update(std::queue<switch_event_n::SwitchEvent>* switch_event_queue) {
+void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event_queue) {
     /*
      * Caveat: priority queues probably allocate memory dynamically.
      * This is not a good idea to do in the loop() part of arduino.
@@ -64,8 +64,15 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent>* switch_event_
                 /*
                  * FIXME this line is necessary but creates compiler errors.
                  * undefined references to _kill, _getpid and _write
+                 *
+                 * According to:
+                 * https://forum.pjrc.com/threads/29177-Teensy-3-1-signalr-c-%28-text-_kill_r-0xe%29-undefined-reference-to-_kill-error
+                 *
+                 * Normally this error occurs when code using C
+                 * varrargs (va_arg, va_list, va_star, va_end)
+                 * uses an invalid type. 
                  */
-                // switch_event_queue->emplace(lastSwitchState, new_switch_state);
+                // switch_event_queue.emplace(lastSwitchState, new_switch_state);
                 std::copy(
                     std::begin(new_switch_state),
                     std::end(new_switch_state),
