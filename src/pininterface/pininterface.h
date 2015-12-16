@@ -8,9 +8,11 @@ Copyright 2015 Stichting Humanity4all
 #include "Arduino.h"
 #include <Bounce2.h>
 #include <queue>
+#include <vector>
 #include <cstdlib>
 
 #include "../globals.h"
+#include "./pinstatechange.h"
 #include "../switchboard/machine.h"
 #include "../switchevent/switchevent.h"
 
@@ -24,6 +26,7 @@ class PinInterface {
     ~PinInterface();
  private:
     Bounce * debouncedSwitches[N_SWITCHES];
+    switch_event_n::switch_state_t lastSwitchState[N_SWITCHES];
 };
 
 } // namespace pin_interface_n
