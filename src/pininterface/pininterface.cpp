@@ -61,7 +61,11 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent>* switch_event_
                     std::end(lastSwitchState),
                     std::begin(new_switch_state));
                 new_switch_state[p.pinNumber] = p.switchState;
-                switch_event_queue->emplace(lastSwitchState, new_switch_state);
+                /*
+                 * FIXME this line is necessary but creates compiler errors.
+                 * undefined references to _kill, _getpid and _write
+                 */
+                // switch_event_queue->emplace(lastSwitchState, new_switch_state);
                 std::copy(
                     std::begin(new_switch_state),
                     std::end(new_switch_state),
