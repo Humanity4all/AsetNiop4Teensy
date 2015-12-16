@@ -62,7 +62,7 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                     std::begin(new_switch_state));
                 new_switch_state[p.pinNumber] = p.switchState;
                 /*
-                 * FIXME this line is necessary but creates compiler errors.
+                 * NOFIXME this line is necessary but creates compiler errors.
                  * undefined references to _kill, _getpid and _write
                  *
                  * According to:
@@ -71,8 +71,10 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                  * Normally this error occurs when code using C
                  * varrargs (va_arg, va_list, va_star, va_end)
                  * uses an invalid type. 
+                 *
+                 * We fixed it by declaring the missing functions in global...
                  */
-                // switch_event_queue.emplace(lastSwitchState, new_switch_state);
+                switch_event_queue.emplace(lastSwitchState, new_switch_state);
                 std::copy(
                     std::begin(new_switch_state),
                     std::end(new_switch_state),
