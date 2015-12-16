@@ -1,3 +1,6 @@
 [submodule "lib/Bounce2"]
 	path = lib/Bounce2
 	url = https://github.com/thomasfredericks/Bounce2
+[submodule "lib/inih"]
+	path = lib/inih
+	url = https://github.com/benhoyt/inih.git
