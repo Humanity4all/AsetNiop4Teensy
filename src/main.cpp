@@ -73,7 +73,7 @@ void loop() {
     if (!switch_event_queue.empty()) digitalWrite(LED_PIN, HIGH);
     while (!switch_event_queue.empty()) {
         switch_event_n::SwitchEvent e = switch_event_queue.front();
-        if (e.state_diff() == 2) digitalWrite(LED_PIN, HIGH);
+        if (e.get_active_switch(1) == 2) digitalWrite(LED_PIN, HIGH);
         switch_event_queue.pop();
     }
 }
