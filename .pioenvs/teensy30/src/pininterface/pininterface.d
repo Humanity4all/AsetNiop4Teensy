@@ -33,6 +33,11 @@
  .pioenvs/teensy30/FrameworkArduino/Arduino.h \
  .pioenvs/teensy30/FrameworkArduino/IntervalTimer.h \
  .pioenvs/teensy30/Bounce2/Bounce2.h src/pininterface/./../globals.h \
+ src/pininterface/././pinstatechange.h src/pininterface/././../globals.h \
+ src/pininterface/././../switchevent/switchevent.h \
+ src/pininterface/././../switchevent/../globals.h \
+ src/pininterface/././../switchevent/./typedefs.h \
+ src/pininterface/././../switchevent/./../globals.h \
  src/pininterface/./../switchboard/machine.h \
  src/pininterface/./../switchboard/../globals.h \
  src/pininterface/./../switchboard/./machinestates.h \
@@ -41,9 +46,6 @@
  src/pininterface/./../switchboard/././typedefs.h \
  src/pininterface/./../switchboard/././../globals.h \
  src/pininterface/./../switchboard/././../switchevent/switchevent.h \
- src/pininterface/./../switchboard/././../switchevent/../globals.h \
- src/pininterface/./../switchboard/././../switchevent/./typedefs.h \
- src/pininterface/./../switchboard/././../switchevent/./../globals.h \
  src/pininterface/./../switchboard/./../switchevent/switchevent.h \
  src/pininterface/./../switchboard/./typedefs.h \
  src/pininterface/./../switchboard/../switchevent/switchevent.h \

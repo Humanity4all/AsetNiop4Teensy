@@ -45,5 +45,7 @@
  src/./switchboard/../switchevent/switchevent.h \
  src/./switchboard/typedefs.h src/./switchevent/switchevent.h \
  src/./pininterface/pininterface.h src/./pininterface/../globals.h \
+ src/./pininterface/./pinstatechange.h src/./pininterface/./../globals.h \
+ src/./pininterface/./../switchevent/switchevent.h \
  src/./pininterface/../switchboard/machine.h \
  src/./pininterface/../switchevent/switchevent.h
