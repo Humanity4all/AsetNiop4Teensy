@@ -15,15 +15,19 @@ Copyright 2015 Stichting Humanity4all
 
 #define BOUNCE_LOCK_OUT
 #include <Bounce2.h>
+#include <queue>
 
 #include "./globals.h"
 #include "./switchboard/machine.h"
+#include "./switchboard/typedefs.h"
+#include "./switchevent/switchevent.h"
 
 #define DEBUG
 
 Bounce debugkey;
+std::queue<switch_event_n::SwitchEvent> switch_event_queue;
+std::queue<switch_board_n::protokey_event_t> protokey_event_queue;
 
-//keyboard_t k;
 switch_board_n::Machine switch_machine;
 
 void setup() {
@@ -33,29 +37,11 @@ void setup() {
     debugkey.attach(0);
     debugkey.interval(10);
 
-    // now the real setup
-    // debug("Initializing...");
-    // TODO set pins to use from left to right (counting thumbs)
     int pinsToUse[N_SWITCHES]={1, 2, 3, 4};
     for (int i=0; i < N_SWITCHES; i++) {
         int pin = pinsToUse[i];
         pinMode(pin, INPUT_PULLUP);
-        // debug("--set pinmode to pullup");
-
-        /*
-        cpplint: using C-style cast because cpp style cast
-        results in compiler errors
-        */
-        //k.keys[i] = (Bounce *)malloc(sizeof(Bounce)); // NOLINT
-        //*k.keys[i] = Bounce();
-        //k.keys[i]->attach(pin);
-        //k.keys[i]->interval(10);
-        // debug("--initialized bounce object");
-        //k.keyState[i] = IDLE;
-        // debug("--set keystate to idle");
     }
-
-    // debug("Finished initializing");
 }
 
 void loop() {
