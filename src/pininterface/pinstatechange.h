@@ -12,19 +12,19 @@ namespace pin_interface_n {
 
 class PinStateChange{
  public:
-    PinStateChange(int pin_number, switch_event_n::edge_t edge_);
+    PinStateChange(int pin_number, switch_event_n::switch_state_t switch_state);
     int pinNumber;
-    switch_event_n::edge_t edge;
+    switch_event_n::switch_state_t switchState;
 };
 
 struct pin_state_change_compare {
     bool operator()(const PinStateChange &p1, const PinStateChange &p2) const {
         int vp1 = 0;
         int vp2 = 0;
-        if (p1.edge == switch_event_n::edge_t::E_FALLING) {
+        if (p1.switchState == switch_event_n::switch_state_t::PRESSED) {
             vp1 = 1;
         }
-        if (p2.edge == switch_event_n::edge_t::E_FALLING) {
+        if (p2.switchState == switch_event_n::switch_state_t::RELEASED) {
             vp2 = 1;
         }
         return vp1 < vp2;

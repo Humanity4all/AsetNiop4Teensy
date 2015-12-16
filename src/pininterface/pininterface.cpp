@@ -33,7 +33,10 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent>* switch_event_
      * This is not a good idea to do in the loop() part of arduino.
      * If we experience memory problems, this might be the cause.
      */
-    std::priority_queue<PinStateChange, std::vector<PinStateChange>, pin_state_change_compare> pin_change_queue;
+    std::priority_queue<
+        PinStateChange,
+        std::vector<PinStateChange>,
+        pin_state_change_compare> pin_change_queue;
     for (int i=0; i < N_SWITCHES; i++) {
         if (debouncedSwitches[i]->update()) {
             if (debouncedSwitches[i]->read() == 0) {
@@ -50,14 +53,20 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent>* switch_event_
                 // digitalWrite(LED_PIN, LOW);
             }
 
-            while(!pin_change_queue.empty()) {
+            while (!pin_change_queue.empty()) {
                 PinStateChange p = pin_change_queue.top();
-                switch_event_n::switch_state_t new_switch_state[N_SWITCHES] = lastSwitchState;
-                new_switch_state[p.pinNumber] = p.edge;
-                switch_event_queue.emplace(lastSwitchState, new_switch_state);
-                lastSwitchState = new_switch_state;
+                switch_event_n::switch_state_t new_switch_state[N_SWITCHES];
+                std::copy(
+                    std::begin(lastSwitchState),
+                    std::end(lastSwitchState),
+                    std::begin(new_switch_state));
+                new_switch_state[p.pinNumber] = p.switchState;
+                switch_event_queue->emplace(lastSwitchState, new_switch_state);
+                std::copy(
+                    std::begin(new_switch_state),
+                    std::end(new_switch_state),
+                    std::begin(lastSwitchState));
             }
-            delete pin_change_queue;
         }
     }
 }
