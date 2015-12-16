@@ -14,4 +14,8 @@ Copyright 2015 Stichting Humanity4all
  */
 #define SWITCH_PINS 1, 3, 5, 7
 
+#ifndef LED_PIN
+  #define LED_PIN 13
+#endif
+
 #endif // SRC_GLOBALS_H_
