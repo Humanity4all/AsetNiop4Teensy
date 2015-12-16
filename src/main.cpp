@@ -24,10 +24,11 @@ Copyright 2015 Stichting Humanity4all
 #include "./pininterface/pininterface.h"
 
 #define DEBUG
+
 extern "C" {
-    int _getpid () { return -1; }
-    int _kill (int pid, int sig) { return -1; }
-    int _write () { return -1; }
+    int _getpid() { return -1; }
+    int _kill(int pid, int sig) { return -1; }
+    int _write() { return -1; }
 }
 
 Bounce debugkey;
@@ -49,7 +50,7 @@ void setup() {
     /*
      * Test eventqueue - because we keep getting errors
      */
-    switch_event_n::switch_state_t tmp1[N_SWITCHES] = {
+    /*switch_event_n::switch_state_t tmp1[N_SWITCHES] = {
         switch_event_n::switch_state_t::RELEASED,
         switch_event_n::switch_state_t::RELEASED,
         switch_event_n::switch_state_t::RELEASED};
@@ -58,7 +59,7 @@ void setup() {
         switch_event_n::switch_state_t::RELEASED,
         switch_event_n::switch_state_t::RELEASED};
 
-    switch_event_queue.emplace(tmp1, tmp2);
+    switch_event_queue.emplace(tmp1, tmp2);*/
 }
 
 void loop() {
@@ -70,4 +71,9 @@ void loop() {
     // }
     pin_interface.update(switch_event_queue);
     if (!switch_event_queue.empty()) digitalWrite(LED_PIN, HIGH);
+    while (!switch_event_queue.empty()) {
+        switch_event_n::SwitchEvent e = switch_event_queue.front();
+        if (e.state_diff() == 2) digitalWrite(LED_PIN, HIGH);
+        switch_event_queue.pop();
+    }
 }
