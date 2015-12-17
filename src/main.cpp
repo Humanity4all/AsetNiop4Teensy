@@ -105,8 +105,8 @@ void loop() {
     Serial.println(analogRead(VRY));
     Serial.print("sw: ");
     Serial.println(digitalRead(MOUSE_SWITCH));*/
-    int vrx = analogRead(VRX) - 500;
-    int vry = analogRead(VRY) - 500;
+    int vrx = analogRead(VRX) - 512;
+    int vry = analogRead(VRY) - 512;
     if (abs(vrx) <= 50) vrx = 0;
     if (abs(vry) <= 50) vry = 0;
     vrx = vrx/10;
