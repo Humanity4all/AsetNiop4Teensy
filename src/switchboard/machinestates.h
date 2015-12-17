@@ -5,10 +5,16 @@ Copyright 2015 Stichting Humanity4all
 #ifndef SRC_SWITCHBOARD_MACHINESTATES_H_
 #define SRC_SWITCHBOARD_MACHINESTATES_H_
 
+#include <queue>
+
 #include "../globals.h"
 #include "./machine.h"
 #include "./typedefs.h"
 #include "../switchevent/switchevent.h"
+
+#ifdef DEBUG
+  #include "Arduino.h"
+#endif
 
 namespace switch_board_n {
 
@@ -19,11 +25,11 @@ class AbstractState {
     virtual void press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual ~AbstractState();
 };
 
@@ -32,11 +38,11 @@ class Idle : public AbstractState {
     virtual void press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual ~Idle();
 };
 
@@ -45,11 +51,11 @@ class OneSwitch : public AbstractState {
     virtual void press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual ~OneSwitch();
 };
 
@@ -58,11 +64,11 @@ class OneSwitchUsed: public AbstractState {
     virtual void press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual ~OneSwitchUsed();
 };
 
@@ -71,11 +77,11 @@ class TwoSwitch : public AbstractState {
     virtual void press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual ~TwoSwitch();
 };
 
@@ -84,11 +90,11 @@ class ManySwitch : public AbstractState {
     virtual void press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event);
+        std::queue<protokey_event_t> & protokey_event_queue);
     virtual ~ManySwitch();
 };
 

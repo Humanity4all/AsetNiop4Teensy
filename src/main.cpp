@@ -35,7 +35,7 @@ std::queue<switch_event_n::SwitchEvent> switch_event_queue;
 std::queue<switch_board_n::protokey_event_t> protokey_event_queue;
 
 pin_interface_n::PinInterface pin_interface;
-switch_board_n::Machine switch_machine;
+switch_board_n::Machine switch_board;
 
 void setup() {
     #ifdef DEBUG
@@ -82,6 +82,7 @@ void loop() {
           Serial.print("main.cpp: Number of active switches: ");
           Serial.println(e.count_active());
         #endif
+        switch_board.process_switch_event(&e, protokey_event_queue);
         switch_event_queue.pop();
     }
     if (!switch_event_queue.empty()) {

@@ -20,6 +20,8 @@ typedef struct protokey_event_t {
     event_t event;
     switch_event_n::SwitchEvent* switch_event;
     bool is_chord;
+    protokey_event_t(event_t event, switch_event_n::SwitchEvent*, bool is_chord) :
+        event(event), switch_event(switch_event), is_chord(is_chord) {}
 } protokey_event_t;
 
 } // namespace switch_board_n

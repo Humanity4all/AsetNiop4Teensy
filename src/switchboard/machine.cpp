@@ -2,6 +2,8 @@
 Copyright 2015 Stichting Humanity4all
 */
 
+#include <queue>
+
 #include "./machine.h"
 
 namespace switch_board_n {
@@ -21,11 +23,11 @@ void Machine::change_state(AbstractState* new_state) {
 
 void Machine::process_switch_event(
         switch_event_n::SwitchEvent* switch_event,
-        protokey_event_t* return_event) {
+        std::queue<protokey_event_t> & protokey_event_queue) {
     if (switch_event->edge == switch_event_n::event_t::E_FALLING) {
-        currentState->release(*this, switch_event, return_event);
+        currentState->release(*this, switch_event, protokey_event_queue);
     } else if (switch_event->edge == switch_event_n::event_t::E_RISING) {
-        currentState->press(*this, switch_event, return_event);
+        currentState->press(*this, switch_event, protokey_event_queue);
     } else {
         /* kick watchdog! */
     }
