@@ -32,6 +32,11 @@ class PinInterface {
     switch_event_n::switch_state_t lastSwitchState[N_SWITCHES];
 };
 
+/*
+ * For debugging purposes
+ */
+void print_switch_state(switch_event_n::switch_state_t switch_state[N_SWITCHES]);
+
 } // namespace pin_interface_n
 
 
