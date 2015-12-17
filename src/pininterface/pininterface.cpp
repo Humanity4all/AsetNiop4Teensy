@@ -68,9 +68,9 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                 this->copy(new_switch_state, true);
                 new_switch_state[p.pinNumber] = p.switchState;
                 Serial.print("pininterface.cpp: old switch state: ");
-                print_switch_state(lastSwitchState);
+                debug_n::print_switch_state(lastSwitchState);
                 Serial.print("pininterface.cpp: new switch state: ");
-                print_switch_state(new_switch_state);
+                debug_n::print_switch_state(new_switch_state);
                 /*
                  * NOFIXME this line is necessary but creates compiler errors.
                  * undefined references to _kill, _getpid and _write
@@ -91,7 +91,7 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                 //    std::begin(lastSwitchState));
                 this->copy(new_switch_state, false);
                 Serial.print("pininterface.cpp: Updated old switch state: ");
-                print_switch_state(lastSwitchState);
+                debug_n::print_switch_state(lastSwitchState);
                 pin_change_queue.pop();
             }
         }
@@ -116,16 +116,5 @@ void PinInterface::copy(
     }
 }
 
-void print_switch_state(switch_event_n::switch_state_t switch_state[N_SWITCHES]) {
-    char str[N_SWITCHES];
-    for (int i = 0; i < N_SWITCHES; i++) {
-        if (switch_state[i] == switch_event_n::switch_state_t::PRESSED) {
-            str[i] = '1';
-        } else {
-            str[i] = '0';
-        }
-    }
-    Serial.println(str);
-}
 
 } // namespace pin_interface_n
