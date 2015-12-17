@@ -71,7 +71,6 @@ void loop() {
     //    if (debugkey.read() == 1) digitalWrite(LED_PIN, LOW);  // released
     // }
     pin_interface.update(switch_event_queue);
-    if (!switch_event_queue.empty()) digitalWrite(LED_PIN, HIGH);
     while (!switch_event_queue.empty()) {
         switch_event_n::SwitchEvent e = switch_event_queue.front();
         int active_switch = e.get_active_switch(1);
