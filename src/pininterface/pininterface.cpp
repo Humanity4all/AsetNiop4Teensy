@@ -44,17 +44,22 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                 pin_change_queue.emplace(
                     i,
                     switch_event_n::switch_state_t::PRESSED);
+                Serial.print("pininterface.cpp: Pressed switch ");
+                Serial.println(i);
                 // digitalWrite(LED_PIN, HIGH);
             } else {
                 /* released */
                 pin_change_queue.emplace(
                     i,
                     switch_event_n::switch_state_t::RELEASED);
+                Serial.print("pininterface.cpp: Released switch ");
+                Serial.println(i);
                 // digitalWrite(LED_PIN, LOW);
             }
 
             while (!pin_change_queue.empty()) {
                 PinStateChange p = pin_change_queue.top();
+                Serial.println("pininterface.cpp: Detected pinstatechange event");
                 switch_event_n::switch_state_t new_switch_state[N_SWITCHES];
                 std::copy(
                     std::begin(lastSwitchState),

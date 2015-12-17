@@ -39,6 +39,7 @@ pin_interface_n::PinInterface pin_interface;
 switch_board_n::Machine switch_machine;
 
 void setup() {
+    Serial.begin(38400);
     pinMode(LED_PIN, OUTPUT);     // set pin as output
     // our meager debug key - just so we know it's doing something
     // pinMode(0, INPUT_PULLUP);
@@ -73,7 +74,14 @@ void loop() {
     if (!switch_event_queue.empty()) digitalWrite(LED_PIN, HIGH);
     while (!switch_event_queue.empty()) {
         switch_event_n::SwitchEvent e = switch_event_queue.front();
-        if (e.get_active_switch(1) == 2) digitalWrite(LED_PIN, HIGH);
+        int active_switch = e.get_active_switch(1);
+        if (active_switch == 1) digitalWrite(LED_PIN, HIGH);
+        Serial.print("main.cpp: Key event for switch ");
+        Serial.println(active_switch);
+        Serial.println(e.count_active());
         switch_event_queue.pop();
+    }
+    if (!switch_event_queue.empty()) {
+        Serial.println("main.cpp: Error, switch_event_queue not empty!");
     }
 }
