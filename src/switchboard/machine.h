@@ -12,6 +12,10 @@ Copyright 2015 Stichting Humanity4all
 #include "./typedefs.h"
 #include "../switchevent/switchevent.h"
 
+#ifdef DEBUG
+  #include "Arduino.h"
+#endif
+
 namespace switch_board_n {
 
 class AbstractState;
