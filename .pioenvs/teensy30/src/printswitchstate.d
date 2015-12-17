@@ -1,6 +1,5 @@
-.pioenvs/teensy30/src/pininterface/pininterface.o: \
- src/pininterface/pininterface.cpp src/pininterface/./pininterface.h \
- .pioenvs/teensy30/FrameworkArduino/Arduino.h \
+.pioenvs/teensy30/src/printswitchstate.o: src/printswitchstate.cpp \
+ src/./printswitchstate.h .pioenvs/teensy30/FrameworkArduino/Arduino.h \
  .pioenvs/teensy30/FrameworkArduino/WProgram.h \
  .pioenvs/teensy30/FrameworkArduino/avr/pgmspace.h \
  .pioenvs/teensy30/FrameworkArduino/avr/interrupt.h \
@@ -31,26 +30,5 @@
  .pioenvs/teensy30/FrameworkArduino/usb_undef.h \
  .pioenvs/teensy30/FrameworkArduino/elapsedMillis.h \
  .pioenvs/teensy30/FrameworkArduino/Arduino.h \
- .pioenvs/teensy30/FrameworkArduino/IntervalTimer.h \
- .pioenvs/teensy30/Bounce2/Bounce2.h src/pininterface/./../globals.h \
- src/pininterface/./../printswitchstate.h \
- src/pininterface/./.././globals.h \
- src/pininterface/./.././switchevent/typedefs.h \
- src/pininterface/./.././switchevent/../globals.h \
- src/pininterface/././pinstatechange.h src/pininterface/././../globals.h \
- src/pininterface/././../switchevent/switchevent.h \
- src/pininterface/././../switchevent/../globals.h \
- src/pininterface/././../switchevent/../printswitchstate.h \
- src/pininterface/././../switchevent/./typedefs.h \
- src/pininterface/./../switchboard/machine.h \
- src/pininterface/./../switchboard/../globals.h \
- src/pininterface/./../switchboard/./machinestates.h \
- src/pininterface/./../switchboard/./../globals.h \
- src/pininterface/./../switchboard/././machine.h \
- src/pininterface/./../switchboard/././typedefs.h \
- src/pininterface/./../switchboard/././../globals.h \
- src/pininterface/./../switchboard/././../switchevent/switchevent.h \
- src/pininterface/./../switchboard/./../switchevent/switchevent.h \
- src/pininterface/./../switchboard/./typedefs.h \
- src/pininterface/./../switchboard/../switchevent/switchevent.h \
- src/pininterface/./../switchevent/switchevent.h
+ .pioenvs/teensy30/FrameworkArduino/IntervalTimer.h src/././globals.h \
+ src/././switchevent/typedefs.h src/././switchevent/../globals.h

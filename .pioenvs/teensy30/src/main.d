@@ -38,13 +38,17 @@
  src/./switchboard/././../globals.h \
  src/./switchboard/././../switchevent/switchevent.h \
  src/./switchboard/././../switchevent/../globals.h \
+ src/./switchboard/././../switchevent/../printswitchstate.h \
+ src/./switchboard/././../switchevent/.././globals.h \
+ src/./switchboard/././../switchevent/.././switchevent/typedefs.h \
+ src/./switchboard/././../switchevent/.././switchevent/../globals.h \
  src/./switchboard/././../switchevent/./typedefs.h \
- src/./switchboard/././../switchevent/./../globals.h \
  src/./switchboard/./../switchevent/switchevent.h \
  src/./switchboard/./typedefs.h \
  src/./switchboard/../switchevent/switchevent.h \
  src/./switchboard/typedefs.h src/./switchevent/switchevent.h \
  src/./pininterface/pininterface.h src/./pininterface/../globals.h \
+ src/./pininterface/../printswitchstate.h \
  src/./pininterface/./pinstatechange.h src/./pininterface/./../globals.h \
  src/./pininterface/./../switchevent/switchevent.h \
  src/./pininterface/../switchboard/machine.h \
