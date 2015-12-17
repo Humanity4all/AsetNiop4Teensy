@@ -71,7 +71,9 @@ SwitchEvent::~SwitchEvent() {
 
 void SwitchEvent::update_effective_switch_state() {
     for (int i = 0; i < N_SWITCHES; i++) {
-        if (oldSwitchState[i] || newSwitchState[i]) {
+        if (
+                oldSwitchState[i] == switch_state_t::PRESSED ||
+                newSwitchState[i] == switch_state_t::PRESSED) {
             effectiveSwitchState[i] = switch_state_t::PRESSED;
         }
     }
