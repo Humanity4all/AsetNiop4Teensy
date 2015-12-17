@@ -44,22 +44,28 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                 pin_change_queue.emplace(
                     i,
                     switch_event_n::switch_state_t::PRESSED);
-                Serial.print("pininterface.cpp: Pressed switch ");
-                Serial.println(i);
+                #ifdef DEBUG
+                  Serial.print("pininterface.cpp: Pressed switch ");
+                  Serial.println(i);
+                #endif
                 // digitalWrite(LED_PIN, HIGH);
             } else {
                 /* released */
                 pin_change_queue.emplace(
                     i,
                     switch_event_n::switch_state_t::RELEASED);
-                Serial.print("pininterface.cpp: Released switch ");
-                Serial.println(i);
+                #ifdef DEBUG
+                  Serial.print("pininterface.cpp: Released switch ");
+                  Serial.println(i);
+                #endif
                 // digitalWrite(LED_PIN, LOW);
             }
 
             while (!pin_change_queue.empty()) {
                 PinStateChange p = pin_change_queue.top();
-                Serial.println("pininterface.cpp: Detected pinstatechange event");
+                #ifdef DEBUG
+                  Serial.println("pininterface.cpp: Detected pinstatechange event");
+                #endif
                 switch_event_n::switch_state_t new_switch_state[N_SWITCHES];
                 // std::copy(
                 //    std::begin(lastSwitchState),
@@ -67,10 +73,12 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                 //    std::begin(new_switch_state));
                 this->copy(new_switch_state, true);
                 new_switch_state[p.pinNumber] = p.switchState;
-                Serial.print("pininterface.cpp: old switch state: ");
-                debug_n::print_switch_state(lastSwitchState);
-                Serial.print("pininterface.cpp: new switch state: ");
-                debug_n::print_switch_state(new_switch_state);
+                #ifdef DEBUG
+                  Serial.print("pininterface.cpp: old switch state: ");
+                  debug_n::print_switch_state(lastSwitchState);
+                  Serial.print("pininterface.cpp: new switch state: ");
+                  debug_n::print_switch_state(new_switch_state);
+                #endif
                 /*
                  * NOFIXME this line is necessary but creates compiler errors.
                  * undefined references to _kill, _getpid and _write
@@ -90,8 +98,10 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                 //    std::end(new_switch_state),
                 //    std::begin(lastSwitchState));
                 this->copy(new_switch_state, false);
-                Serial.print("pininterface.cpp: Updated old switch state: ");
-                debug_n::print_switch_state(lastSwitchState);
+                #ifdef DEBUG
+                  Serial.print("pininterface.cpp: Updated old switch state: ");
+                  debug_n::print_switch_state(lastSwitchState);
+                #endif
                 pin_change_queue.pop();
             }
         }

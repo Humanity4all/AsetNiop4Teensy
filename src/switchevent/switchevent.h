@@ -5,10 +5,12 @@ Copyright 2015 Stichting Humanity4all
 #ifndef SRC_SWITCHEVENT_SWITCHEVENT_H_
 #define SRC_SWITCHEVENT_SWITCHEVENT_H_
 
-#include "Arduino.h" 
+#include "Arduino.h"
 
 #include "../globals.h"
-#include "../printswitchstate.h"
+#ifdef DEBUG
+  #include "../printswitchstate.h"
+#endif
 #include "./typedefs.h"
 
 namespace switch_event_n {

@@ -12,7 +12,9 @@ Copyright 2015 Stichting Humanity4all
 #include <cstdlib>
 
 #include "../globals.h"
-#include "../printswitchstate.h"
+#ifdef DEBUG
+  #include "../printswitchstate.h"
+#endif
 #include "./pinstatechange.h"
 #include "../switchboard/machine.h"
 #include "../switchevent/switchevent.h"

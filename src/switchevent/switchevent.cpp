@@ -20,12 +20,14 @@ SwitchEvent::SwitchEvent(
         newSwitchState[i] = new_switch_state[i];
     }
     this->update_effective_switch_state();
-    Serial.print("switchevent.cpp: oldSwitchState: ");
-    debug_n::print_switch_state(oldSwitchState);
-    Serial.print("switchevent.cpp: newSwitchState: ");
-    debug_n::print_switch_state(newSwitchState);
-    Serial.print("switchevent.cpp: effectiveSwitchState: ");
-    debug_n::print_switch_state(effectiveSwitchState);
+    #ifdef DEBUG
+      Serial.print("switchevent.cpp: oldSwitchState: ");
+      debug_n::print_switch_state(oldSwitchState);
+      Serial.print("switchevent.cpp: newSwitchState: ");
+      debug_n::print_switch_state(newSwitchState);
+      Serial.print("switchevent.cpp: effectiveSwitchState: ");
+      debug_n::print_switch_state(effectiveSwitchState);
+    #endif
 }
 
 void SwitchEvent::new_event(

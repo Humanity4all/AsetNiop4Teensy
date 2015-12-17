@@ -18,4 +18,12 @@ Copyright 2015 Stichting Humanity4all
   #define LED_PIN 13
 #endif
 
+/*
+ * Turns on the serial monitor and prints debug messages.
+ * For production, turn this off. It's a waste of resources.
+ */
+#ifndef DEBUG
+  #define DEBUG
+#endif
+
 #endif // SRC_GLOBALS_H_

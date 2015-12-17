@@ -23,7 +23,6 @@ Copyright 2015 Stichting Humanity4all
 #include "./switchevent/switchevent.h"
 #include "./pininterface/pininterface.h"
 
-#define DEBUG
 
 extern "C" {
     int _getpid() { return -1; }
@@ -39,7 +38,9 @@ pin_interface_n::PinInterface pin_interface;
 switch_board_n::Machine switch_machine;
 
 void setup() {
-    Serial.begin(38400);
+    #ifdef DEBUG
+      Serial.begin(38400);
+    #endif
     pinMode(LED_PIN, OUTPUT);     // set pin as output
     // our meager debug key - just so we know it's doing something
     // pinMode(0, INPUT_PULLUP);
@@ -75,13 +76,17 @@ void loop() {
         switch_event_n::SwitchEvent e = switch_event_queue.front();
         int active_switch = e.get_active_switch(1);
         if (active_switch == 1) digitalWrite(LED_PIN, HIGH);
-        Serial.print("main.cpp: Key event for switch ");
-        Serial.println(active_switch);
-        Serial.print("main.cpp: Number of active switches: ");
-        Serial.println(e.count_active());
+        #ifdef DEBUG
+          Serial.print("main.cpp: Key event for switch ");
+          Serial.println(active_switch);
+          Serial.print("main.cpp: Number of active switches: ");
+          Serial.println(e.count_active());
+        #endif
         switch_event_queue.pop();
     }
     if (!switch_event_queue.empty()) {
-        Serial.println("main.cpp: Error, switch_event_queue not empty!");
+        #ifdef DEBUG
+          Serial.println("main.cpp: Error, switch_event_queue not empty!");
+        #endif
     }
 }
