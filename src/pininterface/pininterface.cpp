@@ -61,10 +61,11 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                 PinStateChange p = pin_change_queue.top();
                 Serial.println("pininterface.cpp: Detected pinstatechange event");
                 switch_event_n::switch_state_t new_switch_state[N_SWITCHES];
-                std::copy(
-                    std::begin(lastSwitchState),
-                    std::end(lastSwitchState),
-                    std::begin(new_switch_state));
+                // std::copy(
+                //    std::begin(lastSwitchState),
+                //    std::end(lastSwitchState),
+                //    std::begin(new_switch_state));
+                this->copy(new_switch_state, true);
                 new_switch_state[p.pinNumber] = p.switchState;
                 /*
                  * NOFIXME this line is necessary but creates compiler errors.
@@ -80,10 +81,11 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                  * We fixed it by declaring the missing functions in global...
                  */
                 switch_event_queue.emplace(lastSwitchState, new_switch_state);
-                std::copy(
-                    std::begin(new_switch_state),
-                    std::end(new_switch_state),
-                    std::begin(lastSwitchState));
+                // std::copy(
+                //    std::begin(new_switch_state),
+                //    std::end(new_switch_state),
+                //    std::begin(lastSwitchState));
+                this->copy(new_switch_state, false);
                 pin_change_queue.pop();
             }
         }
@@ -95,5 +97,18 @@ PinInterface::~PinInterface() {
         delete debouncedSwitches[i];
     }
 }
+
+void PinInterface::copy(
+        switch_event_n::switch_state_t new_switch_state[N_SWITCHES],
+        bool old_to_new) {
+    for (int i = 0; i < N_SWITCHES; i++) {
+        if (old_to_new) {
+            new_switch_state[i] = lastSwitchState[i];
+        } else {
+            lastSwitchState[i] = new_switch_state[i];
+        }
+    }
+}
+
 
 } // namespace pin_interface_n

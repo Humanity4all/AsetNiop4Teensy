@@ -25,6 +25,9 @@ class PinInterface {
     void update(std::queue<switch_event_n::SwitchEvent> & switch_event_queue);
     ~PinInterface();
  private:
+    void copy(
+        switch_event_n::switch_state_t new_switch_state[N_SWITCHES],
+        bool old_to_new=false);
     Bounce * debouncedSwitches[N_SWITCHES];
     switch_event_n::switch_state_t lastSwitchState[N_SWITCHES];
 };
