@@ -61,7 +61,9 @@ int SwitchEvent::get_active_switch(int n) {
 
 int SwitchEvent::state_diff() {
     for (int i = 0; i < N_SWITCHES; i++) {
-        if ((oldSwitchState[i] ^ newSwitchState[i]) == 1) {
+        if (
+                (oldSwitchState[i] == switch_state_t::PRESSED) ^
+                (newSwitchState[i] == switch_state_t::PRESSED)) {
             return i;
         }
     }
@@ -79,6 +81,7 @@ void SwitchEvent::update_effective_switch_state() {
             effectiveSwitchState[i] = switch_state_t::PRESSED;
         }
     }
+    switch_state = newSwitchState[this->state_diff()];
 }
 
 } // namespace switch_event_n

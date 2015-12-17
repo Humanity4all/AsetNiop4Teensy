@@ -28,7 +28,8 @@ class SwitchEvent {
     int get_active_switch(int n=1);
     int state_diff();
     ~SwitchEvent();
-    edge_t edge;
+    /* State of the changed switch */
+    switch_state_t switch_state;
  private:
     void update_effective_switch_state();
     switch_state_t oldSwitchState[N_SWITCHES];
