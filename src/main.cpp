@@ -14,6 +14,7 @@ Copyright 2015 Stichting Humanity4all
 #endif
 
 #define BOUNCE_LOCK_OUT
+#include <stdlib.h>
 #include <Bounce2.h>
 #include <queue>
 
@@ -48,6 +49,10 @@ void setup() {
     // debugkey.interval(10);
 
     pin_interface.init_pins();
+
+    // thumbstick initialization
+    pinMode(MOUSE_SWITCH, INPUT_PULLUP);
+    Mouse.begin();
 
     /*
      * Test eventqueue - because we keep getting errors
@@ -89,5 +94,24 @@ void loop() {
         #ifdef DEBUG
           Serial.println("main.cpp: Error, switch_event_queue not empty!");
         #endif
+    }
+
+    /*
+     * Mouse logic
+     */
+    /*Serial.print("vrx: ");
+    Serial.println(analogRead(VRX));
+    Serial.print("vry: ");
+    Serial.println(analogRead(VRY));
+    Serial.print("sw: ");
+    Serial.println(digitalRead(MOUSE_SWITCH));*/
+    int vrx = analogRead(VRX) - 500;
+    int vry = analogRead(VRY) - 500;
+    if (abs(vrx) <= 50) vrx = 0;
+    if (abs(vry) <= 50) vry = 0;
+    vrx = vrx/10;
+    vry = vry/10;
+    if (abs(vrx) > 0 || abs(vry) > 0) {
+        Mouse.move(vrx, vry, 0);
     }
 }
