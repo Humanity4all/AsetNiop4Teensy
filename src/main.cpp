@@ -78,6 +78,7 @@ void loop() {
         if (active_switch == 1) digitalWrite(LED_PIN, HIGH);
         Serial.print("main.cpp: Key event for switch ");
         Serial.println(active_switch);
+        Serial.print("main.cpp: Number of active switches: ");
         Serial.println(e.count_active());
         switch_event_queue.pop();
     }
