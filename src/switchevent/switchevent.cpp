@@ -39,7 +39,7 @@ void SwitchEvent::new_event(
 int SwitchEvent::count_active() {
     int acc = 0;
     for (int i = 0; i < N_SWITCHES; i++) {
-        if (effectiveSwitchState[i] == 1) {
+        if (effectiveSwitchState[i] == switch_state_t::PRESSED) {
             acc += 1;
         }
     }
