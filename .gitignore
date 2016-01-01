@@ -22,3 +22,7 @@
 
 # python
 *.pyc
+
+# platformio
+.pioenvs/*
+.cache/*
