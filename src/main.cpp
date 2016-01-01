@@ -19,6 +19,7 @@ Copyright 2015 Stichting Humanity4all
 #include <queue>
 
 #include "./globals.h"
+#include "./keymap/initkeymap.h"
 #include "./switchboard/machine.h"
 #include "./switchboard/typedefs.h"
 #include "./switchevent/switchevent.h"
@@ -47,6 +48,8 @@ void setup() {
     // pinMode(0, INPUT_PULLUP);
     // debugkey.attach(0);
     // debugkey.interval(10);
+
+    keymap_n::init_keymap();
 
     pin_interface.init_pins();
 
