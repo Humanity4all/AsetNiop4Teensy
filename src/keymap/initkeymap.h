@@ -11,17 +11,6 @@ Copyright 2016 Stichting Humanity4all
 
 #include "../globals.h"
 
-// TODO: maybe put this in globals, so all the settings are in 1 place
-/*
- * addresses of settings in eeprom
- */
-#define EEPROM_KEYMAP_VERSION 0
-
-/*
- * Chip select pin for the sd card reader
- */
-#define SD_CS_PIN 10
-
 namespace keymap_n {
 
 /*

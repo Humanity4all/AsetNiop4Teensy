@@ -33,4 +33,26 @@ Copyright 2015 Stichting Humanity4all
   #define DEBUG
 #endif
 
+
+/*
+ * eeprom settings
+ */
+
+/*
+ * The first 100 addresses are reserved for settings
+ */
+#define EEPROM_SETTINGS_OFFSET 100
+
+/*
+ * Address where keymap version is stored
+ */
+#define EEPROM_KEYMAP_VERSION 0
+
+
+/*
+ * Chip select pin for the sd card reader
+ */
+#define SD_CS_PIN 10
+
+
 #endif // SRC_GLOBALS_H_
