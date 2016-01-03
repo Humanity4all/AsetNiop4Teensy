@@ -24,6 +24,7 @@ Copyright 2015 Stichting Humanity4all
 #include "./switchboard/typedefs.h"
 #include "./switchevent/switchevent.h"
 #include "./pininterface/pininterface.h"
+#include "./translationservice/machine.h"
 
 
 extern "C" {
@@ -38,6 +39,7 @@ std::queue<switch_board_n::protokey_event_t> protokey_event_queue;
 
 pin_interface_n::PinInterface pin_interface;
 switch_board_n::Machine switch_board;
+translation_service_n::Machine translation_service;
 
 void setup() {
     #ifdef DEBUG
@@ -97,6 +99,15 @@ void loop() {
         #ifdef DEBUG
           Serial.println("main.cpp: Error, switch_event_queue not empty!");
         #endif
+    }
+
+    /*
+     * Now loop through the protokey event queue
+     */
+    while (!protokey_event_queue.empty()) {
+        switch_board_n::protokey_event_t e = protokey_event_queue.front();
+        translation_service.process_protokey_event(&e);
+        protokey_event_queue.pop();
     }
 
     /*

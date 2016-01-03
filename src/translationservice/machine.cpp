@@ -7,6 +7,7 @@ Copyright 2016 Stichting Humanity4all
 namespace translation_service_n {
 
 Machine::Machine() {
+    currentState = new Layer(0);
 }
 
 void Machine::process_protokey_event(
