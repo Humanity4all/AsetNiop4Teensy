@@ -19,8 +19,8 @@ class Machine {
  public:
     Machine();
     void process_protokey_event(
-        switch_board_n::protokey_event_t protokey_event);
-    void change_state(Layer new_state);
+        switch_board_n::protokey_event_t* protokey_event);
+    void change_state(Layer* new_state);
     void send_key(key_t key, switch_board_n::event_t event);
     void set_modifier(key_t key);
     int* use_modifiers();

@@ -17,9 +17,9 @@ class Machine;
 class Layer {
  public:
     explicit Layer(int layer);
-    void process_key_event(
+    void process_protokey_event(
         Machine& machine,
-        switch_board_n::protokey_event_t protokey_event);
+        switch_board_n::protokey_event_t* protokey_event);
  private:
     int layerNumber;
 };
