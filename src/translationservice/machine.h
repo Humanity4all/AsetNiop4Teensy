@@ -7,24 +7,25 @@ Copyright 2015 Stichting Humanity4all
 
 #include "../globals.h"
 #include "./typedefs.h"
-#include "./machinestates.h"
-#include "../../switchboard/typedefs.h"
+#include "./machinestate.h"
+#include "../switchboard/typedefs.h"
+#include "../keymap/getkey.h"
 
 namespace translation_service_n {
 
-class AbstractState;
+class Layer;
 
 class Machine {
  public:
     Machine();
     void process_protokey_event(
-        switch_board::protokey_event_t protokey_event);
-    void change_state(AbstractState new_state);
-    void send_key(key_t key, switch_board::event_t event);
+        switch_board_n::protokey_event_t protokey_event);
+    void change_state(Layer new_state);
+    void send_key(key_t key, switch_board_n::event_t event);
     void set_modifier(key_t key);
-    int[] use_modifiers();
+    int* use_modifiers();
  private:
-    AbstractState currentState;
+    Layer* currentState;
 };
 
 } // namespace translation_service_n

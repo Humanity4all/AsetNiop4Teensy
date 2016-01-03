@@ -8,21 +8,20 @@ Copyright 2015 Stichting Humanity4all
 #include "../globals.h"
 #include "./machine.h"
 #include "./typedefs.h"
-#include "../switchevent/switchevent.h"
+#include "../switchboard/typedefs.h"
 
 namespace translation_service_n {
 
 class Machine;
 
-class AbstractState {
+class Layer {
  public:
-    virtual void process_key_event(
-        Machine machine,
-        switch_event::SwitchEvent switch_event,
-        bool is_chord,
-        bool reset);
+    explicit Layer(int layer);
+    void process_key_event(
+        Machine& machine,
+        switch_board_n::protokey_event_t protokey_event);
  private:
-    key_t keyMap[N_SWITCHES][N_SWITCHES];
+    int layerNumber;
 };
 
 } // namespace translation_service_n
