@@ -14,6 +14,7 @@ void init_keymap() {
      */
     pinMode(SD_CS_PIN, OUTPUT);
     digitalWrite(SD_CS_PIN, LOW);
+    delay(20);
 
     if (!SD.begin(SD_CS_PIN)) {
         #ifdef DEBUG
