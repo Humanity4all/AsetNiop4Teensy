@@ -23,6 +23,9 @@ typedef enum key_t {
     for flexibility in writing keymaps.
     */
 
+    // special keys (put this one first, so it's 0)
+    K_NOP,
+
     // alphabetical characters
     K_A, K_B, K_C, K_D, K_E, K_F, K_G,
     K_H, K_I, K_J, K_K, K_L, K_M, K_N, K_O,
@@ -75,9 +78,6 @@ typedef enum key_t {
 
     // mouse buttons
     M_LEFT, M_MIDDLE, M_RIGHT,
-
-    // special keys
-    K_NOP,
 
     // layer keys
     K_LAYER_0, K_LAYER_1, K_LAYER_2, K_LAYER_3, K_LAYER_4, K_LAYER_5,
