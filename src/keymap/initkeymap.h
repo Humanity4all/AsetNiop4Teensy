@@ -20,7 +20,7 @@ Copyright 2016 Stichting Humanity4all
 /*
  * Chip select pin for the sd card reader
  */
-#define SD_CS_PIN 17
+#define SD_CS_PIN 10
 
 namespace keymap_n {
 

@@ -21,9 +21,9 @@ Copyright 2015 Stichting Humanity4all
 /*
  * Mouse pins
  */
-#define VRX A0
-#define VRY A1
-#define MOUSE_SWITCH 16
+#define VRX A2
+#define VRY A3
+#define MOUSE_SWITCH 18
 
 /*
  * Turns on the serial monitor and prints debug messages.

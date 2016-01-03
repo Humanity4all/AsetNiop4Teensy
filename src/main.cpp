@@ -43,7 +43,7 @@ void setup() {
     #ifdef DEBUG
       Serial.begin(38400);
     #endif
-    pinMode(LED_PIN, OUTPUT);     // set pin as output
+    //pinMode(LED_PIN, OUTPUT);     // set pin as output // incompatible with spi
     // our meager debug key - just so we know it's doing something
     // pinMode(0, INPUT_PULLUP);
     // debugkey.attach(0);
@@ -83,7 +83,7 @@ void loop() {
     while (!switch_event_queue.empty()) {
         switch_event_n::SwitchEvent e = switch_event_queue.front();
         int active_switch = e.get_active_switch(1);
-        if (active_switch == 1) digitalWrite(LED_PIN, HIGH);
+        //if (active_switch == 1) digitalWrite(LED_PIN, HIGH);
         #ifdef DEBUG
           Serial.print("main.cpp: Key event for switch ");
           Serial.println(active_switch);
