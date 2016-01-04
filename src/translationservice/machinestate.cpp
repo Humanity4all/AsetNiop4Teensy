@@ -47,11 +47,17 @@ void Layer::process_protokey_event(
                     protokey_event->event == switch_board_n::event_t::UP) {
                 /* is_chord=True, event=UP */
                 key = keymap_n::get_key(layerNumber, switch1, switch1);
+                #ifdef DEBUG
+                Serial.println("translation_service_layer: chord, up");
+                #endif
             } else if (
                     !protokey_event->is_chord &&
                     protokey_event->event == switch_board_n::event_t::UP) {
                 /* is_chord=False, event=UP */
                 // TODO kick the dog
+                #ifdef DEBUG
+                Serial.println("translation_service_layer: nochord, up");
+                #endif
                 break;
             } else if (
                     protokey_event->is_chord &&
@@ -64,6 +70,9 @@ void Layer::process_protokey_event(
                         chorded = false;
                     }
                 }
+                #ifdef DEBUG
+                Serial.println("translation_service_layer: chord, down");
+                #endif
                 if (chorded) {
                     key = keymap_n::get_key(layerNumber, switch1, switch1);
                 } else {
@@ -82,6 +91,9 @@ void Layer::process_protokey_event(
                         non_chorded = false;
                     }
                 }
+                #ifdef DEBUG
+                Serial.println("translation_service_layer: nochord, down");
+                #endif
                 if (non_chorded) {
                     key = keymap_n::get_key(layerNumber, switch1, switch1);
                 } else {
