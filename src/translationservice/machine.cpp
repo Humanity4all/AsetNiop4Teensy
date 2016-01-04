@@ -62,12 +62,25 @@ void Machine::send_key(key_t key, switch_board_n::event_t event) {
             #endif
         }
     }
+    #ifdef DEBUG
+    Serial.print("translation_service: key code: ");
+    Serial.println(key_code);
+    #endif
 
     if (event == switch_board_n::event_t::UP) {
         Keyboard.release(key);
+        #ifdef DEBUG
+        Serial.println("translation_service: release!");
+        #endif
     } else if (event == switch_board_n::event_t::DOWN) {
+        #ifdef DEBUG
+        Serial.println("translation_service: press!");
+        #endif
         Keyboard.press(key);
     } else if (event == switch_board_n::event_t::RESET) {
+        #ifdef DEBUG
+        Serial.println("translation_service: reset!");
+        #endif
         Keyboard.releaseAll();
     } else {
         // TODO kick watchdog
