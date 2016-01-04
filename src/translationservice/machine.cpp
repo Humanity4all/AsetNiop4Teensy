@@ -28,7 +28,7 @@ void Machine::send_key(key_t key, switch_board_n::event_t event) {
     Serial.print(" ");
     Serial.println(event);
     #endif
-    char key_code;
+    uint16_t key_code;
     switch (key) {
         case key_t::K_A: {
             key_code = KEY_A;
