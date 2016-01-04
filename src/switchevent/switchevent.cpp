@@ -51,6 +51,10 @@ int SwitchEvent::get_active_switch(int n) {
     for (int i = 0; i < N_SWITCHES; i++) {
         if (effectiveSwitchState[i] == switch_state_t::PRESSED) {
             nth += 1;
+            #ifdef DEBUG
+            Serial.print("switch_event.get_active_switch: found match at ");
+            Serial.println(i);
+            #endif
             if (n == nth) {
                 return i;
             }
