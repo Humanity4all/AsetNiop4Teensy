@@ -132,7 +132,7 @@ void Layer::process_protokey_event(
              * the order in which switches are pressed. So we need to
              * make sure we don't have the wrong one.
              */
-            switch1 = protokey_event->switch_event->get_active_switch(0);
+            switch1 = protokey_event->switch_event->get_active_switch(1);
             if (switch1 == switch2) {
                 switch1 = protokey_event->switch_event->get_active_switch(1);
             }
