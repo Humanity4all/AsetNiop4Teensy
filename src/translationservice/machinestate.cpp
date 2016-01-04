@@ -118,6 +118,10 @@ void Layer::process_protokey_event(
              * Get the switch which was pressed or released last
              */
             switch2 = protokey_event->switch_event->state_diff();
+            #ifdef DEBUG
+            Serial.print("translation_service_layer: last activity on switch ");
+            Serial.println(switch2);
+            #endif
             if (switch2 < 0) {
                 // TODO kick dog
                 break;
