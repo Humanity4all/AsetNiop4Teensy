@@ -33,6 +33,11 @@ Copyright 2015 Stichting Humanity4all
   #define DEBUG
 #endif
 
+/*
+ * This turns on writing a basic keymap to eeprom if there's no sd
+ * card present.
+ */
+#define INITKEYMAP
 
 /*
  * eeprom settings

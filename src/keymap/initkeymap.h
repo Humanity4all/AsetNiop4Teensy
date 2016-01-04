@@ -10,6 +10,7 @@ Copyright 2016 Stichting Humanity4all
 #include <SD.h>
 
 #include "../globals.h"
+#include "../translationservice/typedefs.h"
 
 namespace keymap_n {
 

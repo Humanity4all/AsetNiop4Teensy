@@ -5,6 +5,15 @@ Copyright 2016 Stichting Humanity4all
 #include "./initkeymap.h"
 
 namespace keymap_n {
+int get_address(int layer, int switch1, int switch2) {
+    /*
+     * calculate eeprom address
+     */
+    return layer * N_SWITCHES * N_SWITCHES +
+        switch1 * N_SWITCHES +
+        switch2 +
+        EEPROM_SETTINGS_OFFSET;
+}
 
 void init_keymap() {
     uint8_t keymap_version = EEPROM.read(EEPROM_KEYMAP_VERSION);
@@ -19,6 +28,33 @@ void init_keymap() {
     if (!SD.begin(SD_CS_PIN)) {
         #ifdef DEBUG
         Serial.println("initkeymap.cpp: error initializing SD");
+        #endif
+        #ifdef INITKEYMAP
+        /*
+         * During testing, we can't always rely on the sd reader.
+         * Read: we're having issues, we can't solve them right
+         * away because we don't have the right hardware, and
+         * we want to continue testing anyway.
+         *
+         * So we're writing a basic keymap to the eeprom manually.
+         * We assume there's 3 switches in this testing keyboard.
+         */
+        EEPROM.update(EEPROM_KEYMAP_VERSION, 0);
+
+        using translation_service_n::key_t;
+        // First, handle the single switch presses
+        EEPROM.update(get_address(0, 0, 0), key_t::K_A);
+        EEPROM.update(get_address(0, 1, 1), key_t::K_B);
+        EEPROM.update(get_address(0, 2, 2), key_t::K_C);
+
+        // Now the chords, let's make this a purely chorded layer
+        EEPROM.update(get_address(0, 0, 1), key_t::K_D);
+        EEPROM.update(get_address(0, 1, 0), key_t::K_D);
+        EEPROM.update(get_address(0, 0, 2), key_t::K_E);
+        EEPROM.update(get_address(0, 2, 0), key_t::K_E);
+        EEPROM.update(get_address(0, 1, 2), key_t::K_F);
+        EEPROM.update(get_address(0, 2, 1), key_t::K_F);
+
         #endif
     }
 
