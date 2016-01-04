@@ -134,7 +134,7 @@ void Layer::process_protokey_event(
              */
             switch1 = protokey_event->switch_event->get_active_switch(1);
             if (switch1 == switch2) {
-                switch1 = protokey_event->switch_event->get_active_switch(1);
+                switch1 = protokey_event->switch_event->get_active_switch(2);
             }
             key_t key_1_first = keymap_n::get_key(layerNumber, switch1, switch2);
             key_t key_2_first = keymap_n::get_key(layerNumber, switch2, switch1);
