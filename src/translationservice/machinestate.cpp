@@ -15,6 +15,7 @@ void Layer::process_protokey_event(
         switch_board_n::protokey_event_t* protokey_event) {
     uint8_t switch1;
     uint8_t switch2;
+    int8_t tmp;
     key_t key;
     /*
      * How many switches are active?
@@ -41,7 +42,13 @@ void Layer::process_protokey_event(
              * is_chord == False & event == UP
              * kick the dog, this is not allowed to occur!
              */
-            switch1 = protokey_event->switch_event->get_active_switch(1);
+            tmp = protokey_event->switch_event->get_active_switch(1);
+            if (tmp < 0) {
+                // TODO kick watchdog
+                break;
+            } else {
+                switch1 = (uint8_t)tmp;
+            }
             #ifdef DEBUG
             Serial.print("translation_service_layer: switch1=");
             Serial.println(switch1);
@@ -117,14 +124,16 @@ void Layer::process_protokey_event(
             /*
              * Get the switch which was pressed or released last
              */
-            switch2 = protokey_event->switch_event->state_diff();
-            #ifdef DEBUG
-            Serial.print("translation_service_layer: last activity on switch ");
-            Serial.println(switch2);
-            #endif
-            if (switch2 < 0) {
-                // TODO kick dog
+            tmp = protokey_event->switch_event->state_diff();
+            if (tmp < 0) {
+                // TODO kick watchdog
                 break;
+            } else {
+                switch2 = (uint8_t) tmp;
+                #ifdef DEBUG
+                Serial.print("translation_service_layer: last activity on switch ");
+                Serial.println(switch2);
+                #endif
             }
 
             /*
@@ -132,9 +141,21 @@ void Layer::process_protokey_event(
              * the order in which switches are pressed. So we need to
              * make sure we don't have the wrong one.
              */
-            switch1 = protokey_event->switch_event->get_active_switch(1);
+            tmp = protokey_event->switch_event->get_active_switch(1);
+            if (tmp < 0) {
+                // TODO kick watchdog
+                break;
+            } else {
+                switch1 = (uint8_t) tmp;
+            }
             if (switch1 == switch2) {
-                switch1 = protokey_event->switch_event->get_active_switch(2);
+                tmp = protokey_event->switch_event->get_active_switch(2);
+                if (tmp < 0) {
+                    // TODO kick watchdog
+                    break;
+                } else {
+                    switch1 = (uint8_t) tmp;
+                }
             }
             key_t key_1_first = keymap_n::get_key(layerNumber, switch1, switch2);
             key_t key_2_first = keymap_n::get_key(layerNumber, switch2, switch1);
@@ -156,7 +177,13 @@ void Layer::process_protokey_event(
              * keys. Since machine.send_key will check for reset,
              * we can act as if there's just a single switch active.
              */
-            switch1 = protokey_event->switch_event->state_diff();
+            tmp = protokey_event->switch_event->state_diff();
+            if (tmp < 0) {
+                // TODO kick watchdog
+                break;
+            } else {
+                switch1 = (uint8_t) tmp;
+            }
             key = keymap_n::get_key(layerNumber, switch1, switch1);
             machine.send_key(key, protokey_event->event);
             break;
