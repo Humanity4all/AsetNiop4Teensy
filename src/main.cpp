@@ -81,8 +81,8 @@ void loop() {
     /*
      * Mouse logic
      */
-    uint16_t vrx = analogRead(VRX) - 512;
-    uint16_t vry = analogRead(VRY) - 512;
+    int16_t vrx = analogRead(VRX) - 512;
+    int16_t vry = analogRead(VRY) - 512;
     if (abs(vrx) <= 50) vrx = 0;
     if (abs(vry) <= 50) vry = 0;
     vrx = vrx/150;
