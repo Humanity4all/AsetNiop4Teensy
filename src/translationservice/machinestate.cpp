@@ -42,6 +42,10 @@ void Layer::process_protokey_event(
              * kick the dog, this is not allowed to occur!
              */
             switch1 = protokey_event->switch_event->get_active_switch(1);
+            #ifdef DEBUG
+            Serial.print("translation_service_layer: switch1=");
+            Serial.println(switch1);
+            #endif
             if (
                     protokey_event->is_chord &&
                     protokey_event->event == switch_board_n::event_t::UP) {
