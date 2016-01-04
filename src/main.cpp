@@ -45,12 +45,7 @@ void setup() {
     #ifdef DEBUG
       Serial.begin(38400);
     #endif
-    //pinMode(LED_PIN, OUTPUT);     // set pin as output // incompatible with spi
-    // our meager debug key - just so we know it's doing something
-    // pinMode(0, INPUT_PULLUP);
-    // debugkey.attach(0);
-    // debugkey.interval(10);
-
+    
     keymap_n::init_keymap();
 
     pin_interface.init_pins();
@@ -58,40 +53,13 @@ void setup() {
     // thumbstick initialization
     pinMode(MOUSE_SWITCH, INPUT_PULLUP);
     Mouse.begin();
-
-    /*
-     * Test eventqueue - because we keep getting errors
-     */
-    /*switch_event_n::switch_state_t tmp1[N_SWITCHES] = {
-        switch_event_n::switch_state_t::RELEASED,
-        switch_event_n::switch_state_t::RELEASED,
-        switch_event_n::switch_state_t::RELEASED};
-    switch_event_n::switch_state_t tmp2[N_SWITCHES] = {
-        switch_event_n::switch_state_t::PRESSED,
-        switch_event_n::switch_state_t::RELEASED,
-        switch_event_n::switch_state_t::RELEASED};
-
-    switch_event_queue.emplace(tmp1, tmp2);*/
+    Keyboard.begin();
 }
 
 void loop() {
-
-    // check if it's responding at all
-    // if (debugkey.update()) {
-    //    if (debugkey.read() == 0) digitalWrite(LED_PIN, HIGH); // pressed
-    //    if (debugkey.read() == 1) digitalWrite(LED_PIN, LOW);  // released
-    // }
     pin_interface.update(switch_event_queue);
     while (!switch_event_queue.empty()) {
         switch_event_n::SwitchEvent e = switch_event_queue.front();
-        int active_switch = e.get_active_switch(1);
-        //if (active_switch == 1) digitalWrite(LED_PIN, HIGH);
-        #ifdef DEBUG
-          Serial.print("main.cpp: Key event for switch ");
-          Serial.println(active_switch);
-          Serial.print("main.cpp: Number of active switches: ");
-          Serial.println(e.count_active());
-        #endif
         switch_board.process_switch_event(&e, protokey_event_queue);
         switch_event_queue.pop();
     }
@@ -113,12 +81,6 @@ void loop() {
     /*
      * Mouse logic
      */
-    /*Serial.print("vrx: ");
-    Serial.println(analogRead(VRX));
-    Serial.print("vry: ");
-    Serial.println(analogRead(VRY));
-    Serial.print("sw: ");
-    Serial.println(digitalRead(MOUSE_SWITCH));*/
     int vrx = analogRead(VRX) - 512;
     int vry = analogRead(VRY) - 512;
     if (abs(vrx) <= 50) vrx = 0;
