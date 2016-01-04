@@ -49,6 +49,10 @@ int SwitchEvent::count_active() {
 int SwitchEvent::get_active_switch(int n) {
     int nth = 0;
     for (int i = 0; i < N_SWITCHES; i++) {
+        #ifdef DEBUG
+        debug_n::print_switch_state(effectiveSwitchState);
+        Serial.println(effectiveSwitchState[i]);
+        #endif
         if (effectiveSwitchState[i] == switch_state_t::PRESSED) {
             nth += 1;
             #ifdef DEBUG
