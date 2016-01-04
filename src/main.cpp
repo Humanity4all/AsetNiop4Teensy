@@ -34,7 +34,7 @@ extern "C" {
 }
 
 Bounce debugkey;
-std::queue<switch_event_n::SwitchEvent> switch_event_queue;
+std::queue<switch_event_n::SwitchEvent*> switch_event_queue;
 std::queue<switch_board_n::protokey_event_t> protokey_event_queue;
 
 pin_interface_n::PinInterface pin_interface;
@@ -59,8 +59,8 @@ void setup() {
 void loop() {
     pin_interface.update(switch_event_queue);
     while (!switch_event_queue.empty()) {
-        switch_event_n::SwitchEvent e = switch_event_queue.front();
-        switch_board.process_switch_event(&e, protokey_event_queue);
+        switch_event_n::SwitchEvent* e = switch_event_queue.front();
+        switch_board.process_switch_event(e, protokey_event_queue);
         switch_event_queue.pop();
     }
     if (!switch_event_queue.empty()) {
