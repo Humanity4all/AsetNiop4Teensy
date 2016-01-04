@@ -27,7 +27,7 @@ void PinInterface::init_pins() {
     }
 }
 
-void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event_queue) {
+void PinInterface::update(std::queue<switch_event_n::SwitchEvent*> & switch_event_queue) {
     /*
      * Caveat: priority queues probably allocate memory dynamically.
      * This is not a good idea to do in the loop() part of arduino.
@@ -92,7 +92,9 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent> & switch_event
                  *
                  * We fixed it by declaring the missing functions in global...
                  */
-                switch_event_queue.emplace(lastSwitchState, new_switch_state);
+                // switch_event_queue.emplace(lastSwitchState, new_switch_state);
+                switch_event_queue.push(new switch_event_n::SwitchEvent(
+                            lastSwitchState, new_switch_state));
                 // std::copy(
                 //    std::begin(new_switch_state),
                 //    std::end(new_switch_state),
