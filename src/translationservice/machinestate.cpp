@@ -158,6 +158,7 @@ void Layer::process_protokey_event(
             break;
         }
     }
+    delete protokey_event->switch_event;
 }
 
 } // namespace translation_service_n
