@@ -49,7 +49,7 @@ int SwitchEvent::count_active() {
 int SwitchEvent::get_active_switch(int n) {
     int nth = 0;
     for (int i = 0; i < N_SWITCHES; i++) {
-        if (effectiveSwitchState[i] == 1) {
+        if (effectiveSwitchState[i] == switch_state_t::PRESSED) {
             nth += 1;
             if (n == nth) {
                 return i;
