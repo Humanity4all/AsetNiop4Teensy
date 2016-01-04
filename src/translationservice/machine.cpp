@@ -40,21 +40,21 @@ void Machine::send_key(key_t key, switch_board_n::event_t event) {
         case key_t::K_B: {
             key_code = KEY_B;
             #ifdef DEBUG
-            Serial.println("translation_service: it's an B!");
+            Serial.println("translation_service: it's a B!");
             #endif
             break;
         }
         case key_t::K_C: {
             key_code = KEY_C;
             #ifdef DEBUG
-            Serial.println("translation_service: it's an C!");
+            Serial.println("translation_service: it's a C!");
             #endif
             break;
         }
         case key_t::K_D: {
             key_code = KEY_D;
             #ifdef DEBUG
-            Serial.println("translation_service: it's an D!");
+            Serial.println("translation_service: it's a D!");
             #endif
             break;
         }
@@ -86,15 +86,15 @@ void Machine::send_key(key_t key, switch_board_n::event_t event) {
     #endif
 
     if (event == switch_board_n::event_t::UP) {
-        Keyboard.release(key);
+        Keyboard.release(key_code);
         #ifdef DEBUG
         Serial.println("translation_service: release!");
         #endif
     } else if (event == switch_board_n::event_t::DOWN) {
+        Keyboard.press(key_code);
         #ifdef DEBUG
         Serial.println("translation_service: press!");
         #endif
-        Keyboard.press(key);
     } else if (event == switch_board_n::event_t::RESET) {
         #ifdef DEBUG
         Serial.println("translation_service: reset!");
