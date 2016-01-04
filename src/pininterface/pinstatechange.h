@@ -12,15 +12,15 @@ namespace pin_interface_n {
 
 class PinStateChange{
  public:
-    PinStateChange(int pin_number, switch_event_n::switch_state_t switch_state);
-    int pinNumber;
+    PinStateChange(uint8_t pin_number, switch_event_n::switch_state_t switch_state);
+    uint8_t pinNumber;
     switch_event_n::switch_state_t switchState;
 };
 
 struct pin_state_change_compare {
     bool operator()(const PinStateChange &p1, const PinStateChange &p2) const {
-        int vp1 = 0;
-        int vp2 = 0;
+        uint8_t vp1 = 0;
+        uint8_t vp2 = 0;
         if (p1.switchState == switch_event_n::switch_state_t::PRESSED) {
             vp1 = 1;
         }

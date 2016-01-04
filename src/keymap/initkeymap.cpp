@@ -5,7 +5,7 @@ Copyright 2016 Stichting Humanity4all
 #include "./initkeymap.h"
 
 namespace keymap_n {
-int get_address(int layer, int switch1, int switch2) {
+uint16_t get_address(uint8_t layer, uint8_t switch1, uint8_t switch2) {
     /*
      * calculate eeprom address
      */
@@ -79,7 +79,7 @@ void init_keymap() {
          * we've just read address 0 (the keymap version), so now
          * we start counting from 1.
          */
-        int address = 1;
+        uint16_t address = 1;
         while (keymap.available()) {
             // write to eeprom
             EEPROM.update(address, keymap.read());

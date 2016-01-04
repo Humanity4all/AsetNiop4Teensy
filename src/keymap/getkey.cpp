@@ -6,9 +6,9 @@ Copyright 2016 Stichting Humanity4all
 
 namespace keymap_n {
 
-translation_service_n::key_t get_key(int layer, int switch1, int switch2) {
+translation_service_n::key_t get_key(uint8_t layer, uint8_t switch1, uint8_t switch2) {
     // TODO kick watchdog if switch1 or switch2 >= N_SWITCHES
-    int address =
+    uint16_t address =
         layer * N_SWITCHES * N_SWITCHES +
         switch1 * N_SWITCHES +
         switch2 +

@@ -15,7 +15,7 @@ SwitchEvent::SwitchEvent(
      */
     // oldSwitchState = old_switch_state;
     // newSwitchState = new_switch_state;
-    for (int i=0; i < N_SWITCHES; i++) {
+    for (uint8_t i=0; i < N_SWITCHES; i++) {
         oldSwitchState[i] = old_switch_state[i];
         newSwitchState[i] = new_switch_state[i];
     }
@@ -36,9 +36,9 @@ void SwitchEvent::new_event(
     return_event = new SwitchEvent(newSwitchState, new_switch_state);
 }
 
-int SwitchEvent::count_active() {
-    int acc = 0;
-    for (int i = 0; i < N_SWITCHES; i++) {
+uint8_t SwitchEvent::count_active() {
+    uint8_t acc = 0;
+    for (uint8_t i = 0; i < N_SWITCHES; i++) {
         if (effectiveSwitchState[i] == switch_state_t::PRESSED) {
             acc += 1;
         }
@@ -46,9 +46,9 @@ int SwitchEvent::count_active() {
     return acc;
 }
 
-int SwitchEvent::get_active_switch(int n) {
-    int nth = 0;
-    for (int i = 0; i < N_SWITCHES; i++) {
+int8_t SwitchEvent::get_active_switch(uint8_t n) {
+    uint8_t nth = 0;
+    for (uint8_t i = 0; i < N_SWITCHES; i++) {
         #ifdef DEBUG
         debug_n::print_switch_state(effectiveSwitchState);
         Serial.println(effectiveSwitchState[i]);
@@ -67,8 +67,8 @@ int SwitchEvent::get_active_switch(int n) {
     return -1;
 }
 
-int SwitchEvent::state_diff() {
-    for (int i = 0; i < N_SWITCHES; i++) {
+int8_t SwitchEvent::state_diff() {
+    for (uint8_t i = 0; i < N_SWITCHES; i++) {
         if (
                 (oldSwitchState[i] == switch_state_t::PRESSED) ^
                 (newSwitchState[i] == switch_state_t::PRESSED)) {
@@ -82,7 +82,7 @@ SwitchEvent::~SwitchEvent() {
 }
 
 void SwitchEvent::update_effective_switch_state() {
-    for (int i = 0; i < N_SWITCHES; i++) {
+    for (uint8_t i = 0; i < N_SWITCHES; i++) {
         if (
                 oldSwitchState[i] == switch_state_t::PRESSED ||
                 newSwitchState[i] == switch_state_t::PRESSED) {

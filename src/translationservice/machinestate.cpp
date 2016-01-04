@@ -6,15 +6,15 @@ Copyright 2016 Stichting Humanity4all
 
 namespace translation_service_n {
 
-Layer::Layer(int layer) {
+Layer::Layer(uint8_t layer) {
     layerNumber = layer;
 }
 
 void Layer::process_protokey_event(
         Machine& machine,
         switch_board_n::protokey_event_t* protokey_event) {
-    int switch1;
-    int switch2;
+    uint8_t switch1;
+    uint8_t switch2;
     key_t key;
     /*
      * How many switches are active?
@@ -69,7 +69,7 @@ void Layer::process_protokey_event(
                 /* is_chord=True, event=DOWN */
                 // only send if this is a purely chorded switch
                 bool chorded = true;
-                for (int i = 0; i < N_SWITCHES; i++) {
+                for (uint8_t i = 0; i < N_SWITCHES; i++) {
                     if (keymap_n::get_key(layerNumber, switch1, i) == key_t::K_NOP) {
                         chorded = false;
                     }
@@ -88,7 +88,7 @@ void Layer::process_protokey_event(
                 /* is_chord=False, event=DOWN */
                 // only send if this is a non-chorded switch
                 bool non_chorded = true;
-                for (int i = 0; i < N_SWITCHES; i++) {
+                for (uint8_t i = 0; i < N_SWITCHES; i++) {
                     if (
                             i != switch1 &&
                             keymap_n::get_key(layerNumber, switch1, i) != key_t::K_NOP) {

@@ -24,9 +24,9 @@ class SwitchEvent {
     void new_event(
         switch_state_t new_switch_state[N_SWITCHES],
         SwitchEvent* return_event);
-    int count_active();
-    int get_active_switch(int n=1);
-    int state_diff();
+    uint8_t count_active();
+    int8_t get_active_switch(uint8_t n=1);
+    int8_t state_diff();
     ~SwitchEvent();
     /* State of the changed switch */
     switch_state_t switch_state;

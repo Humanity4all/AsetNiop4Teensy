@@ -18,12 +18,12 @@ class Machine;
 
 class Layer {
  public:
-    explicit Layer(int layer);
+    explicit Layer(uint8_t layer);
     void process_protokey_event(
         Machine& machine,
         switch_board_n::protokey_event_t* protokey_event);
  private:
-    int layerNumber;
+    uint8_t layerNumber;
 };
 
 } // namespace translation_service_n

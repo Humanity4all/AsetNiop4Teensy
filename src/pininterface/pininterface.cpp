@@ -9,7 +9,7 @@ Copyright 2015 Stichting Humanity4all
 namespace pin_interface_n {
 
 PinInterface::PinInterface() {
-    for (int i=0; i < N_SWITCHES; i++) {
+    for (uint8_t i=0; i < N_SWITCHES; i++) {
         lastSwitchState[i] = switch_event_n::switch_state_t::RELEASED;
         debouncedSwitches[i] = (Bounce *)malloc(sizeof(Bounce));
         *debouncedSwitches[i] = Bounce();
@@ -19,8 +19,8 @@ PinInterface::PinInterface() {
 void PinInterface::init_pins() {
     // for debug purposes
     // pinMode(LED_PIN, OUTPUT);
-    int pins_to_use[] = { SWITCH_PINS };
-    for (int i=0; i < N_SWITCHES; i++) {
+    uint8_t pins_to_use[] = { SWITCH_PINS };
+    for (uint8_t i=0; i < N_SWITCHES; i++) {
         pinMode(pins_to_use[i], INPUT_PULLUP);
         debouncedSwitches[i]->interval(10);
         debouncedSwitches[i]->attach(pins_to_use[i]);
@@ -37,7 +37,7 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent*> & switch_even
         PinStateChange,
         std::vector<PinStateChange>,
         pin_state_change_compare> pin_change_queue;
-    for (int i=0; i < N_SWITCHES; i++) {
+    for (uint8_t i=0; i < N_SWITCHES; i++) {
         if (debouncedSwitches[i]->update()) {
             if (debouncedSwitches[i]->read() == 0) {
                 /* pressed */
@@ -111,7 +111,7 @@ void PinInterface::update(std::queue<switch_event_n::SwitchEvent*> & switch_even
 }
 
 PinInterface::~PinInterface() {
-    for (int i = 0; i < N_SWITCHES; i++) {
+    for (uint8_t i = 0; i < N_SWITCHES; i++) {
         delete debouncedSwitches[i];
     }
 }
@@ -119,7 +119,7 @@ PinInterface::~PinInterface() {
 void PinInterface::copy(
         switch_event_n::switch_state_t new_switch_state[N_SWITCHES],
         bool old_to_new) {
-    for (int i = 0; i < N_SWITCHES; i++) {
+    for (uint8_t i = 0; i < N_SWITCHES; i++) {
         if (old_to_new) {
             new_switch_state[i] = lastSwitchState[i];
         } else {
