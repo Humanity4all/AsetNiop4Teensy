@@ -32,26 +32,44 @@ void Machine::send_key(key_t key, switch_board_n::event_t event) {
     switch (key) {
         case key_t::K_A: {
             key_code = KEY_A;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an A!");
+            #endif
             break;
         }
         case key_t::K_B: {
             key_code = KEY_B;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an B!");
+            #endif
             break;
         }
         case key_t::K_C: {
             key_code = KEY_C;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an C!");
+            #endif
             break;
         }
         case key_t::K_D: {
             key_code = KEY_D;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an D!");
+            #endif
             break;
         }
         case key_t::K_E: {
             key_code = KEY_E;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an E!");
+            #endif
             break;
         }
         case key_t::K_F: {
             key_code = KEY_F;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an F!");
+            #endif
             break;
         }
         default: {
