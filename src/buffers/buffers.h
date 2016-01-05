@@ -5,6 +5,8 @@ Copyright 2016 Stichting Humanity4all
 #ifndef SRC_BUFFERS_BUFFERS_H_
 #define SRC_BUFFERS_BUFFERS_H_
 
+#include "Arduino.h"
+
 #include "../globals.h"
 #include "../pininterface/pinstatechange.h"
 #include "../switchevent/switchevent.h"

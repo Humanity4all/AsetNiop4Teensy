@@ -15,6 +15,11 @@ pin_interface_n::PinStateChange* PinStateChangeBuffer::get_free() {
     /*
      * TODO: kick watchdog! Ran out of buffer
      */
+    #ifdef DEBUG
+    Serial.println("PinStateChangeBuffer ran out of space!");
+    #endif
+    // Better to overwrite the first event than to do random stuff...
+    return &eventBuffer[0];
 }
 
 void PinStateChangeBuffer::empty() {
@@ -34,6 +39,11 @@ switch_event_n::SwitchEvent* SwitchEventBuffer::get_free() {
     /*
      * TODO: kick watchdog! Ran out of buffer
      */
+    #ifdef DEBUG
+    Serial.println("SwitchEventBuffer ran out of space!");
+    #endif
+    // Better to overwrite the first event than to do random stuff...
+    return &eventBuffer[0];
 }
 
 void SwitchEventBuffer::empty() {
@@ -53,6 +63,11 @@ switch_board_n::protokey_event_t* ProtokeyEventBuffer::get_free() {
     /*
      * TODO: kick watchdog! Ran out of buffer
      */
+    #ifdef DEBUG
+    Serial.println("ProtoKeyEventBuffer ran out of space!");
+    #endif
+    // Better to overwrite the first event than to do random stuff...
+    return &eventBuffer[0];
 }
 
 void ProtokeyEventBuffer::empty() {
