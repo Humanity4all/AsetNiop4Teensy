@@ -6,6 +6,7 @@ Copyright 2016 Stichting Humanity4all
 #define SRC_BUFFERS_BUFFERS_H_
 
 #include "../globals.h"
+#include "../pininterface/pinstatechange.h"
 #include "../switchevent/switchevent.h"
 #include "../switchboard/typedefs.h"
 
@@ -14,6 +15,13 @@ namespace buffers_n {
 /*
  * Buffers, to prevent memory fragmentation
  */
+
+class PinStateChangeBuffer {
+ public:
+    pin_interface_n::PinStateChange eventBuffer[N_SWITCHES];
+    pin_interface_n::PinStateChange* get_free();
+    void empty();
+};
 
 class SwitchEventBuffer {
  public:

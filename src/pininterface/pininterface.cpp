@@ -30,22 +30,16 @@ void PinInterface::init_pins() {
 void PinInterface::update(
         buffers_n::SwitchEventBuffer & switch_event_buffer,
         std::queue<switch_event_n::SwitchEvent*> & switch_event_queue) {
-    /*
-     * Caveat: priority queues probably allocate memory dynamically.
-     * This is not a good idea to do in the loop() part of arduino.
-     * If we experience memory problems, this might be the cause.
-     */
-    std::priority_queue<
-        PinStateChange,
-        std::vector<PinStateChange>,
-        pin_state_change_compare> pin_change_queue;
     for (uint8_t i=0; i < N_SWITCHES; i++) {
         if (debouncedSwitches[i]->update()) {
+            PinStateChange* tmp_event;
+            tmp_event = pinStateChangeBuffer.get_free();
             if (debouncedSwitches[i]->read() == 0) {
                 /* pressed */
-                pin_change_queue.emplace(
+                *tmp_event = PinStateChange(
                     i,
                     switch_event_n::switch_state_t::PRESSED);
+                pinStateChangeQueue.push(tmp_event);
                 #ifdef DEBUG
                   Serial.print("pininterface.cpp: Pressed switch ");
                   Serial.println(i);
@@ -53,9 +47,10 @@ void PinInterface::update(
                 // digitalWrite(LED_PIN, HIGH);
             } else {
                 /* released */
-                pin_change_queue.emplace(
+                *tmp_event = PinStateChange(
                     i,
                     switch_event_n::switch_state_t::RELEASED);
+                pinStateChangeQueue.push(tmp_event);
                 #ifdef DEBUG
                   Serial.print("pininterface.cpp: Released switch ");
                   Serial.println(i);
@@ -63,8 +58,8 @@ void PinInterface::update(
                 // digitalWrite(LED_PIN, LOW);
             }
 
-            while (!pin_change_queue.empty()) {
-                PinStateChange p = pin_change_queue.top();
+            while (!pinStateChangeQueue.empty()) {
+                PinStateChange* p = pinStateChangeQueue.top();
                 #ifdef DEBUG
                   Serial.println("pininterface.cpp: Detected pinstatechange event");
                 #endif
@@ -74,7 +69,7 @@ void PinInterface::update(
                 //    std::end(lastSwitchState),
                 //    std::begin(new_switch_state));
                 this->copy(new_switch_state, true);
-                new_switch_state[p.pinNumber] = p.switchState;
+                new_switch_state[p->pinNumber] = p->switchState;
                 #ifdef DEBUG
                   Serial.print("pininterface.cpp: old switch state: ");
                   debug_n::print_switch_state(lastSwitchState);
@@ -108,8 +103,9 @@ void PinInterface::update(
                   Serial.print("pininterface.cpp: Updated old switch state: ");
                   debug_n::print_switch_state(lastSwitchState);
                 #endif
-                pin_change_queue.pop();
+                pinStateChangeQueue.pop();
             }
+            pinStateChangeBuffer.empty();
         }
     }
 }
