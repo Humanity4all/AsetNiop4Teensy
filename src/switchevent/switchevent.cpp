@@ -5,9 +5,14 @@ Copyright Stichting Humanity4all 2015
 
 namespace switch_event_n {
 
+SwitchEvent::SwitchEvent() {
+    isActive = false;
+}
+
 SwitchEvent::SwitchEvent(
         switch_state_t old_switch_state[N_SWITCHES],
         switch_state_t new_switch_state[N_SWITCHES]) {
+    isActive = true;
     /*
      * a really ugly solution for copying over the data
      * but my experience with pointers and stuff is too
@@ -79,6 +84,7 @@ int8_t SwitchEvent::state_diff() {
 }
 
 SwitchEvent::~SwitchEvent() {
+    isActive = false;
 }
 
 void SwitchEvent::update_effective_switch_state() {

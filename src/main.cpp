@@ -19,6 +19,7 @@ Copyright 2015 Stichting Humanity4all
 #include <queue>
 
 #include "./globals.h"
+#include "./buffers/buffers.h"
 #include "./keymap/initkeymap.h"
 #include "./switchboard/machine.h"
 #include "./switchboard/typedefs.h"
@@ -33,9 +34,12 @@ extern "C" {
     int _write() { return -1; }
 }
 
+buffers_n::SwitchEventBuffer switch_event_buffer;
+buffers_n::ProtokeyEventBuffer protokey_event_buffer;
+
 Bounce debugkey;
 std::queue<switch_event_n::SwitchEvent*> switch_event_queue;
-std::queue<switch_board_n::protokey_event_t> protokey_event_queue;
+std::queue<switch_board_n::protokey_event_t*> protokey_event_queue;
 
 pin_interface_n::PinInterface pin_interface;
 switch_board_n::Machine switch_board;
@@ -45,7 +49,7 @@ void setup() {
     #ifdef DEBUG
       Serial.begin(38400);
     #endif
-    
+
     keymap_n::init_keymap();
 
     pin_interface.init_pins();
@@ -57,10 +61,10 @@ void setup() {
 }
 
 void loop() {
-    pin_interface.update(switch_event_queue);
+    pin_interface.update(switch_event_buffer, switch_event_queue);
     while (!switch_event_queue.empty()) {
         switch_event_n::SwitchEvent* e = switch_event_queue.front();
-        switch_board.process_switch_event(e, protokey_event_queue);
+        switch_board.process_switch_event(e, protokey_event_buffer, protokey_event_queue);
         switch_event_queue.pop();
     }
     if (!switch_event_queue.empty()) {
@@ -73,10 +77,17 @@ void loop() {
      * Now loop through the protokey event queue
      */
     while (!protokey_event_queue.empty()) {
-        switch_board_n::protokey_event_t e = protokey_event_queue.front();
-        translation_service.process_protokey_event(&e);
+        switch_board_n::protokey_event_t* e = protokey_event_queue.front();
+        translation_service.process_protokey_event(e);
         protokey_event_queue.pop();
     }
+
+    /*
+     * empty event buffers
+     * No event should carry over to the next loop
+     */
+    switch_event_buffer.empty();
+    protokey_event_buffer.empty();
 
     /*
      * Mouse logic

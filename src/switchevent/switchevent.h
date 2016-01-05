@@ -18,6 +18,7 @@ namespace switch_event_n {
 
 class SwitchEvent {
  public:
+    SwitchEvent();
     SwitchEvent(
         switch_state_t new_switch_state[N_SWITCHES],
         switch_state_t old_switch_state[N_SWITCHES]);
@@ -30,6 +31,7 @@ class SwitchEvent {
     ~SwitchEvent();
     /* State of the changed switch */
     switch_state_t switch_state;
+    bool isActive;
  private:
     void update_effective_switch_state();
     switch_state_t oldSwitchState[N_SWITCHES];

@@ -20,10 +20,16 @@ typedef struct protokey_event_t {
     event_t event;
     switch_event_n::SwitchEvent* switch_event;
     bool is_chord;
+    bool is_active;
+    protokey_event_t() {
+        is_active = false;
+    }
     protokey_event_t(event_t event, switch_event_n::SwitchEvent* switch_event, bool is_chord) :
-        event(event), switch_event(switch_event), is_chord(is_chord) {}
+        event(event), switch_event(switch_event), is_chord(is_chord) {
+        is_active = true;
+    }
     ~protokey_event_t() {
-        delete switch_event;
+        is_active = false;
     }
 } protokey_event_t;
 
