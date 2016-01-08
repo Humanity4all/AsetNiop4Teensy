@@ -12,13 +12,19 @@ Machine::Machine() {
 
 void Machine::process_protokey_event(
         switch_board_n::protokey_event_t* protokey_event) {
-    currentState->process_protokey_event(*this, protokey_event);
+    currentState->process_protokey_event(this, protokey_event);
 }
 
-void Machine::change_state(Layer* new_state) {
-    Layer* oldState = currentState;
-    currentState = new_state;
-    delete oldState;
+void Machine::change_state(int layer) {
+    int buffer_index;
+    if (stateBuffer[0].isActive) {
+        buffer_index = 1;
+        stateBuffer[0].~Layer();
+    } else {
+        buffer_index = 0;
+        stateBuffer[1].~Layer();
+    }
+    stateBuffer[buffer_index] = Layer(layer);
 }
 
 void Machine::send_key(key_t key, switch_board_n::event_t event) {

@@ -6,12 +6,21 @@ Copyright 2016 Stichting Humanity4all
 
 namespace translation_service_n {
 
+Layer::Layer() {
+    isActive = false;
+}
+
 Layer::Layer(uint8_t layer) {
+    isActive = true;
     layerNumber = layer;
 }
 
+Layer::~Layer() {
+    isActive = false;
+}
+
 void Layer::process_protokey_event(
-        Machine& machine,
+        Machine* machine,
         switch_board_n::protokey_event_t* protokey_event) {
     uint8_t switch1;
     uint8_t switch2;
@@ -111,7 +120,7 @@ void Layer::process_protokey_event(
                     break;
                 }
             }
-            machine.send_key(key, protokey_event->event);
+            machine->send_key(key, protokey_event->event);
             break;
         }
         case 2: {
@@ -161,14 +170,14 @@ void Layer::process_protokey_event(
             key_t key_2_first = keymap_n::get_key(layerNumber, switch2, switch1);
             if (key_1_first == key_2_first) {
                 // This is easy, it's a chord!
-                machine.send_key(key_1_first, protokey_event->event);
+                machine->send_key(key_1_first, protokey_event->event);
                 break;
             }
             /*
              * Hybrid behavior, act as if switch2 was pressed alone
              */
             key = keymap_n::get_key(layerNumber, switch2, switch2);
-            machine.send_key(key, protokey_event->event);
+            machine->send_key(key, protokey_event->event);
             break;
         }
         default: {
@@ -185,7 +194,7 @@ void Layer::process_protokey_event(
                 switch1 = (uint8_t) tmp;
             }
             key = keymap_n::get_key(layerNumber, switch1, switch1);
-            machine.send_key(key, protokey_event->event);
+            machine->send_key(key, protokey_event->event);
             break;
         }
     }
