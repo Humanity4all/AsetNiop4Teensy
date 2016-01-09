@@ -270,6 +270,10 @@ void TranslationService::set_modifier(key_t key) {
 
 void TranslationService::send_modifiers(bool tmp_shift) {
     uint16_t mods = 0;
+    #ifdef DEBUG
+    Serial.print("translation_service: modifier state in send is ");
+    Serial.println(modState[I_SHIFT]);
+    #endif
     // shifts
     if (modState[I_SHIFT] == modifier_t::ACTIVE or modState[I_SHIFT] == modifier_t::LAZY or tmp_shift) {
         mods = mods | MODIFIERKEY_SHIFT;
