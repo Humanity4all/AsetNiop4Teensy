@@ -11,8 +11,6 @@ namespace pin_interface_n {
 PinInterface::PinInterface() {
     for (uint8_t i=0; i < N_SWITCHES; i++) {
         lastSwitchState[i] = switch_event_n::switch_state_t::RELEASED;
-        debouncedSwitches[i] = (Bounce *)malloc(sizeof(Bounce));
-        *debouncedSwitches[i] = Bounce();
     }
 }
 
@@ -22,8 +20,8 @@ void PinInterface::init_pins() {
     uint8_t pins_to_use[] = { SWITCH_PINS };
     for (uint8_t i=0; i < N_SWITCHES; i++) {
         pinMode(pins_to_use[i], INPUT_PULLUP);
-        debouncedSwitches[i]->interval(10);
-        debouncedSwitches[i]->attach(pins_to_use[i]);
+        debouncedSwitches[i].interval(10);
+        debouncedSwitches[i].attach(pins_to_use[i]);
     }
 }
 
@@ -31,10 +29,10 @@ void PinInterface::update(
         buffers_n::SwitchEventBuffer & switch_event_buffer,
         std::queue<switch_event_n::SwitchEvent*> & switch_event_queue) {
     for (uint8_t i=0; i < N_SWITCHES; i++) {
-        if (debouncedSwitches[i]->update()) {
+        if (debouncedSwitches[i].update()) {
             PinStateChange* tmp_event;
             tmp_event = pinStateChangeBuffer.get_free();
-            if (debouncedSwitches[i]->read() == 0) {
+            if (debouncedSwitches[i].read() == 0) {
                 /* pressed */
                 *tmp_event = PinStateChange(
                     i,
@@ -111,9 +109,6 @@ void PinInterface::update(
 }
 
 PinInterface::~PinInterface() {
-    for (uint8_t i = 0; i < N_SWITCHES; i++) {
-        delete debouncedSwitches[i];
-    }
 }
 
 void PinInterface::copy(

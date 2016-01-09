@@ -34,7 +34,7 @@ class PinInterface {
     void copy(
         switch_event_n::switch_state_t new_switch_state[N_SWITCHES],
         bool old_to_new=false);
-    Bounce * debouncedSwitches[N_SWITCHES];
+    Bounce debouncedSwitches[N_SWITCHES];
     switch_event_n::switch_state_t lastSwitchState[N_SWITCHES];
     buffers_n::PinStateChangeBuffer pinStateChangeBuffer;
     std::priority_queue<
