@@ -346,6 +346,7 @@ void TranslationService::send_key(key_t key, switch_board_n::event_t event) {
     #endif
     uint16_t key_code;
     bool is_modifier = false;
+    bool is_layer = false;
     switch (key) {
         case key_t::K_A: {
             key_code = KEY_A;
@@ -389,10 +390,166 @@ void TranslationService::send_key(key_t key, switch_board_n::event_t event) {
             #endif
             break;
         }
+        case key_t::K_G: {
+            key_code = KEY_G;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a G!");
+            #endif
+            break;
+        }
+        case key_t::K_H: {
+            key_code = KEY_H;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an H!");
+            #endif
+            break;
+        }
+        case key_t::K_I: {
+            key_code = KEY_I;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an I!");
+            #endif
+            break;
+        }
+        case key_t::K_J: {
+            key_code = KEY_J;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a J!");
+            #endif
+            break;
+        }
+        case key_t::K_K: {
+            key_code = KEY_K;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a K!");
+            #endif
+            break;
+        }
+        case key_t::K_L: {
+            key_code = KEY_L;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an L!");
+            #endif
+            break;
+        }
+        case key_t::K_M: {
+            key_code = KEY_M;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an M!");
+            #endif
+            break;
+        }
+        case key_t::K_N: {
+            key_code = KEY_N;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an N!");
+            #endif
+            break;
+        }
+        case key_t::K_O: {
+            key_code = KEY_O;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an O!");
+            #endif
+            break;
+        }
+        case key_t::K_P: {
+            key_code = KEY_P;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a P!");
+            #endif
+            break;
+        }
+        case key_t::K_Q: {
+            key_code = KEY_Q;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a Q!");
+            #endif
+            break;
+        }
+        case key_t::K_R: {
+            key_code = KEY_R;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an R!");
+            #endif
+            break;
+        }
+        case key_t::K_S: {
+            key_code = KEY_S;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an S!");
+            #endif
+            break;
+        }
+        case key_t::K_T: {
+            key_code = KEY_T;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a T!");
+            #endif
+            break;
+        }
+        case key_t::K_U: {
+            key_code = KEY_U;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a U!");
+            #endif
+            break;
+        }
+        case key_t::K_V: {
+            key_code = KEY_V;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a V!");
+            #endif
+            break;
+        }
+        case key_t::K_W: {
+            key_code = KEY_W;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a W!");
+            #endif
+            break;
+        }
+        case key_t::K_X: {
+            key_code = KEY_X;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's an X!");
+            #endif
+            break;
+        }
+        case key_t::K_Y: {
+            key_code = KEY_Y;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a Y!");
+            #endif
+            break;
+        }
+        case key_t::K_Z: {
+            key_code = KEY_Z;
+            #ifdef DEBUG
+            Serial.println("translation_service: it's a Z!");
+            #endif
+            break;
+        }
         case key_t::K_SHIFT: {
             is_modifier = true;
             #ifdef DEBUG
             Serial.println("translation_service: it's a SHIFT!");
+            #endif
+            break;
+        }
+        case key_t::K_LAYER_0: {
+            is_layer = true;
+            layerNumber = 0;
+            #ifdef DEBUG
+            Serial.println("translation_service: switch to layer 0");
+            #endif
+            break;
+        }
+        case key_t::K_LAYER_1: {
+            is_layer = true;
+            layerNumber = 1;
+            #ifdef DEBUG
+            Serial.println("translation_service: switch to layer 1");
             #endif
             break;
         }
@@ -408,7 +565,9 @@ void TranslationService::send_key(key_t key, switch_board_n::event_t event) {
     Serial.print("translation_service: key code: ");
     Serial.println(key_code);
     #endif
-    if (event == switch_board_n::event_t::UP and !is_modifier) {
+    if (is_layer) {
+        // do nothing - we already switched layers
+    } else if (event == switch_board_n::event_t::UP and !is_modifier) {
         // Keyboard.release(key_code);
         Keyboard.set_key1(0);
         #ifdef DEBUG

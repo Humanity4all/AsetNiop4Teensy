@@ -42,9 +42,11 @@ void init_keymap() {
         EEPROM.update(EEPROM_KEYMAP_VERSION, 0);
 
         using translation_service_n::key_t;
+
+        // Layer 0
         // First, handle the single switch presses
         EEPROM.update(get_address(0, 0, 0), (uint8_t)key_t::K_SHIFT);
-        EEPROM.update(get_address(0, 1, 1), (uint8_t)key_t::K_B);
+        EEPROM.update(get_address(0, 1, 1), (uint8_t)key_t::K_LAYER_1);
         EEPROM.update(get_address(0, 2, 2), (uint8_t)key_t::K_C);
 
         // Now the chords, let's make this a purely chorded layer
@@ -54,6 +56,22 @@ void init_keymap() {
         EEPROM.update(get_address(0, 2, 0), (uint8_t)key_t::K_E);
         EEPROM.update(get_address(0, 1, 2), (uint8_t)key_t::K_F);
         EEPROM.update(get_address(0, 2, 1), (uint8_t)key_t::K_F);
+
+        // Layer 1
+        // First, handle the single switch presses
+        EEPROM.update(get_address(0, 0, 0), (uint8_t)key_t::K_SHIFT);
+        EEPROM.update(get_address(0, 1, 1), (uint8_t)key_t::K_LAYER_0);
+        EEPROM.update(get_address(0, 2, 2), (uint8_t)key_t::K_A);
+
+        // Now the chords, let's make this a purely chorded layer
+        EEPROM.update(get_address(0, 0, 1), (uint8_t)key_t::K_B);
+        EEPROM.update(get_address(0, 1, 0), (uint8_t)key_t::K_B);
+        EEPROM.update(get_address(0, 0, 2), (uint8_t)key_t::K_G);
+        EEPROM.update(get_address(0, 2, 0), (uint8_t)key_t::K_G);
+        EEPROM.update(get_address(0, 1, 2), (uint8_t)key_t::K_H);
+        EEPROM.update(get_address(0, 2, 1), (uint8_t)key_t::K_H);
+
+
 
         #endif
     }
