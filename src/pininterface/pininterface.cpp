@@ -27,7 +27,7 @@ void PinInterface::init_pins() {
 
 void PinInterface::update(
         buffers_n::SwitchEventBuffer & switch_event_buffer,
-        std::queue<switch_event_n::SwitchEvent*> & switch_event_queue) {
+        queue_n::SwitchEventQueue & switch_event_queue) {
     for (uint8_t i=0; i < N_SWITCHES; i++) {
         if (debouncedSwitches[i].update()) {
             PinStateChange* tmp_event;

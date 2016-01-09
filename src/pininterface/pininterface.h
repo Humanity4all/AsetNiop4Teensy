@@ -12,6 +12,7 @@ Copyright 2015 Stichting Humanity4all
 #include <cstdlib>
 
 #include "../globals.h"
+#include "../queue/queue.h"
 #include "../buffers/buffers.h"
 #ifdef DEBUG
   #include "../printswitchstate.h"
@@ -28,7 +29,7 @@ class PinInterface {
     void init_pins();
     void update(
         buffers_n::SwitchEventBuffer & switch_event_buffer,
-        std::queue<switch_event_n::SwitchEvent*> & switch_event_queue);
+        queue_n::SwitchEventQueue & switch_event_queue);
     ~PinInterface();
  private:
     void copy(

@@ -20,6 +20,7 @@ Copyright 2015 Stichting Humanity4all
 
 #include "./globals.h"
 #include "./buffers/buffers.h"
+#include "./queue/queue.h"
 #include "./keymap/initkeymap.h"
 #include "./switchboard/machine.h"
 #include "./switchboard/typedefs.h"
@@ -38,7 +39,7 @@ buffers_n::SwitchEventBuffer switch_event_buffer;
 buffers_n::ProtokeyEventBuffer protokey_event_buffer;
 
 Bounce debugkey;
-std::queue<switch_event_n::SwitchEvent*> switch_event_queue;
+queue_n::SwitchEventQueue switch_event_queue;
 std::queue<switch_board_n::protokey_event_t*> protokey_event_queue;
 
 pin_interface_n::PinInterface pin_interface;
@@ -62,12 +63,11 @@ void setup() {
 
 void loop() {
     pin_interface.update(switch_event_buffer, switch_event_queue);
-    while (!switch_event_queue.empty()) {
-        switch_event_n::SwitchEvent* e = switch_event_queue.front();
+    while (!switch_event_queue.isEmpty()) {
+        switch_event_n::SwitchEvent* e = switch_event_queue.pop();
         switch_board.process_switch_event(e, protokey_event_buffer, protokey_event_queue);
-        switch_event_queue.pop();
     }
-    if (!switch_event_queue.empty()) {
+    if (!switch_event_queue.isEmpty()) {
         #ifdef DEBUG
           Serial.println("main.cpp: Error, switch_event_queue not empty!");
         #endif
