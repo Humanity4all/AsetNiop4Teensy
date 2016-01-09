@@ -609,7 +609,7 @@ void TranslationService::send_key(key_t key, switch_board_n::event_t event) {
         #endif
     }
     Keyboard.send_now();
-    if (!is_modifier) {
+    if (!is_modifier and !is_layer) {
         #ifdef DEBUG
         Serial.println("translation_service: use up modifier");
         #endif
