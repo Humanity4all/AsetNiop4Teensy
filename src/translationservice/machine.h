@@ -10,6 +10,7 @@ Copyright 2015 Stichting Humanity4all
 #include "../globals.h"
 #include "./typedefs.h"
 #include "./machinestate.h"
+#include "../buffers/buffers.h"
 #include "../switchboard/typedefs.h"
 #include "../keymap/getkey.h"
 
@@ -19,17 +20,17 @@ class Layer;
 
 class Machine {
  public:
-    Machine();
+    explicit Machine(buffers_n::LayerBuffer* state_buffer);
     void process_protokey_event(
         switch_board_n::protokey_event_t* protokey_event);
-    void change_state(int layer);
-    void send_key(key_t key, switch_board_n::event_t event);
+    void change_state(uint8_t layer);
     void set_modifier(key_t key);
     int* use_modifiers();
  private:
     Layer* currentState;
-    Layer stateBuffer[2];
+    buffers_n::LayerBuffer* stateBuffer;
 };
+
 
 } // namespace translation_service_n
 

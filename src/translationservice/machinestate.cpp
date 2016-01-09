@@ -20,7 +20,6 @@ Layer::~Layer() {
 }
 
 void Layer::process_protokey_event(
-        Machine* machine,
         switch_board_n::protokey_event_t* protokey_event) {
     uint8_t switch1;
     uint8_t switch2;
@@ -120,7 +119,7 @@ void Layer::process_protokey_event(
                     break;
                 }
             }
-            machine->send_key(key, protokey_event->event);
+            send_key(key, protokey_event->event);
             break;
         }
         case 2: {
@@ -170,20 +169,20 @@ void Layer::process_protokey_event(
             key_t key_2_first = keymap_n::get_key(layerNumber, switch2, switch1);
             if (key_1_first == key_2_first) {
                 // This is easy, it's a chord!
-                machine->send_key(key_1_first, protokey_event->event);
+                send_key(key_1_first, protokey_event->event);
                 break;
             }
             /*
              * Hybrid behavior, act as if switch2 was pressed alone
              */
             key = keymap_n::get_key(layerNumber, switch2, switch2);
-            machine->send_key(key, protokey_event->event);
+            send_key(key, protokey_event->event);
             break;
         }
         default: {
             /* 3 or more switches are active.
              * We either need to reset, or act as if these are non-chorded
-             * keys. Since machine.send_key will check for reset,
+             * keys. Since send_key will check for reset,
              * we can act as if there's just a single switch active.
              */
             tmp = protokey_event->switch_event->state_diff();
@@ -194,7 +193,7 @@ void Layer::process_protokey_event(
                 switch1 = (uint8_t) tmp;
             }
             key = keymap_n::get_key(layerNumber, switch1, switch1);
-            machine->send_key(key, protokey_event->event);
+            send_key(key, protokey_event->event);
             break;
         }
     }

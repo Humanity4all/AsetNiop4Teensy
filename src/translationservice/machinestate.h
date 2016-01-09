@@ -8,13 +8,12 @@ Copyright 2015 Stichting Humanity4all
 #include "Arduino.h"
 
 #include "../globals.h"
-#include "./machine.h"
 #include "./typedefs.h"
+#include "./sendkey.h"
 #include "../switchboard/typedefs.h"
+#include "../keymap/getkey.h"
 
 namespace translation_service_n {
-
-class Machine;
 
 class Layer {
  public:
@@ -23,7 +22,6 @@ class Layer {
      bool isActive;
     explicit Layer(uint8_t layer);
     void process_protokey_event(
-        Machine* machine,
         switch_board_n::protokey_event_t* protokey_event);
  private:
     uint8_t layerNumber;

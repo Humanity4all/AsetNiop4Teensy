@@ -78,4 +78,18 @@ void ProtokeyEventBuffer::empty() {
     }
 }
 
+translation_service_n::Layer* LayerBuffer::new_layer(uint8_t layer) {
+    uint8_t buffer_index;
+    if (layerBuffer[0].isActive) {
+        buffer_index = 1;
+        layerBuffer[0].~Layer();
+    } else {
+        buffer_index = 0;
+        layerBuffer[1].~Layer();
+    }
+    layerBuffer[buffer_index] = translation_service_n::Layer(layer);
+    return &layerBuffer[buffer_index];
+}
+
+
 } // namespace buffers_n
