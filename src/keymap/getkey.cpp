@@ -16,7 +16,9 @@ translation_service_n::key_t get_key(uint8_t layer, uint8_t switch1, uint8_t swi
     using translation_service_n::key_t;
     key_t key = (key_t)EEPROM.read(address);
     #ifdef DEBUG
-    Serial.print("get_key: address=");
+    Serial.print("get_key: layer=");
+    Serial.print(layer);
+    Serial.print(", address=");
     Serial.print(address);
     Serial.print(", key=");
     Serial.print(key);
