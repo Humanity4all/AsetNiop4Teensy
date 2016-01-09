@@ -450,6 +450,9 @@ void TranslationService::send_key(key_t key, switch_board_n::event_t event) {
     }
     Keyboard.send_now();
     if (!is_modifier) {
+        #ifdef DEBUG
+        Serial.println("translation_service: use up modifier");
+        #endif
         use_modifiers();
     }
 }
