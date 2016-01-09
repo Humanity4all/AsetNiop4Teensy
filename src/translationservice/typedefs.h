@@ -90,6 +90,9 @@ typedef enum key_t {
     K_MEDIA_STOP, K_MEDIA_EJECT,
 } key_t;
 
+typedef enum modifier_t {
+    IDLE, ACTIVE, LAZY, TMP,
+} modifier_t;
 
 } // namespace translation_service_n
 
