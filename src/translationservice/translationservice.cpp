@@ -2,24 +2,15 @@
 Copyright 2016 Stichting Humanity4all
 */
 
-#include "./machinestate.h"
+#include "./translationservice.h"
 
 namespace translation_service_n {
 
-Layer::Layer() {
-    isActive = false;
+TranslationService::TranslationService() {
+    layerNumber = 0;
 }
 
-Layer::Layer(uint8_t layer) {
-    isActive = true;
-    layerNumber = layer;
-}
-
-Layer::~Layer() {
-    isActive = false;
-}
-
-void Layer::process_protokey_event(
+void TranslationService::process_protokey_event(
         switch_board_n::protokey_event_t* protokey_event) {
     uint8_t switch1;
     uint8_t switch2;
@@ -197,6 +188,12 @@ void Layer::process_protokey_event(
             break;
         }
     }
+}
+
+void TranslationService::set_modifier(key_t key) {
+}
+
+int* TranslationService::use_modifiers() {
 }
 
 } // namespace translation_service_n

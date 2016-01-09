@@ -25,7 +25,7 @@ Copyright 2015 Stichting Humanity4all
 #include "./switchboard/typedefs.h"
 #include "./switchevent/switchevent.h"
 #include "./pininterface/pininterface.h"
-#include "./translationservice/machine.h"
+#include "./translationservice/translationservice.h"
 
 
 extern "C" {
@@ -36,7 +36,6 @@ extern "C" {
 
 buffers_n::SwitchEventBuffer switch_event_buffer;
 buffers_n::ProtokeyEventBuffer protokey_event_buffer;
-buffers_n::LayerBuffer layer_buffer;
 
 Bounce debugkey;
 std::queue<switch_event_n::SwitchEvent*> switch_event_queue;
@@ -44,7 +43,7 @@ std::queue<switch_board_n::protokey_event_t*> protokey_event_queue;
 
 pin_interface_n::PinInterface pin_interface;
 switch_board_n::Machine switch_board;
-translation_service_n::Machine translation_service(&layer_buffer);
+translation_service_n::TranslationService translation_service;
 
 void setup() {
     #ifdef DEBUG

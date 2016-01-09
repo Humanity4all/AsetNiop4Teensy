@@ -11,7 +11,6 @@ Copyright 2016 Stichting Humanity4all
 #include "../pininterface/pinstatechange.h"
 #include "../switchevent/switchevent.h"
 #include "../switchboard/typedefs.h"
-#include "../translationservice/machinestate.h"
 
 namespace buffers_n {
 
@@ -31,12 +30,6 @@ class SwitchEventBuffer {
     switch_event_n::SwitchEvent eventBuffer[N_SWITCHES];
     switch_event_n::SwitchEvent* get_free();
     void empty();
-};
-
-class LayerBuffer {
- public:
-    translation_service_n::Layer layerBuffer[2];
-    translation_service_n::Layer* new_layer(uint8_t layer);
 };
 
 class ProtokeyEventBuffer {
