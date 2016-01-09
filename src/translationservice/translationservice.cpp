@@ -8,6 +8,9 @@ namespace translation_service_n {
 
 TranslationService::TranslationService() {
     layerNumber = 0;
+    for (uint8_t i = 0; i < NUM_MODIFIERS; i++) {
+        modState[i] = modifier_t::IDLE;
+    }
 }
 
 void TranslationService::process_protokey_event(
