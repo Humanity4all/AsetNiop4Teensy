@@ -263,7 +263,9 @@ void TranslationService::set_modifier(key_t key) {
     }
     #ifdef DEBUG
     Serial.print("translation_service: modifier state now: ");
-    Serial.println(modState[index]);
+    Serial.print(modState[index]);
+    Serial.print(" with index ");
+    Serial.println(index);
     #endif
     send_modifiers(false);
 }
@@ -272,7 +274,9 @@ void TranslationService::send_modifiers(bool tmp_shift) {
     uint16_t mods = 0;
     #ifdef DEBUG
     Serial.print("translation_service: modifier state in send is ");
-    Serial.println(modState[I_SHIFT]);
+    Serial.print(modState[I_SHIFT]);
+    Serial.print(" with index ");
+    Serial.println(I_SHIFT);
     #endif
     // shifts
     if (modState[I_SHIFT] == modifier_t::ACTIVE or modState[I_SHIFT] == modifier_t::LAZY or tmp_shift) {
