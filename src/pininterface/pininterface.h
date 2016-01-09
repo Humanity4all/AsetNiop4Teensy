@@ -17,7 +17,6 @@ Copyright 2015 Stichting Humanity4all
 #ifdef DEBUG
   #include "../printswitchstate.h"
 #endif
-#include "./pinstatechange.h"
 #include "../switchboard/machine.h"
 #include "../switchevent/switchevent.h"
 
@@ -37,11 +36,6 @@ class PinInterface {
         bool old_to_new=false);
     Bounce debouncedSwitches[N_SWITCHES];
     switch_event_n::switch_state_t lastSwitchState[N_SWITCHES];
-    buffers_n::PinStateChangeBuffer pinStateChangeBuffer;
-    std::priority_queue<
-        PinStateChange*,
-        std::vector<PinStateChange*>,
-        pin_state_change_compare> pinStateChangeQueue;
 };
 
 /*

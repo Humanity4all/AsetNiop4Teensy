@@ -6,30 +6,6 @@ Copyright 2016 Stichting Humanity4all
 
 namespace buffers_n {
 
-pin_interface_n::PinStateChange* PinStateChangeBuffer::get_free() {
-    for (uint8_t i = 0; i < N_SWITCHES; i++) {
-        if (!eventBuffer[i].isActive) {
-            return &eventBuffer[i];
-        }
-    }
-    /*
-     * TODO: kick watchdog! Ran out of buffer
-     */
-    #ifdef DEBUG
-    Serial.println("PinStateChangeBuffer ran out of space!");
-    #endif
-    // Better to overwrite the first event than to do random stuff...
-    return &eventBuffer[0];
-}
-
-void PinStateChangeBuffer::empty() {
-    for (uint8_t i = 0; i < N_SWITCHES; i++) {
-        if (eventBuffer[i].isActive) {
-            eventBuffer[i].~PinStateChange();
-        }
-    }
-}
-
 switch_event_n::SwitchEvent* SwitchEventBuffer::get_free() {
     for (uint8_t i = 0; i < N_SWITCHES; i++) {
         if (!eventBuffer[i].isActive) {
