@@ -27,13 +27,6 @@ Copyright 2015 Stichting Humanity4all
 #include "./pininterface/pininterface.h"
 #include "./translationservice/translationservice.h"
 
-
-extern "C" {
-    int _getpid() { return -1; }
-    int _kill(int pid, int sig) { return -1; }
-    int _write() { return -1; }
-}
-
 buffers_n::SwitchEventBuffer switch_event_buffer;
 buffers_n::ProtokeyEventBuffer protokey_event_buffer;
 

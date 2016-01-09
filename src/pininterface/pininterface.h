@@ -7,9 +7,6 @@ Copyright 2015 Stichting Humanity4all
 
 #include "Arduino.h"
 #include <Bounce2.h>
-#include <queue>
-#include <vector>
-#include <cstdlib>
 
 #include "../globals.h"
 #include "../queue/queue.h"

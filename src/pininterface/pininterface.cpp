@@ -2,8 +2,6 @@
 Copyright 2015 Stichting Humanity4all
 */
 
-#include <vector>
-#include <queue>
 #include "./pininterface.h"
 
 namespace pin_interface_n {
