@@ -198,48 +198,57 @@ void TranslationService::set_modifier(key_t key) {
     switch (key) {
         case key_t::K_SHIFT: {
             index = I_SHIFT;
+            break;
         }
         case key_t::K_SHIFT_L: {
             index = I_SHIFT_L;
+            break;
         }
         case key_t::K_SHIFT_R: {
             index = I_SHIFT_R;
+            break;
         }
         case key_t::K_CTRL: {
             index = I_CTRL;
+            break;
         }
         case key_t::K_CTRL_L: {
             index = I_CTRL_L;
+            break;
         }
         case key_t::K_CTRL_R: {
             index = I_CTRL_R;
+            break;
         }
         case key_t::K_ALT: {
             index = I_ALT;
+            break;
         }
         case key_t::K_ALT_L: {
             index = I_ALT_L;
+            break;
         }
         case key_t::K_ALT_R: {
             index = I_ALT_R;
+            break;
         }
         case key_t::K_GUI: {
             index = I_GUI;
+            break;
         }
         case key_t::K_GUI_L: {
             index = I_GUI_L;
+            break;
         }
         case key_t::K_GUI_R: {
             index = I_GUI_R;
+            break;
         }
         case key_t::K_CAPSLOCK: {
             index = I_CAPS_LOCK;
+            break;
         }
     }
-    #ifdef DEBUG
-    Serial.print("translation_service: modifier = ");
-    Serial.println(index);
-    #endif
     if (modState[index] == modifier_t::IDLE) {
         modState[index] = modifier_t::ACTIVE;
         #ifdef DEBUG
@@ -261,29 +270,14 @@ void TranslationService::set_modifier(key_t key) {
         Serial.println("translation_service: unknown modifier state");
         #endif
     }
-    #ifdef DEBUG
-    Serial.print("translation_service: modifier state now: ");
-    Serial.print(modState[index]);
-    Serial.print(" with index ");
-    Serial.println(index);
-    #endif
     send_modifiers(false);
 }
 
 void TranslationService::send_modifiers(bool tmp_shift) {
     uint16_t mods = 0;
-    #ifdef DEBUG
-    Serial.print("translation_service: modifier state in send is ");
-    Serial.print(modState[I_SHIFT]);
-    Serial.print(" with index ");
-    Serial.println(I_SHIFT);
-    #endif
     // shifts
-    if (modState[I_SHIFT] == modifier_t::ACTIVE or modState[I_SHIFT] == modifier_t::LAZY or tmp_shift) {
+    if (modState[I_SHIFT] != modifier_t::IDLE or tmp_shift) {
         mods = mods | MODIFIERKEY_SHIFT;
-        #ifdef DEBUG
-        Serial.println("translation_service: added shift to mods");
-        #endif
     }
     if (modState[I_SHIFT_L] != modifier_t::IDLE) {
         mods = mods | MODIFIERKEY_LEFT_SHIFT;
