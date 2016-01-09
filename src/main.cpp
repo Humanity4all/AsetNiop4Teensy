@@ -16,7 +16,6 @@ Copyright 2015 Stichting Humanity4all
 #define BOUNCE_LOCK_OUT
 #include <stdlib.h>
 #include <Bounce2.h>
-#include <queue>
 
 #include "./globals.h"
 #include "./buffers/buffers.h"
@@ -40,7 +39,7 @@ buffers_n::ProtokeyEventBuffer protokey_event_buffer;
 
 Bounce debugkey;
 queue_n::SwitchEventQueue switch_event_queue;
-std::queue<switch_board_n::protokey_event_t*> protokey_event_queue;
+queue_n::ProtokeyEventQueue protokey_event_queue;
 
 pin_interface_n::PinInterface pin_interface;
 switch_board_n::Machine switch_board;
@@ -76,10 +75,9 @@ void loop() {
     /*
      * Now loop through the protokey event queue
      */
-    while (!protokey_event_queue.empty()) {
-        switch_board_n::protokey_event_t* e = protokey_event_queue.front();
+    while (!protokey_event_queue.isEmpty()) {
+        switch_board_n::protokey_event_t* e = protokey_event_queue.pop();
         translation_service.process_protokey_event(e);
-        protokey_event_queue.pop();
     }
 
     /*

@@ -2,8 +2,6 @@
 Copyright 2015 Stichting Humanity4all
 */
 
-#include <queue>
-
 #include "./machinestates.h"
 
 namespace switch_board_n {
@@ -12,14 +10,14 @@ void AbstractState::press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
 }
 
 void AbstractState::release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // throw std::runtime_error("Invalid state: this method should only be inherited.");
 }
 
@@ -30,7 +28,7 @@ void Idle::press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // protokey_event_queue.emplace(event_t::DOWN, switch_event, false);
     protokey_event_t* tmp_event;
     tmp_event = protokey_event_buffer.get_free();
@@ -46,7 +44,7 @@ void Idle::release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     /*
      * TODO Kick the dog here, there is clearly memory corruption!
      */
@@ -60,7 +58,7 @@ void OneSwitch::press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // protokey_event_queue.emplace(event_t::DOWN, switch_event, true);
     protokey_event_t* tmp_event;
     tmp_event = protokey_event_buffer.get_free();
@@ -76,7 +74,7 @@ void OneSwitch::release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // protokey_event_queue.emplace(event_t::DOWN, switch_event, true);
     protokey_event_t* tmp_event;
     tmp_event = protokey_event_buffer.get_free();
@@ -99,7 +97,7 @@ void OneSwitchUsed::press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // protokey_event_queue.emplace(event_t::DOWN, switch_event, true);
     protokey_event_t* tmp_event;
     tmp_event = protokey_event_buffer.get_free();
@@ -115,7 +113,7 @@ void OneSwitchUsed::release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // protokey_event_queue.emplace(event_t::UP, switch_event, false);
     protokey_event_t* tmp_event;
     tmp_event = protokey_event_buffer.get_free();
@@ -134,7 +132,7 @@ void TwoSwitch::press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // protokey_event_queue.emplace(event_t::DOWN, switch_event, false);
     protokey_event_t* tmp_event;
     tmp_event = protokey_event_buffer.get_free();
@@ -154,7 +152,7 @@ void TwoSwitch::release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // protokey_event_queue.emplace(event_t::UP, switch_event, true);
     protokey_event_t* tmp_event;
     tmp_event = protokey_event_buffer.get_free();
@@ -174,7 +172,7 @@ void ManySwitch::press(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // protokey_event_queue.emplace(event_t::DOWN, switch_event, false);
     protokey_event_t* tmp_event;
     tmp_event = protokey_event_buffer.get_free();
@@ -187,7 +185,7 @@ void ManySwitch::release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue) {
+        queue_n::ProtokeyEventQueue & protokey_event_queue) {
     // protokey_event_queue.emplace(event_t::UP, switch_event, false);
     protokey_event_t* tmp_event;
     tmp_event = protokey_event_buffer.get_free();

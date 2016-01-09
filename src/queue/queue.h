@@ -8,6 +8,7 @@ Copyright 2016 Stichting Humanity4all
 #include "Arduino.h"
 #include "../globals.h"
 #include "../switchevent/switchevent.h"
+#include "../switchboard/typedefs.h"
 
 namespace queue_n {
 
@@ -19,6 +20,18 @@ class SwitchEventQueue {
     bool isEmpty();
  private:
     switch_event_n::SwitchEvent* circularBuffer[N_SWITCHES];
+    uint8_t start;
+    uint8_t end;
+};
+
+class ProtokeyEventQueue {
+ public:
+    ProtokeyEventQueue();
+    switch_board_n::protokey_event_t* pop();
+    void push(switch_board_n::protokey_event_t* protokey_event);
+    bool isEmpty();
+ private:
+    switch_board_n::protokey_event_t* circularBuffer[N_SWITCHES];
     uint8_t start;
     uint8_t end;
 };

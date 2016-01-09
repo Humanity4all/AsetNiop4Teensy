@@ -5,10 +5,9 @@ Copyright 2015 Stichting Humanity4all
 #ifndef SRC_SWITCHBOARD_MACHINE_H_
 #define SRC_SWITCHBOARD_MACHINE_H_
 
-#include <queue>
-
 #include "../globals.h"
 #include "../buffers/buffers.h"
+#include "../queue/queue.h"
 #include "./machinestates.h"
 #include "./typedefs.h"
 #include "../switchevent/switchevent.h"
@@ -28,7 +27,7 @@ class Machine {
     void process_switch_event(
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     ~Machine();
  private:
     AbstractState* currentState;

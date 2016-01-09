@@ -5,12 +5,11 @@ Copyright 2015 Stichting Humanity4all
 #ifndef SRC_SWITCHBOARD_MACHINESTATES_H_
 #define SRC_SWITCHBOARD_MACHINESTATES_H_
 
-#include <queue>
-
 #include "../globals.h"
 #include "./machine.h"
 #include "./typedefs.h"
 #include "../buffers/buffers.h"
+#include "../queue/queue.h"
 #include "../switchevent/switchevent.h"
 
 #ifdef DEBUG
@@ -27,12 +26,12 @@ class AbstractState {
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual ~AbstractState();
 };
 
@@ -42,12 +41,12 @@ class Idle : public AbstractState {
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual ~Idle();
 };
 
@@ -57,12 +56,12 @@ class OneSwitch : public AbstractState {
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual ~OneSwitch();
 };
 
@@ -72,12 +71,12 @@ class OneSwitchUsed: public AbstractState {
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual ~OneSwitchUsed();
 };
 
@@ -87,12 +86,12 @@ class TwoSwitch : public AbstractState {
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual ~TwoSwitch();
 };
 
@@ -102,12 +101,12 @@ class ManySwitch : public AbstractState {
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual void release(
         Machine& machine,
         switch_event_n::SwitchEvent* switch_event,
         buffers_n::ProtokeyEventBuffer & protokey_event_buffer,
-        std::queue<protokey_event_t*> & protokey_event_queue);
+        queue_n::ProtokeyEventQueue & protokey_event_queue);
     virtual ~ManySwitch();
 };
 
