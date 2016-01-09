@@ -328,6 +328,9 @@ void TranslationService::send_modifiers(bool tmp_shift) {
 }
 
 void TranslationService::use_modifiers() {
+    #ifdef DEBUG
+    Serial.println("translation_service: eat up a modifier");
+    #endif
     for (uint8_t i = 0; i < NUM_MODIFIERS; i++) {
         if (modState[i] == modifier_t::ACTIVE) {
             modState[i] == modifier_t::IDLE;
