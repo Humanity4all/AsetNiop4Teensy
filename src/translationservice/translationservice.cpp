@@ -233,12 +233,25 @@ void TranslationService::set_modifier(key_t key) {
             index = I_CAPS_LOCK;
         }
     }
+    #ifdef DEBUG
+    Serial.print("translation_service: modifier = ");
+    Serial.println(index);
+    #endif
     if (modState[index] == modifier_t::IDLE) {
         modState[index] = modifier_t::ACTIVE;
+        #ifdef DEBUG
+        Serial.println("translation_service: set mod to active");
+        #endif
     } else if (modState[index] == modifier_t::ACTIVE) {
         modState[index] = modifier_t::LAZY;
+        #ifdef DEBUG
+        Serial.println("translation_service: set mod to lazy");
+        #endif
     } else if (modState[index] == modifier_t::LAZY) {
         modState[index] = modifier_t::IDLE;
+        #ifdef DEBUG
+        Serial.println("translation_service: set mod to idle");
+        #endif
     } else {
         // TODO Kick watchdog
         #ifdef DEBUG
@@ -292,6 +305,10 @@ void TranslationService::send_modifiers(bool tmp_shift) {
     }
     // caps_lock is not technically a modifier, we just put it here
     // for the led effects
+    #ifdef DEBUG
+    Serial.print("translation_service: sending modifiers ");
+    Serial.println(mods);
+    #endif
     Keyboard.set_modifier(mods);
     Keyboard.send_now();
 }
