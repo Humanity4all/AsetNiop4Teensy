@@ -331,7 +331,7 @@ void TranslationService::use_modifiers() {
     #endif
     for (uint8_t i = 0; i < NUM_MODIFIERS; i++) {
         if (modState[i] == modifier_t::ACTIVE) {
-            modState[i] == modifier_t::IDLE;
+            modState[i] = modifier_t::IDLE;
         }
     }
 }
