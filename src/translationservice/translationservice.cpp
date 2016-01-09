@@ -549,10 +549,12 @@ void TranslationService::send_key(key_t key, switch_board_n::event_t event) {
         }
         case key_t::K_LAYER_1: {
             is_layer = true;
-            layerNumber = 1;
-            #ifdef DEBUG
-            Serial.println("translation_service: switch to layer 1");
-            #endif
+            if (event == switch_board_n::event_t::DOWN) {
+                layerNumber = 1;
+                #ifdef DEBUG
+                Serial.println("translation_service: switch to layer 1");
+                #endif
+            }
             break;
         }
         default: {
