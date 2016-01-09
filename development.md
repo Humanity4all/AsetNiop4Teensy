@@ -3,7 +3,7 @@
 ### ToDo
 
 - [ ] write unit tests -> figure out how unit testing works with embedded cpp
-- [ ] replace queues with circular buffers
+- [x] replace queues with circular buffers
 - [ ] refactor switchboard state machine to eliminate dynamic memory allocation
 - [ ] implement all the keys
 - [ ] test hybrid behavior (both chorded and non chorded switches in a layer)
