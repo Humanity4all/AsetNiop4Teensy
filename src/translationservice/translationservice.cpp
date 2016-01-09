@@ -266,6 +266,9 @@ void TranslationService::send_modifiers(bool tmp_shift) {
     // shifts
     if (modState[I_SHIFT] != modifier_t::IDLE or tmp_shift) {
         mods = mods | MODIFIERKEY_SHIFT;
+        #ifdef DEBUG
+        Serial.println("translation_service: added shift to mods");
+        #endif
     }
     if (modState[I_SHIFT_L] != modifier_t::IDLE) {
         mods = mods | MODIFIERKEY_LEFT_SHIFT;
