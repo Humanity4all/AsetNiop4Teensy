@@ -334,6 +334,7 @@ void TranslationService::use_modifiers() {
             modState[i] = modifier_t::IDLE;
         }
     }
+    send_modifiers(false);
 }
 
 void TranslationService::send_key(key_t key, switch_board_n::event_t event) {
