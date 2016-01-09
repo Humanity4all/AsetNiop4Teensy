@@ -261,6 +261,10 @@ void TranslationService::set_modifier(key_t key) {
         Serial.println("translation_service: unknown modifier state");
         #endif
     }
+    #ifdef DEBUG
+    Serial.print("translation_service: modifier state now: ");
+    Serial.println(modState[index]);
+    #endif
     send_modifiers(false);
 }
 
