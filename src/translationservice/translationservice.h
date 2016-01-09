@@ -9,7 +9,6 @@ Copyright 2015 Stichting Humanity4all
 
 #include "../globals.h"
 #include "./typedefs.h"
-#include "./sendkey.h"
 #include "../buffers/buffers.h"
 #include "../switchboard/typedefs.h"
 #include "../keymap/getkey.h"
@@ -22,9 +21,12 @@ class TranslationService {
     void process_protokey_event(
         switch_board_n::protokey_event_t* protokey_event);
     void set_modifier(key_t key);
-    int* use_modifiers();
+    void send_modifiers(bool tmp_shift);
+    void use_modifiers();
+    void send_key(key_t key, switch_board_n::event_t event);
  private:
     uint8_t layerNumber;
+    modifier_t modState[NUM_MODIFIERS];
 };
 
 } // namespace translation_service_n

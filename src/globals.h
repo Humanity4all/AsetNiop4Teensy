@@ -40,6 +40,24 @@ Copyright 2015 Stichting Humanity4all
 #define INITKEYMAP
 
 /*
+ * Modifier settings
+ */
+#define NUM_MODIFIERS 13
+#define I_SHIFT 0
+#define I_SHIFT_L 1
+#define I_SHIFT_R 2
+#define I_CTRL 3
+#define I_CTRL_L 4
+#define I_CTRL_R 5
+#define I_ALT 6
+#define I_ALT_L 7
+#define I_ALT_R 8
+#define I_GUI 9
+#define I_GUI_L 10
+#define I_GUI_R 11
+#define I_CAPS_LOCK 12
+
+/*
  * eeprom settings
  */
 

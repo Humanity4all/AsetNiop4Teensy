@@ -91,7 +91,7 @@ typedef enum key_t {
 } key_t;
 
 typedef enum modifier_t {
-    IDLE, ACTIVE, LAZY, TMP,
+    IDLE, ACTIVE, LAZY,
 } modifier_t;
 
 } // namespace translation_service_n

@@ -43,7 +43,7 @@ void init_keymap() {
 
         using translation_service_n::key_t;
         // First, handle the single switch presses
-        EEPROM.update(get_address(0, 0, 0), (uint8_t)key_t::K_A);
+        EEPROM.update(get_address(0, 0, 0), (uint8_t)key_t::K_SHIFT);
         EEPROM.update(get_address(0, 1, 1), (uint8_t)key_t::K_B);
         EEPROM.update(get_address(0, 2, 2), (uint8_t)key_t::K_C);
 
