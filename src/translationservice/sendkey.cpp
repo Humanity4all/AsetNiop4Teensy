@@ -218,10 +218,70 @@ void TranslationService::send_key(key_t key, switch_board_n::event_t event) {
         }
         case key_t::K_LAYER_1: {
             is_layer = true;
-            if (event == switch_board_n::event_t::DOWN) {
+            if (event == switch_board_n::event_t::UP) {
                 layerNumber = 1;
                 #ifdef DEBUG
                 Serial.println("translation_service: switch to layer 1");
+                #endif
+            }
+            break;
+        }
+        case key_t::K_LAYER_2: {
+            is_layer = true;
+            if (event == switch_board_n::event_t::UP) {
+                layerNumber = 2;
+                #ifdef DEBUG
+                Serial.println("translation_service: switch to layer 2");
+                #endif
+            }
+            break;
+        }
+        case key_t::K_LAYER_3: {
+            is_layer = true;
+            if (event == switch_board_n::event_t::UP) {
+                layerNumber = 3;
+                #ifdef DEBUG
+                Serial.println("translation_service: switch to layer 3");
+                #endif
+            }
+            break;
+        }
+        case key_t::K_LAYER_4: {
+            is_layer = true;
+            if (event == switch_board_n::event_t::UP) {
+                layerNumber = 4;
+                #ifdef DEBUG
+                Serial.println("translation_service: switch to layer 4");
+                #endif
+            }
+            break;
+        }
+        case key_t::K_LAYER_5: {
+            is_layer = true;
+            if (event == switch_board_n::event_t::UP) {
+                layerNumber = 5;
+                #ifdef DEBUG
+                Serial.println("translation_service: switch to layer 5");
+                #endif
+            }
+            break;
+        }
+        case key_t::K_LAYER_6: {
+            is_layer = true;
+            if (event == switch_board_n::event_t::UP) {
+                layerNumber = 6;
+                #ifdef DEBUG
+                Serial.println("translation_service: switch to layer 6");
+                #endif
+            }
+            break;
+        }
+        case key_t::K_LAYER_7: {
+            is_layer = true;
+            if (event == switch_board_n::event_t::UP) {
+                layerNumber = 7;
+                #ifdef DEBUG
+                Serial.println("translation_service: switch to layer 7");
                 #endif
             }
             break;
