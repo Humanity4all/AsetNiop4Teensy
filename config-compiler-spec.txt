@@ -1,0 +1,72 @@
+=========================
+=  Config compiler spec =
+=========================
+
+The asetniop needs a keymap configuration
+in binary format. Since binary isn't a very
+user frienly config format, we need a compiler
+which converts between a user-friendly format
+and the binary keymap.
+
+This binary keymap is also used for the asetniop
+type trainer (work-in-progress).
+
+I/O
+-------------------------
+In: human-readable keymap config file(s)
+In: src/translationservice/typedefs.h -> key_t enum
+
+Out: binary keymap
+
+Binary keymap
+-------------------------
+The binary keymap is a file representation of
+what the eeprom is going to look like. The
+first byte is going into address 0, the second
+into address 1, etc. It is read and copied over
+by the keyboard until the end of the file is reached.
+So no particular lenght is required.
+
+However, the empty / reserved / unset bytes in the
+middle do need to be present in the binary file. This
+means that the compiler has to be aware of default
+settings, or one might end up with a non-functional
+keyboard.
+
+Addressing
+-------------------------
+The first 100 bytes are reserved for settings. This
+number might change in the future.
+
+The actual keymap is accessed like this:
+
+address = layer * N_SWITCHES**2 + switch1 * N_SWITCHES + switch2 + OFFSET
+
+layer -> current layer
+N_SWITCHES -> total number of switches in the keyboard
+switch1 -> first active switch
+switch2 -> second active switch
+OFFSET -> reserved bytes (100 in this case)
+
+switch1 and switch2 can have the same value. This occures
+when only one switch is pressed.
+
+At the address, you'll find a key code as defined in the key_t enum.
+
+Settings
+---------------------------
+0 -> keymap version. This should be some sort of hash to
+differentiate between keymap configs. Maybe actually use more
+than one byte for this, to reduce collision chances.
+
+
+Features
+---------------------------
+Two-way conversion, so it's possible to edit an existing
+keymap when you don't have access to the human-readable version.
+
+Either the option to generate a default keymap to start from, or we
+need to simply provide it.
+
+Optionally, the compiler could also generate a keymap for use with
+KeyRemap4Macbook.
