@@ -24,5 +24,6 @@ buf = populate_buffer(OFFSET, N_SWITCHES, values)
 # Print the hex of that buffer to output
 print(binascii.hexlify(buf))
 
-# TODO: write the result to a file, and inspect the file with hexedit.
-# http://linux.byexamples.com/archives/478/python-writing-binary-file/
+# Print the output to file.
+with open('test.bin', 'wb') as f:
+    f.write(buf)
