@@ -12,11 +12,7 @@ values = [
 ]
 
 # Create a buffer of front matter + values
-buf = configcompiler.populate_buffer(
-    configcompiler.OFFSET,
-    configcompiler.N_SWITCHES,
-    values
-)
+buf = configcompiler.populate_buffer(values)
 
 # Print the hex of that buffer to output
 print(binascii.hexlify(buf))
