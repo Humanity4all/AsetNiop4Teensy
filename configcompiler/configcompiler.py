@@ -77,7 +77,13 @@ def main(yaml_file, output_file, offset=OFFSET, n_switches=N_SWITCHES):
     Read a yaml file, clean it, process it, and write the result to file.
     """
 
+    # FIXME: if safe_load gives an error, warn that
+    #
+    #     ! ? = , - ' " ` [ ] { } * & ~ # | > : @
+    #
+    # all need quoting. Perhaps say all non-alphanum chars need quoting?
     yaml_data = yaml.safe_load(yaml_file)
+
     yaml_data_clean = clean_yaml(yaml_data)
 
     buf = buffer_from_data(yaml_data_clean, offset, n_switches)
