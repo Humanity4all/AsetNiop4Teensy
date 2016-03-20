@@ -22,6 +22,8 @@ layer 1:
   # in the original asetniop layout, !+shift is a control modifier.
   # we put the modifiers in the thumb combinations
   1 8: !
+  # in the original asetniop layout, (+shift is an alt modifier.
+  # we put the modifiers in the thumb combinations
   1 9: (
   # in a normal keyboard, ? is reached with a shift. in the asetniop
   # layout, ? is the base character, and shift reaches the slash
@@ -32,6 +34,8 @@ layer 1:
   2 7: j
   2 8: z
   2 9: .
+  # in the original asetniop layout, )+shift is escape.
+  # we put that in the thumb comninations
   2 10: )
 
   3 4: r
@@ -104,6 +108,8 @@ layer 2:
   # in the original asetniop layout, !+shift is a control modifier.
   # we put the modifiers in the thumb combinations
   1 8: !
+  # in the original asetniop layout, (+shift is an alt modifier.
+  # we put the modifiers in the thumb combinations
   1 9: (
   1 10: ?
 
@@ -114,6 +120,8 @@ layer 2:
   2 7: <END>
   2 8: =
   2 9: .
+  # in the original asetniop layout, )+shift is escape.
+  # we put that in the thumb comninations
   2 10: )
 
   3 4: <PGUP>
@@ -164,4 +172,8 @@ layer 2:
   6 9: <SPACE>
   6 10: <BACKSPACE>
 
+layer 3:
+  # numpad & function keys
 
+layer 4:
+  # gaming!
