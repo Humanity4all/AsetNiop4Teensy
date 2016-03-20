@@ -63,3 +63,35 @@ Just number them:
 
   1. Simplified, e.g. if '1 2' == '2 1', then omit '2 1'
   2. Verbose.
+
+
+### yaml file: a list (one entry for each layer)
+
+inside a layer, each entry is a dict 'str1: str2'
+* str1 is a space-separated pair of numbers
+* str2 is
+    * a string representing a key name, e.g. <Up>, 'a', ...
+    * a one-digit integer, convert it to string to get the key name.
+
+Layers should be named 'layer 1', 'layer 2', ..., 'layer n', without
+gaps.
+
+Within a layer, any switch combination can be undefined. If a switch
+combination is missing but its complement is defined, it is assumed to
+have the same value as its complement.
+
+A switch combination can be explicitly undefined: type 'undefined'
+
+### read_yaml result:
+
+* list of layers
+* layer is a dict of (switch pair) -> (key name) entries
+* pairs may still be missing.
+* handles the fact that yaml interprets a bare y or n as bools
+* translates 'undefined' to None
+
+### buffer values list
+sequence of bytes representing key codes, one byte for
+each switch combination we expect in a layer.
+e.g. '\x00', '\x01'
+One byte for each.
