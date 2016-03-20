@@ -1,0 +1,167 @@
+layer 1:
+  # alphabet layer
+  1: a
+  2: s
+  3: e
+  4: t
+  # in the original asetniop layout, this is a shift key
+  # we put the modifiers in the thumb combinations
+  5: "["
+  # in the orignal asetniop layout, this is a space
+  # we put that in the thumb combinations
+  6: "]"
+  7: n
+  8: i
+  9: o
+  10: p
+
+  1 2: w
+  1 3: x
+  1 4: f
+  1 7: q
+  # in the original asetniop layout, !+shift is a control modifier.
+  # we put the modifiers in the thumb combinations
+  1 8: !
+  1 9: (
+  # in a normal keyboard, ? is reached with a shift. in the asetniop
+  # layout, ? is the base character, and shift reaches the slash
+  1 10: ?
+
+  2 3: d
+  2 4: c
+  2 7: j
+  2 8: z
+  2 9: .
+  2 10: )
+
+  3 4: r
+  3 7: y
+  3 8: ,
+  3 9: -
+  3 10: "'"
+  
+  4 7: b
+  4 8: v
+  4 9: g
+  # in the original asetniop layout, this is a backspace
+  # we put that in the thumb combinations instead
+  4 10: =
+
+  7 8: h
+  7 9: u
+  7 10: m
+
+  8 9: l
+  8 10: k
+  
+  9 10: ;
+
+  # thumb combinations
+  # these are not part of the original asetniop layout
+  # layer switching
+  5 1: <LAYER 1>
+  5 2: <LAYER 2>
+  5 3: <LAYER 3>
+  5 4: <LAYER 4>
+  5 6: <ENTER>
+  5 7: <LAYER 5>
+  5 8: <LAYER 6>
+  5 9: <LAYER 7>
+  5 10: <LAYER 8>
+
+  # modifiers and stuff
+  6 1: <ALT>
+  6 2: <CONTROL>
+  6 3: <GUI>
+  6 4: <SHIFT>
+  6 7: <TAB>
+  6 8: <ESCAPE>
+  6 9: <SPACE>
+  6 10: <BACKSPACE>
+
+layer 2:
+  # numeric layer
+  1: 1
+  2: 2
+  3: 3
+  4: 4
+  5: 5
+  6: 6
+  7: 7
+  8: 8
+  9: 9
+  10: 0
+
+  # TODO: remove duplicates (they are confusing)
+  # TODO: fill in undefined combinations
+
+  # in the original asetniop layout, this was a shift
+  # we handle modifiers with the thumbs
+  1 2: undefined
+  1 3: `
+  1 4: "["
+  1 7: undefined
+  # in the original asetniop layout, !+shift is a control modifier.
+  # we put the modifiers in the thumb combinations
+  1 8: !
+  1 9: (
+  1 10: ?
+
+  2 3: -
+  # in the original asetniop layout, this was a function key
+  # fn keys are internal only, they have no meaning in this context
+  2 4: <LEFTMOUSE>
+  2 7: <END>
+  2 8: =
+  2 9: .
+  2 10: )
+
+  3 4: <PGUP>
+  3 7: <HOME>
+  3 8: ,
+  3 9: -
+  3 10: "'"
+
+  4 7: <LEFT>
+  4 8: <UP>
+  4 9: <RIGHT>
+  # in the original asetniop layout, this was backspace
+  # the down key was a thumb combination, which we reserved for modifiers
+  # and layer switching (it contains a backspace key)
+  4 10: <DOWN>
+
+  7 8: <PGDOWN>
+  # in the original asetniop layout, this was a function key
+  # fn keys are internal only, they have no meaning in this context
+  7 9: <RIGHTMOUSE>
+  7 10: "]"
+
+  8 9: =
+  8 10: \
+
+  9 10: ;
+  
+  # thumb combinations
+  # these are not part of the original asetniop layout
+  # layer switching
+  5 1: <LAYER 1>
+  5 2: <LAYER 2>
+  5 3: <LAYER 3>
+  5 4: <LAYER 4>
+  5 6: <ENTER>
+  5 7: <LAYER 5>
+  5 8: <LAYER 6>
+  5 9: <LAYER 7>
+  5 10: <LAYER 8>
+
+  # modifiers and stuff
+  6 1: <ALT>
+  6 2: <CONTROL>
+  6 3: <GUI>
+  6 4: <SHIFT>
+  6 7: <TAB>
+  6 8: <ESCAPE>
+  6 9: <SPACE>
+  6 10: <BACKSPACE>
+
+
