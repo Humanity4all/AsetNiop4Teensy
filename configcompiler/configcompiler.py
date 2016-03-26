@@ -1,5 +1,6 @@
 import itertools
 import struct
+import sys
 
 import yaml
 
@@ -77,12 +78,14 @@ def main(yaml_file, output_file, offset=OFFSET, n_switches=N_SWITCHES):
     Read a yaml file, clean it, process it, and write the result to file.
     """
 
-    # FIXME: if safe_load gives an error, warn that
-    #
-    #     ! ? = , - ' " ` [ ] { } * & ~ # | > : @
-    #
-    # all need quoting. Perhaps say all non-alphanum chars need quoting?
-    yaml_data = yaml.safe_load(yaml_file)
+    try:
+        with open(yaml_file) as f:
+            yaml_data = yaml.safe_load(f)
+    except yaml.error.YAMLError as e:
+        print(str(e))
+        print('Error while loading config file. Did you forget to quote a '
+              'non-alphanumeric character?')
+        sys.exit(1)
 
     yaml_data_clean = clean_yaml(yaml_data)
 
