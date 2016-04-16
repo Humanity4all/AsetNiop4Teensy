@@ -73,19 +73,30 @@ def buffer_from_data(data, offset, n_switches):
     return buf
 
 
+def read_yaml(stream):
+    """
+    Given an open(file), parse its YAML and return a dict/list.
+
+    Exits with exit code 1 if the file is not valid YAML, and prints 
+    prints a friendly error message pointing at a very common problem.
+    """
+
+    try:
+        return yaml.safe_load(stream)
+    except yaml.error.YAMLError as e:
+        print(str(e))
+        sys.stderr.write('Error while loading config file. Did you forget '
+                         'to quote a non-alphanumeric character?')
+        sys.exit(1)
+
+
 def main(yaml_file, output_file, offset=OFFSET, n_switches=N_SWITCHES):
     """
     Read a yaml file, clean it, process it, and write the result to file.
     """
 
-    try:
-        with open(yaml_file) as f:
-            yaml_data = yaml.safe_load(f)
-    except yaml.error.YAMLError as e:
-        print(str(e))
-        print('Error while loading config file. Did you forget to quote a '
-              'non-alphanumeric character?')
-        sys.exit(1)
+    with open(yaml_file) as stream:
+        yaml_data = read_yaml(stream)
 
     yaml_data_clean = clean_yaml(yaml_data)
 
